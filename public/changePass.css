@@ -1,0 +1,29 @@
+body {
+ background-color: darkkhaki;
+}
+
+form.changeP {
+ max-width: 400px;
+ /* margin: 0 auto; */
+}
+
+button {
+ width: 50%;
+ font-weight: bold;
+ font-size: large;
+ padding: 5px 1px;
+ border: 1px solid rgb(19, 1, 35);
+ border-radius: 5px;
+ background-color: rgb(228, 228, 5);
+ margin-bottom: 50px;
+}
+
+body a.homeS {
+ color: rgb(227, 221, 234);
+ border: 1px solid #123;
+ border-radius: 5px;
+ padding: 5px;
+ font-weight: bold;
+ background-color: rgb(88, 28, 43);
+ text-decoration: none;
+}

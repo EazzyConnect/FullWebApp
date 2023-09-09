@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Portfolio</title>
+ <link rel="stylesheet" href="/profile.css">
+</head>
+
+<body>
+ <header>
+  <a href="profile" class="myHome">My Profile</a>
+  <nav>
+   <a class="editP" href="profile/edit">Edit Profile</a>
+  <a class="usersP" href="/users">Search Users</a>
+  <button class="logoutButton">LOG-OUT</button>
+  </nav>
+ </header>
+
+ <h1>Welcome {{data.firstName}}!</h1>
+ <br>
+ <p> First Name: {{data.firstName}}</p>
+ <p> Last Name: {{data.lastName}}</p>
+ <p> E-mail: {{data.email}}</p>
+ <p> Username: {{data.username}}</p>
+ <p> Role: {{data.role}}</p>
+ <p> Approved: {{data.approved}}</p>
+ <p> Created On: {{data.createdOn}}</p>
+ <p> Tools: {{data.tools}}</p>
+
+<script>
+ const logoutButton = document.querySelector(".logoutButton");
+ logoutButton.addEventListener("click", async () => {
+  const response = await fetch("/auth/logout",{
+   method: "POST"
+  });
+  if(response.ok){
+   window.location.href = "/home"
+  }
+ })
+
+</script>
+</body>
+
+</html>

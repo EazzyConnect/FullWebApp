@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Portfolio</title>
+ <link rel="stylesheet" href="/adminUpdate.css">
+</head>
+
+<body>
+
+ <h2>User's Edit-Page</h2>
+ <br>
+ <form class="AdminEdit" action="/admin/users/update" method="post">
+
+ <label class="select" for="username">Select User:</label>
+ <select class="select"  name="username" id="username">
+ <option value="" selected disabled>Select</option>
+  {{#each data}}
+  <option value="{{this.username}}">{{this.username}}</option>
+  {{/each}}
+ </select>
+ <br>
+ <br>
+ <p class="input">Is user approved?</p>
+
+ <label class="selectTrue" for="approvedTrue">TRUE   </label>
+ <input type="radio" value="true" name="approved" id="approvedTrue">
+ <label class="selectFalse" for="approvedFalse">FALSE</label>
+ <input type="radio" value="false" name="approved" id="approvedFalse">
+  
+  <br>
+
+ <p class="input">What is the role of this user?</p>
+
+ <label class="selectAdmin" for="adminRole">ADMIN </label>
+ <input type="radio" value="admin" name="role" id="adminRole">
+ <label class="selectUser" for="userRole">USER </label>
+ <input type="radio" value="user" name="role" id="userRole">
+ 
+ <br>
+ <br>
+
+  {{!-- <input type="text" name="approved" placeholder="Approved"> --}}
+
+  <button type="submit">Save Changes</button>
+ </form>
+ <br>
+ <a class="homeS" href="/admin/users">Back Home</a>
+</body>
+
+</html>

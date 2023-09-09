@@ -1,0 +1,44 @@
+* {
+ box-sizing: border-box;
+}
+
+body {
+ color: #222;
+ background-color: bisque;
+}
+table, th, td {
+ border: 3px solid rgb(15, 15, 15);
+ border-collapse: collapse;
+ padding: 10px;
+ cursor: pointer;
+ font-style: oblique;
+ font-size: large;
+ font-weight: 800;
+ margin-bottom: 50px;
+}
+
+table tr.table {
+ background-color: rgb(141, 66, 13);
+ color: azure;
+}
+body a.homeS {
+ color: rgb(250, 249, 251);
+ border: 1px solid #123;
+ border-radius: 5px;
+ padding: 5px;
+ font-weight: bold;
+ background-color: rgb(123, 57, 11);
+ text-decoration: none;
+ font-size: large;
+ margin-right: 10px;
+}
+
+button.searchButton{
+ font-weight: bold;
+ font-size: medium;
+ background-color: rgb(123, 57, 11);
+ color: rgb(250, 249, 251);
+ border: 1px solid;
+ border-radius: 5px;
+ padding: 5px;
+}

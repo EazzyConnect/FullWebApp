@@ -1,0 +1,76 @@
+* {
+ box-sizing: border-box;
+}
+
+
+body {
+ color: #222;
+ background-color: rgb(244, 242, 219);
+}
+
+
+header {
+ display: flex;
+ justify-content: space-between;
+ margin-top: 15px;
+ margin-bottom: 50px;
+ align-items: center;
+}
+
+header a {
+ text-decoration: none;
+ color: inherit;
+}
+
+header a.home {
+ font-size: 1.5rem;
+ color: rgb(227, 221, 234);
+ border: 1px solid #123;
+ border-radius: 5px;
+ padding: 5px;
+ font-weight: bold;
+ background-color: rgb(88, 28, 43);
+}
+header nav {
+ display: flex;
+ gap: 15px
+}
+
+div.greet {
+ background-color: burlywood;
+ border: 1px solid brown;
+ font-family: Georgia, 'Times New Roman', Times, serif;
+ font-style: oblique;
+ color: rgb(125, 32, 32);
+}
+
+div.time {
+ text-align: left;
+ color: brown;
+ margin-top: -45px;
+ margin-left: 5px;
+}
+
+header nav a.loginP,
+a.signupP, a.usersP, a.adminP {
+ color: rgb(227, 221, 234);
+ border: 1px solid #123;
+ border-radius: 5px;
+ padding: 5px;
+ font-weight: bold;
+ background-color: rgb(88, 28, 43);
+}
+
+div.image img {
+ width: 60%;
+ height: 350px;
+}
+
+
+div.main div.texts {
+ font-size: larger;
+ text-align: justify;
+ margin: -350px 10px 0px 65%;
+ line-height: 1.6rem;
+ height: 100vh;
+}

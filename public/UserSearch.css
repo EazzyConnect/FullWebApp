@@ -1,0 +1,49 @@
+* {
+ box-sizing: border-box;
+}
+
+
+body {
+ color: #222;
+ background-color: darkkhaki;
+}
+
+
+header {
+ display: flex;
+ justify-content: space-between;
+ margin-top: 15px;
+ margin-bottom: 50px;
+ align-items: center;
+}
+
+header a {
+ text-decoration: none;
+ color: inherit;
+}
+
+header a.myHome {
+ font-size: 1.5rem;
+ color: rgb(227, 221, 234);
+ border: 1px solid #123;
+ border-radius: 5px;
+ padding: 5px;
+ font-weight: bold;
+ background-color: rgb(88, 28, 43);
+}
+
+header nav {
+ display: flex;
+ gap: 15px
+}
+
+header nav a.editP,
+a.usersP,
+button.logoutButton {
+ color: rgb(227, 221, 234);
+ border: 1px solid #123;
+ border-radius: 5px;
+ padding: 5px;
+ font-weight: bold;
+ background-color: rgb(88, 28, 43);
+}

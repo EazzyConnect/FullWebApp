@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Portfolio</title>
+ <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+ <header>
+  <a href="home" class="home">Portfolio</a>
+  <nav>
+  <a class="loginP" href="/auth/login">Login</a>
+  <a class="signupP" href="/auth/signup">Sign Up</a>
+  <a class="usersP" href="/users">Search Users</a>
+  <a class="adminP" href="/auth/admin/login">Admin</a>
+  </nav>
+ </header>
+ 
+ <div class="greet">
+ <h1>Welcome Guest</h1>
+ </div>
+ <div class="time">
+ <h3 id="currentTime"></h3>
+ </div>
+
+ <div class="image">
+ <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvjmbkZFOy92Wfi6AgwlM3MKbuGHF03UdB_w&usqp=CAU" alt="imgl">
+  </div>
+
+ <div class="main">
+  <div class="texts">
+   <p>If you don't innovate fast, disrupt your industry, disrupt yourself; you will be left behind.</p>
+   <p>The biggest risk is not taking any risk. In a world that's changing really quickly, the only strategy that is guaranteed to fail is not taking risks. SHOOT YOUR SHOT NOW!!!</p>
+  </div>
+ </div>
+
+ <script>
+  const time = document.getElementById("currentTime");
+
+  setInterval(()=>{
+   const newTime = new Date();
+   time.innerHTML = newTime.toLocaleString()
+  }, 1000)
+ </script>
+</body>
+</html>

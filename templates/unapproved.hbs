@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Portfolio</title>
+ <link rel="stylesheet" href="/adminPage.css">
+</head>
+
+<body>
+ <header>
+  <a href="/admin/users" class="myHome">Back Home</a>
+  <nav>
+   <a class="editP" href="update">Update A User</a>
+   <button class="logoutButton">LOG-OUT</button>
+  </nav>
+ </header>
+
+ <h1>List of Unapproved Users</h1>
+ <br>
+ <table>
+<tr>
+  <th>S/N</th>
+  <th>Username</th>
+  <th>Role</th>
+  <th>About</th>
+  <th>Tools</th>
+  <th>Approved</th>
+</tr>
+{{#each info}}
+<tr>
+  <td>{{newIndex}}</td>
+  <td>{{username}}</td>
+  <td>{{role}}</td>
+  <td>{{about}}</td>
+  <td>{{tools}}</td>
+  <td>{{approved}}</td>
+</tr>
+{{/each}}
+</table>
+<br>
+ <script>
+  const logoutButton = document.querySelector(".logoutButton");
+  logoutButton.addEventListener("click", async () => {
+   const response = await fetch("/auth/logout", {
+    method: "POST"
+   });
+   if (response.ok) {
+    window.location.href = "/home"
+   }
+  })
+
+ </script>
+</body>
+
+</html>

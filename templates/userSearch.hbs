@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Portfolio</title>
+ <link rel="stylesheet" href="/userSearch.css">
+</head>
+
+<body>
+ <header>
+  <a href="/home" class="myHome">Back Home</a>
+  <nav>
+   <a class="usersP" href="/users">Search Users</a>
+  </nav>
+ </header>
+
+ <h1>This is about {{data.firstName}} {{data.lastName}}!</h1>
+ <br>
+ <p> Username: {{data.username}}</p>
+ <p> Role: {{data.role}}</p>
+ <p> Approved: {{data.approved}}</p>
+ <p> Tools: {{data.tools}}</p>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Portfolio</title>
+ <link rel="stylesheet" href="/users.css">
+</head>
+
+<body>
+ <header>
+  <form action="/users/search" method="get">
+
+  <input type="text" name="username" placeholder="Username">
+ <button class="searchButton" type="submit">Search</button>
+
+  </form>
+
+ </header>
+ <h1>List of Approved Users</h1>
+
+{{!-- <ul id="usersList">
+  {{#each info}}
+  <li> S/N: </li>
+  <p> Username: {{username}}</p>
+  <p> Tools: {{tools}}</p>
+  <p> Role: {{role}}</p>
+  <p> About: {{about}}</p>
+  {{/each}}
+</ul> --}}
+
+<table>
+<tr class="table">
+  <th>S/N</th>
+  <th>USERNAME</th>
+  <th>TOOLS</th>
+  <th>ROLE</th>
+  <th>ABOUT</th>
+</tr>
+{{#each info}}
+<tr>
+  {{!-- @index inside the <td></td> start the index from 0 --}}
+  <td>{{newIndex}}</td>
+  <td>{{username}}</td>
+  <td>{{tools}}</td>
+  <td>{{role}}</td>
+  <td>{{about}}</td>
+</tr>
+{{/each}}
+</table>
+<br>
+<a class="homeS" href="home">Back Home</a>
+<a class="homeS" href="/users/profile">My Profile</a>
+
+</body>
+</html>
