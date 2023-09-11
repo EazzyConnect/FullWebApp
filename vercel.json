@@ -1,6 +1,21 @@
+// {
+//  "rewrites": [{
+//   "source": "/(.*)",
+//   "destination": "/"
+//  }]
+// }
+
 {
- "rewrites": [{
-  "source": "/(.*)",
-  "destination": "/"
- }]
+"rewrites": [
+ {
+ "src": "./app.js",
+ "use": "@vercel/node"
+}
+],
+"routes": [
+ {
+  "src": "/(.*)",
+  "dest": "/"
+ }
+]
 }
