@@ -2,9 +2,9 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "The goal of this project is to have a web application where users, would display their skills, stack and a description about them (A portfolio).\r Each user should be able to signup, and dynamically create and update their portfolio.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "nodemon app.js"
+    "test": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
