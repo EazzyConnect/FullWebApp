@@ -5,7 +5,7 @@
 
 body {
  color: #222;
- background-color: darkkhaki;
+ background-color: rgb(244, 242, 219);
 }
 
 
@@ -29,7 +29,7 @@ header a.myHome {
  border-radius: 5px;
  padding: 5px;
  font-weight: bold;
- background-color: rgb(88, 28, 43);
+ background-color: #410066;
 }
 
 header nav {
@@ -37,14 +37,67 @@ header nav {
  gap: 15px
 }
 
-header nav a.editP, a.usersP, 
+div.welcome {
+ background-color: #4D2177;
+ color: aliceblue;
+ font-family: Georgia, 'Times New Roman', Times, serif;
+ padding: 0.1%;
+ border-radius: 5px;
+ margin-bottom: 5px;
+ display: flex;
+ justify-content: space-between;
+ /* clear: both; */
+}
+
+/* div.welcome h3.leftTime {
+ float: left;
+}
+
+div.welcome h3.rightTime {
+ float: right;
+} */
+
+
+div.role {
+  background-color: #624872;
+  border: 1px solid rgb(244, 227, 227);
+  border-radius: 50%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: oblique;
+  color: rgb(249, 247, 247);
+  text-align: center;
+  margin-right: 80%;
+  padding: 1%;
+  position: absolute;
+}
+
+div.tool {
+ background-color: #492F59;
+  border: 1px solid rgb(244, 227, 227);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: oblique;
+  color: rgb(249, 247, 247);
+  text-align: right;
+  padding: 1%;
+}
+
+header nav a.editP, a.usersP {
+ color: rgb(227, 221, 234);
+ border: 1px solid #123;
+ border-radius: 5px;
+ padding: 5px;
+ font-weight: bold;
+ background-color: #472F3B;
+}
+
 button.logoutButton {
  color: rgb(227, 221, 234);
  border: 1px solid #123;
  border-radius: 5px;
  padding: 5px;
  font-weight: bold;
- background-color: rgb(88, 28, 43);
+ background-color: #25191f;
+ cursor: pointer;
 }
 
 p {

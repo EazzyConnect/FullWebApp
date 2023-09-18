@@ -14,20 +14,28 @@
   <nav>
    <a class="editP" href="profile/edit">Edit Profile</a>
   <a class="usersP" href="/users">Search Users</a>
-  <button class="logoutButton">LOG-OUT</button>
   </nav>
  </header>
-
- <h1>Welcome {{data.firstName}}!</h1>
- <br>
+<div class="welcome">
+ <h3 class="leftTime" id="time"></h3>
+ <h3 class="rightTime" id="currentTime"></h3>
+</div>
+ 
+ <div class="role">
+ <p> Role: {{data.role}}</p>
+ </div>
+ <div class="tool">
+ <p> Tools: {{data.tools}}</p>
+ </div>
  <p> First Name: {{data.firstName}}</p>
  <p> Last Name: {{data.lastName}}</p>
  <p> E-mail: {{data.email}}</p>
  <p> Username: {{data.username}}</p>
- <p> Role: {{data.role}}</p>
  <p> Approved: {{data.approved}}</p>
  <p> Created On: {{data.createdOn}}</p>
- <p> Tools: {{data.tools}}</p>
+ <br>
+
+ <button class="logoutButton">LOG-OUT</button>
 
 <script>
  const logoutButton = document.querySelector(".logoutButton");
@@ -40,6 +48,25 @@
   }
  })
 
+const greetings = document.getElementById("time");
+ const date = new Date()
+ const hour = date.getHours()
+ function getGreeting() {
+  if (hour < 12) {
+   return "Good Morning {{data.firstName}},"
+  } else if (hour >= 12 && hour < 18) {
+   return "Good Afternoon {{data.firstName}},"
+  } else {
+   return "Good Evening {{data.firstName}},"
+  }
+ }
+ greetings.textContent = getGreeting();
+
+ const time = document.getElementById("currentTime");
+  setInterval(() => {
+   const newTime = new Date();
+   time.innerHTML = newTime.toLocaleString()
+  }, 1000)
 </script>
 </body>
 

@@ -67,7 +67,7 @@ if(intro) req.user.intro = intro;
 if(about) req.user.about = about;
 if(tools) {
 const existingTools = req.user.tools || [];
-const newTools = tools.split(",").map(tool => tool.trim());
+const newTools = tools.split(",").map(tool => tool.trim( ));
 req.user.tools = [...existingTools, ...newTools]};
 if(howManyMonthsProgramming) req.user.howManyMonthsProgramming = howManyMonthsProgramming;
 if (favoriteMealInTechquestProgram) req.user.favoriteMealInTechquestProgram = favoriteMealInTechquestProgram;

@@ -29,7 +29,7 @@ header a.home {
  border-radius: 5px;
  padding: 5px;
  font-weight: bold;
- background-color: rgb(88, 28, 43);
+ background-color: rgb(142, 39, 115);
 }
 header nav {
  display: flex;
@@ -37,16 +37,16 @@ header nav {
 }
 
 div.greet {
- background-color: burlywood;
- border: 1px solid brown;
+ background-color: rgb(165, 57, 136);
+ border: 1px solid rgb(244, 227, 227);
  font-family: Georgia, 'Times New Roman', Times, serif;
  font-style: oblique;
- color: rgb(125, 32, 32);
+ color: rgb(249, 247, 247);
 }
 
 div.time {
  text-align: left;
- color: brown;
+ color: rgb(250, 248, 248);
  margin-top: -45px;
  margin-left: 5px;
 }
@@ -58,7 +58,7 @@ a.signupP, a.usersP, a.adminP {
  border-radius: 5px;
  padding: 5px;
  font-weight: bold;
- background-color: rgb(88, 28, 43);
+ background-color: rgb(142, 28, 109);
 }
 
 div.image img {
