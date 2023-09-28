@@ -12,6 +12,7 @@ const cors = require("cors");
 
 const hbs = require ("hbs");
 const path = require ("path");
+const { asyncErrHandler } = require("./errorHandler/asyncErrHandler");
 const templatesPath = path.join(__dirname, "./templates")
 
 app.use(cors());
@@ -35,9 +36,9 @@ res.render("home")
 })
 
 
-const start = async ()=>{
+const PORT = process.env.PORT || 4555
+const start = asyncErrHandler(async ()=>{
  await connection();
- const PORT = process.env.PORT || 4555
  app.listen( PORT, console.log("Server is running on 4555"))
-}
+})
 start()
