@@ -38,6 +38,6 @@ res.render("home")
 const PORT = process.env.PORT || 4555
 const start = async ()=>{
  await connection();
- await app.listen( PORT, console.log("Server is running on 4555"))
+ app.listen( PORT, console.log("Server is running on 4555"))
 }
 start()
