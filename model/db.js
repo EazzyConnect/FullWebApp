@@ -26,9 +26,11 @@ const portfolioSchema = new mongoose.Schema({
 const Portfolio = new mongoose.model ("portfolio", portfolioSchema);
 
 
-mongoose.connect(process.env.MongoDbUrl)
+const connection = async ()=>{
+ await mongoose.connect(process.env.MongoDbUrl)
 .then(() => {
  console.log("portfolio database is running!")
-},10000000);
+})
+};
 
-module.exports = {Portfolio, roleEnum}
+module.exports = {Portfolio, roleEnum, connection}

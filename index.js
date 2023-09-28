@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const {Portfolio} = require("./model/db");
+const {connection} = require("./model/db");
 const portfolioRouter = require("./router/portfolio");
 const authRouter = require("./router/auth");
 const adminRouter = require("./router/admin")
@@ -35,4 +36,8 @@ res.render("home")
 
 
 const PORT = process.env.PORT || 4555
-app.listen(PORT, console.log("Server is running on 4555"))
+const start = async ()=>{
+ await connection();
+ await app.listen( PORT, console.log("Server is running on 4555"))
+}
+start()
