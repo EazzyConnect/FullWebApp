@@ -42,7 +42,7 @@ const start = async ()=>{
   await connection();
  app.listen( PORT, console.log("Server is running on 4555"))
  } catch (error) {
-  console.error(e.message)
+  console.error(error.message)
  }
 }
 start()
