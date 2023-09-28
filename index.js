@@ -37,8 +37,12 @@ res.render("home")
 
 
 const PORT = process.env.PORT || 4555
-const start = asyncErrHandler(async ()=>{
- await connection();
+const start = async ()=>{
+ try {
+  await connection();
  app.listen( PORT, console.log("Server is running on 4555"))
-})
+ } catch (error) {
+  console.error(e.message)
+ }
+}
 start()
