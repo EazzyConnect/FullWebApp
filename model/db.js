@@ -29,7 +29,11 @@ const Portfolio = new mongoose.model ("portfolio", portfolioSchema);
 
 
 const connection = async ()=>{
- await mongoose.connect(process.env.MongoDbUrl)
+ const MongoDbUrl = process.env.MongoDbUrl
+ await mongoose.connect(MongoDbUrl,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
 .then(() => {
  console.log("portfolio database is running!")
 })
