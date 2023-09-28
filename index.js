@@ -7,6 +7,8 @@ const authRouter = require("./router/auth");
 const adminRouter = require("./router/admin")
 const bcrypt = require ("bcrypt");
 const dotenv = require("dotenv")
+require("dotenv").config()
+
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
