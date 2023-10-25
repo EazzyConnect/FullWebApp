@@ -67,18 +67,20 @@ div.role {
   color: rgb(249, 247, 247);
   text-align: center;
   margin-right: 80%;
+  margin-top: -15px;
   padding: 1%;
   position: absolute;
 }
 
-div.tool {
+div.about {
  background-color: #492F59;
   border: 1px solid rgb(244, 227, 227);
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: oblique;
   color: rgb(249, 247, 247);
-  text-align: right;
+  text-align: justify;
   padding: 1%;
+  margin-top: 70px;
 }
 
 header nav a.editP, a.usersP {

@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 // GET ALL APPROVED USERS (Fields initially projected: "-name -username -intro -password")
 module.exports.getAllUsers = asyncErrHandler(async (req,res)=>{
- const allUsers = await Portfolio.find({approved: true}, "-intro -password");
+ const allUsers = await Portfolio.find({approved: true}, "-password");
 // This is to put the index of the return users on the frontend, starting from 1
  const userIndex = allUsers.map((user, index) => (
   {...user.toObject(),
@@ -60,18 +60,55 @@ module.exports.userProfile = asyncErrHandler(async (req,res)=>{
 
 // EDIT USER PROFILE   @AUTH ROUTE
 module.exports.editUser = asyncErrHandler(async (req,res)=>{
-const { intro, about, tools, howManyMonthsProgramming, favoriteMealInTechquestProgram, favoriteQuote, firstName, lastName } = req.body;
+const { firstName, lastName, otherName, phone, website, links, aboutMe, workExperience, otherExperience, educationAndTraining, professionalOrganization, skills, projects, referees } = req.body;
 if(firstName) req.user.firstName = firstName;
 if(lastName) req.user.lastName = lastName;
-if(intro) req.user.intro = intro;
-if(about) req.user.about = about;
-if(tools) {
-const existingTools = req.user.tools || [];
-const newTools = tools.split(",").map(tool => tool.trim( ));
-req.user.tools = [...existingTools, ...newTools]};
-if(howManyMonthsProgramming) req.user.howManyMonthsProgramming = howManyMonthsProgramming;
-if (favoriteMealInTechquestProgram) req.user.favoriteMealInTechquestProgram = favoriteMealInTechquestProgram;
-if(favoriteQuote) req.user.favoriteQuote = favoriteQuote;
+if(otherName) req.user.otherName = otherName;
+if(phone) req.user.phone = phone;
+if(aboutMe) req.user.aboutMe = aboutMe;
+if(website) req.user.website = website;
+
+if(links) {
+const existingLinks = req.user.links || [];
+req.user.links = [...existingLinks, ...links]
+};
+
+if (workExperience) {
+const existingWorkExp = req.user.workExperience || []; 
+req.user.workExperience = [...existingWorkExp, ...workExperience];
+}
+
+if(otherExperience) {
+const existingOtherExp = req.user.otherExperience || [];
+req.user.otherExperience = [...existingOtherExp, ...otherExperience]
+};
+
+if(educationAndTraining) {
+const existingEduAndTrain = req.user.educationAndTraining || [];
+req.user.educationAndTraining = [...existingEduAndTrain, ...educationAndTraining]
+};
+
+if(professionalOrganization) {
+const existingProfOrg = req.user.professionalOrganization || [];
+req.user.professionalOrganization = [...existingProfOrg, ...professionalOrganization]
+};
+
+if(skills) {
+const existingSkills = req.user.skills || [];
+const newSkills = skills.split(", ").map(skill => skill.trim( ));
+req.user.skills = [...existingSkills, ...newSkills]
+};
+
+if(projects) {
+const existingProjects = req.user.projects || [];
+req.user.projects = [...existingProjects, ...projects]
+};
+
+if(referees) {
+const existingReferees = req.user.referees || [];
+req.user.referees = [...existingReferees, ...referees]
+};
+
 const updatedUser = await req.user.save();
 if (updatedUser) {
 const script = "<script>alert('Update successful!'); window.location.href = '/users/profile' </script>";

@@ -7,20 +7,62 @@ require("dotenv").config()
 const roleEnum = ["admin","user"];
 
 const portfolioSchema = new mongoose.Schema({
- firstName : {type: String, required: true},
- lastName : {type: String, required: true},
- email : {type: String, required: true, unique: true},
  username : {type: String, required: true, unique: true},
  password : {type: String, required: true, minLength: 6},
- createdOn : {type: Date, default: Date.now},
- intro : {type: String, maxLength: 100},
- about : {type: String, maxLength: 1000},
- tools : [{type: String}],
- howManyMonthsProgramming : {type: Number},
- favoriteMealInTechquestProgram : {type: String},
- favoriteQuote : {type: String},
+ firstName : {type: String, required: true},
+ lastName : {type: String, required: true},
+ otherName : {type: String},
+ email : {type: String, required: true, unique: true},
+ phone : [{type: Number, required: true, unique: true}],
+ website : {type: String, unique: true},
+ links : [
+  {title: {name: String, type: String , unique: true}
+  }],
+ aboutMe : {type: String, maxLength: 2000},
+ workExperience : [
+  {date: {type: String},
+  position: {type: String},
+  employer: {type: String},
+  location: {type: String},
+  dutiesAndAchievements: {type: String}
+  }],
+ otherExperience : [
+  {date: {type: String},
+  employer: {type: String},
+  position: {type: String},
+  location: {type: String},
+  dutiesAndAchievements: {type: String}
+  }],
+ educationAndTraining : [
+  {date: {type: String},
+  institutionAttended: {type: String},
+  degree: {type: String},
+  location: {type: String},
+  website: {type: String},
+  projectAndAchievement: {type: String},
+  }],
+ professionalOrganization : [
+  {date: {type: String},
+  organization: {type: String},
+  certification: {type: String},
+  location: {type: String},
+  website: {type: String},
+  }],
+ skills : [{type: String}],
+ projects : [
+  {date: {type: String},
+  title: {type: String},
+  details: {type: String},
+  link: {type: String}
+  }],
+ referees: [
+  {fullName: {type: String},
+  phone: {type: Number},
+  occupation: {type: String}
+  }],
  role : {type: String, enum: roleEnum, default: "user"},
  lastChangedPassword: {type: Date, default: Date.now},
+ createdOn : {type: Date, default: Date.now},
  approved : {type: Boolean, default: false}
 });
 

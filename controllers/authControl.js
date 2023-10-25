@@ -7,7 +7,7 @@ require("dotenv").config();
 
 // SIGNUP ROUTE
 module.exports.signUp = asyncErrHandler(async (req,res)=>{
- const {password, email, username, firstName, lastName} = req.body;
+ const {password, email, username, firstName, lastName, phone} = req.body;
  const checkExistingUser = await Portfolio.findOne({username});
  if(checkExistingUser){
   const script = "<script>alert('Username already exist.'); window.location.href = '/auth/signup' </script>";
@@ -18,7 +18,12 @@ module.exports.signUp = asyncErrHandler(async (req,res)=>{
   const script = "<script>alert('Email already exist.'); window.location.href = '/auth/signup' </script>";
  return res.send(script);
  }
- if(!firstName || !lastName || !email || !username || !password){
+ const checkExistingPhone = await Portfolio.findOne({phone});
+ if(checkExistingPhone){
+  const script = "<script>alert('Phone already exist.'); window.location.href = '/auth/signup' </script>";
+ return res.send(script);
+ }
+ if(!firstName || !lastName || !email || !username || !password || !phone){
  const script = "<script>alert('Registration failed. Fill up all information'); window.location.href = '/signup' </script>";
  return res.send(script);
 }
@@ -27,7 +32,7 @@ module.exports.signUp = asyncErrHandler(async (req,res)=>{
  return res.send(script);
  }
  const hashedPassword = await bcrypt.hash(password, 4);
- const newUser = await Portfolio.create({ firstName, lastName, email, username, password: hashedPassword});
+ const newUser = await Portfolio.create({ firstName, lastName, email, username, phone, password: hashedPassword});
  if (newUser) {
  const script = "<script>alert('Registration Successful, Please Login To Continue'); window.location.href = '/login' </script>";
  return res.send(script);
