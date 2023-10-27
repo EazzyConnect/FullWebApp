@@ -12,6 +12,7 @@ const portfolioSchema = new mongoose.Schema({
  firstName : {type: String, required: true},
  lastName : {type: String, required: true},
  otherName : {type: String},
+ address: {type: String},
  email : {type: String, required: true, unique: true},
  phone : [{type: Number, required: true, unique: true}],
  website : {type: String, unique: true},

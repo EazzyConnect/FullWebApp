@@ -13,7 +13,7 @@
  <header>
   <a href="profile" class="myHome">My Profile</a>
   <nav>
-   <a class="editP" href="profile/edit">Edit Profile</a>
+   <a class="editP" href="profile/edit">Create and Edit Resume</a>
   <a class="usersP" href="/users">Search Users</a>
   </nav>
  </header>
@@ -25,23 +25,122 @@
  <div class="role">
  <p> Role: {{data.role}}</p>
  </div>
- <div class="about">
- <p> About Me: {{data.aboutMe}}</p>
- </div>
+ 
+ <div class="intro">
  <p> Full Name: {{data.firstName}} {{data.lastName}} {{data.otherName}}</p>
- <p> Phone: +{{data.phone}}</p>
- <p> Website: {{data.website}}</p>
- <p> Links: {{data.links}}</p>
- <p> Work Experience: {{data.workExperience}}</p>
- <p> Other Experience: {{data.otherExperience}}</p>
- <p> Education and Training: {{data.educationAndTraining}}</p>
- <p> Professional Organization: {{data.professionalOrganization}}</p>
- <p> Skills: {{data.skills}}</p>
- <p> Projects: {{data.projects}}</p>
  <p> Username: {{data.username}}</p>
  <p> Approved: {{data.approved}}</p>
  <p> Created On: {{data.createdOn}}</p>
- <br>
+ </div>
+ <br><br><br>
+
+<div class="resumeView">
+
+  <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
+
+  <div class="contactInfo">
+    <h5>Home: {{data.address}}</h5>
+    <div class="contactInfoInner1">
+     <h5>Phone: +{{data.phone}}</h5>
+    <h5>Email: {{data.email}}</h5>
+    </div>
+    <div class="contactInfoInner2">
+    <h5>Website: {{data.website}}</h5>
+    <h5>Facebook: {{data.links.[1].title}}</h5>
+    </div>
+  </div>
+
+  <div class="aboutMe">
+    <h5>ABOUT ME</h5>
+    <p>{{data.aboutMe}}</p>
+  </div>
+
+  <div class="experience">
+    <h5>WORK EXPERIENCE</h5>
+    {{#each data.workExperience as |experience index|}}
+    <h6>[ {{experience.date}} ]</h6>
+    <div class="experienceInner">
+     <p class="position">{{experience.position}}</p>
+     <p class="employer">{{experience.employer}}</p>
+     <p class="location">{{experience.location}}</p>
+     <p>{{experience.dutiesAndAchievements}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="education">
+    <h5>EDUCATION AND TRAINING</h5>
+    {{#each data.educationAndTraining as |education index|}}
+    <h6>[ {{education.date}} ]</h6>
+    <div class="educationInner">
+     <p class="degree">{{education.degree}}</p>
+     <p class="institution">{{education.institutionAttended}}</p>
+     <p class="location">{{education.location}}</p>
+     <p class="website">{{education.website}}</p>
+     <p class="project">{{education.projectAndAchievement}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="profOrg">
+    <h5>PROFESSIONAL ORGANIZATION</h5>
+    {{#each data.professionalOrganization as |profOrg index|}}
+    <h6>[ {{profOrg.date}} ]</h6>
+    <div class="profOrgInner">
+      <p class="certification">{{profOrg.certification}}</p>
+      <p class="organization">{{profOrg.organization}}</p>
+      <p class="location">{{profOrg.location}}</p>
+      <p class="website">{{profOrg.website}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="otherExperience">
+    <h5>OTHER EXPERIENCE</h5>
+    {{#each data.otherExperience as |otherExperience index|}}
+    <h6>[ {{otherExperience.date}} ]</h6>
+    <div class="otherExperienceInner">
+      <p class="position">{{otherExperience.position}}</p>
+      <p class="employer">{{otherExperience.employer}}</p>
+      <p class="location">{{otherExperience.location}}</p>
+      <p>{{otherExperience.dutiesAndAchievements}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="skills">
+    <h5>SKILLS</h5>
+    {{#each data.skills as |skills index|}}
+    <div class="skillsInner">
+      <p>||{{skills}}||</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="project">
+    <h5>PROJECTS</h5>
+    {{#each data.projects as |project index|}}
+    <h6>[ {{project.date}} ]</h6>
+    <div class="projectInner">
+      <p class="title">{{project.title}}</p>
+      <p class="details">{{project.details}}</p>
+      <p class="link">{{project.link}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="referee">
+    <h5>REFEREES</h5>
+    {{#each data.referees as |referee index|}}
+    <div class="refereeInner">
+      <p class="name">{{referee.fullName}}</p>
+      <p class="phone">+{{referee.phone}}</p>
+      <p class="occupation">{{referee.occupation}}</p>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
 
  <button class="logoutButton">LOG-OUT</button>
 

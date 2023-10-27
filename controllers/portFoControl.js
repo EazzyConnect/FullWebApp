@@ -54,16 +54,18 @@ module.exports.userProfile = asyncErrHandler(async (req,res)=>{
  res.render("profile",{
   data: req.user
  })
+//  console.log(`@profile`, req.user.links[1].title);
 // return res.json({data: req.user, message : "This is your profile", success : true})
 })
 
 
 // EDIT USER PROFILE   @AUTH ROUTE
 module.exports.editUser = asyncErrHandler(async (req,res)=>{
-const { firstName, lastName, otherName, phone, website, links, aboutMe, workExperience, otherExperience, educationAndTraining, professionalOrganization, skills, projects, referees } = req.body;
+const { firstName, lastName, otherName, address ,phone, website, links, aboutMe, workExperience, otherExperience, educationAndTraining, professionalOrganization, skills, projects, referees } = req.body;
 if(firstName) req.user.firstName = firstName;
 if(lastName) req.user.lastName = lastName;
 if(otherName) req.user.otherName = otherName;
+if(address) req.user.address = address;
 if(phone) req.user.phone = phone;
 if(aboutMe) req.user.aboutMe = aboutMe;
 if(website) req.user.website = website;

@@ -72,38 +72,306 @@ div.role {
   position: absolute;
 }
 
-div.about {
- background-color: #492F59;
-  border: 1px solid rgb(244, 227, 227);
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-style: oblique;
-  color: rgb(249, 247, 247);
-  text-align: justify;
-  padding: 1%;
-  margin-top: 70px;
-}
 
 header nav a.editP, a.usersP {
- color: rgb(227, 221, 234);
- border: 1px solid #123;
- border-radius: 5px;
- padding: 5px;
- font-weight: bold;
- background-color: #472F3B;
+  color: rgb(227, 221, 234);
+  border: 1px solid #123;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  background-color: #472F3B;
 }
 
 button.logoutButton {
- color: rgb(227, 221, 234);
- border: 1px solid #123;
- border-radius: 5px;
- padding: 5px;
- font-weight: bold;
- background-color: #25191f;
- cursor: pointer;
+  color: rgb(227, 221, 234);
+  border: 1px solid #123;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  background-color: #25191f;
+  cursor: pointer;
 }
 
-p {
- font-style: oblique;
- font-size: large;
- font-weight: 800;
+div.intro {
+  font-style: oblique;
+  font-size: large;
+  font-weight: 800;
+  margin-top: 80px;
+}
+
+div.resumeView {
+  width: 794px;
+  /* height: 1123px; */
+  background-color: rgb(241, 242, 242);
+  border: 1px solid #142b80;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.contactInfoInner1{
+  display: flex;
+  flex-direction: row;
+  margin-top: -30px;
+  margin-bottom: -30px;
+}
+.contactInfoInner2{
+  display: flex;
+  flex-direction: row;
+  margin-top: -30px;
+  margin-bottom: -30px;
+}
+
+.contactInfo h5 {
+ margin-right: 50px;
+}
+
+/* ABOUT ME */
+div.aboutMe {
+ display: flex;
+ margin-top: 20px;
+}
+
+div.aboutMe h5{
+  width: 215px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.aboutMe p{
+  margin-top: 30px;
+  text-align: justify;
+  border: 0.1px solid rgb(207, 206, 206);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  padding: 5px;
+}
+
+/* WORK EXPERIENCE */
+div.experience {
+  margin-top: 20px;
+}
+
+div.experience h5{
+  width: 143px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.experience h6{
+  font-size: small;
+  margin-top: -10px;
+  width: 143px;
+  text-align: right;
+}
+
+div.experience .experienceInner{
+  text-align: justify;
+  padding: 5px;
+  margin-left: 150px;
+  margin-top: -65px;
+}
+
+div.experience .experienceInner .position{
+  font-weight: bold;
+  color: #142b80;
+}
+
+div.experience .experienceInner .employer{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/* EDUCATION */
+div.education {
+  margin-top: 20px;
+}
+
+div.education h5{
+  width: 143px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.education h6{
+  font-size: small;
+  margin-top: -10px;
+  width: 143px;
+  text-align: right;
+}
+
+div.education .educationInner{
+  text-align: justify;
+  padding: 5px;
+  margin-left: 150px;
+  margin-top: -65px;
+}
+
+div.education .educationInner .degree{
+  font-weight: bold;
+  color: #142b80;
+}
+
+div.education .educationInner .institution{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/* PROFESSIONAL ORG */
+div.profOrg {
+  margin-top: 20px;
+}
+
+div.profOrg h5{
+  width: 143px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.profOrg h6{
+  font-size: small;
+  margin-top: -10px;
+  width: 143px;
+  text-align: right;
+}
+
+div.profOrg .profOrgInner{
+  text-align: justify;
+  padding: 5px;
+  margin-left: 150px;
+  margin-top: -65px;
+}
+
+div.profOrg .profOrgInner .certification{
+  font-weight: bold;
+  color: #142b80;
+}
+
+div.profOrg .profOrgInner .organization{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/* OTHER EXPERIENCE */
+div.otherExperience {
+  margin-top: 20px;
+}
+
+div.otherExperience h5{
+  width: 143px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.otherExperience h6{
+  font-size: small;
+  margin-top: -10px;
+  width: 143px;
+  text-align: right;
+}
+
+div.otherExperience .otherExperienceInner{
+  text-align: justify;
+  padding: 5px;
+  margin-left: 150px;
+  margin-top: -65px;
+}
+
+div.otherExperience .otherExperienceInner .position{
+  font-weight: bold;
+  color: #142b80;
+}
+
+div.otherExperience .otherExperienceInner .employer{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/* SKILLS */
+div.skills {
+  margin-top: 20px;
+}
+
+div.skills h5 {
+  width: 143px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.skills .skillsInner {
+  text-align: justify;
+  padding: 5px;
+  margin-left: 150px;
+  margin-top: -65px;
+  display: inline-block;
+  inline-size: 1px;
+}
+
+/* PROJECT */
+div.project {
+  margin-top: 20px;
+}
+
+div.project h5 {
+  width: 143px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.project h6 {
+  font-size: small;
+  margin-top: -10px;
+  width: 143px;
+  text-align: right;
+}
+
+div.project .projectInner {
+  text-align: justify;
+  padding: 5px;
+  margin-left: 150px;
+  margin-top: -65px;
+}
+
+div.project .projectInner .title {
+  font-weight: bold;
+  color: #142b80;
+}
+
+div.project .projectInner .details {
+  font-weight: bold;
+}
+
+/* REFEREES */
+div.referee {
+  margin-top: 20px;
+}
+
+div.referee h5 {
+  width: 143px;
+  color: #142b80;
+  margin-right: 5px;
+  text-align: right;
+}
+
+div.referee .refereeInner {
+  text-align: justify;
+  padding: 5px;
+  margin-left: 150px;
+  margin-top: -65px;
+}
+
+div.referee .refereeInner .name {
+  font-weight: bold;
+  color: #142b80;
+}
+
+div.referee .refereeInner .phone {
+  font-weight: bold;
 }
