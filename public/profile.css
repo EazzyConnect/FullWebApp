@@ -184,6 +184,11 @@ div.experience .experienceInner .employer{
   font-style: oblique;
 }
 
+div.experience .experienceInner ul{
+  color: #0e33b8;
+  margin-left: -22px;
+}
+
 /* EDUCATION */
 div.education {
   margin-top: 20px;
@@ -218,6 +223,11 @@ div.education .educationInner .degree{
 div.education .educationInner .institution{
   font-weight: bold;
   font-style: oblique;
+}
+
+div.education .educationInner ul {
+  color: #0e33b8;
+  margin-left: -22px;
 }
 
 /* PROFESSIONAL ORG */
@@ -292,6 +302,11 @@ div.otherExperience .otherExperienceInner .employer{
   font-style: oblique;
 }
 
+div.otherExperience .otherExperienceInner ul {
+  color: #0e33b8;
+  margin-left: -22px;
+}
+
 /* SKILLS */
 div.skills {
   margin-top: 20px;
@@ -351,6 +366,7 @@ div.project .projectInner .details {
 /* REFEREES */
 div.referee {
   margin-top: 20px;
+  display: flex;
 }
 
 div.referee h5 {
@@ -363,8 +379,9 @@ div.referee h5 {
 div.referee .refereeInner {
   text-align: justify;
   padding: 5px;
-  margin-left: 150px;
-  margin-top: -65px;
+  margin-left: 0;
+  margin-right: 50px;
+  margin-top: 25px;
 }
 
 div.referee .refereeInner .name {
@@ -375,3 +392,4 @@ div.referee .refereeInner .name {
 div.referee .refereeInner .phone {
   font-weight: bold;
 }
+

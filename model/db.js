@@ -25,22 +25,21 @@ const portfolioSchema = new mongoose.Schema({
   position: {type: String},
   employer: {type: String},
   location: {type: String},
-  dutiesAndAchievements: {type: String}
+  dutiesAndAchievements: [{type: String}]
   }],
  otherExperience : [
   {date: {type: String},
   employer: {type: String},
   position: {type: String},
   location: {type: String},
-  dutiesAndAchievements: {type: String}
+  dutiesAndAchievements: [{type: String}]
   }],
  educationAndTraining : [
   {date: {type: String},
   institutionAttended: {type: String},
   degree: {type: String},
   location: {type: String},
-  website: {type: String},
-  projectAndAchievement: {type: String},
+  projectAndAchievement: [{type: String}],
   }],
  professionalOrganization : [
   {date: {type: String},
@@ -53,7 +52,7 @@ const portfolioSchema = new mongoose.Schema({
  projects : [
   {date: {type: String},
   title: {type: String},
-  details: {type: String},
+  details: [{type: String}],
   link: {type: String}
   }],
  referees: [
@@ -73,7 +72,7 @@ const Portfolio = new mongoose.model ("portfolio", portfolioSchema);
 
 const connection = async ()=>{
  const MongoDbUrl = process.env.MongoDbUrl
- await mongoose.connect(MongoDbUrl,{
+ await mongoose.connect("mongodb://127.0.0.1:27017/portfolio",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

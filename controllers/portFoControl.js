@@ -55,8 +55,15 @@ module.exports.userProfile = asyncErrHandler(async (req,res)=>{
   data: req.user
  })
 //  console.log(`@profile`, req.user.links[1].title);
+//  console.log(`@profile`, req.user.workExperience);
 // return res.json({data: req.user, message : "This is your profile", success : true})
 })
+
+// module.exports.userProfile = asyncErrHandler(async (req,res)=>{
+//  res.render("editProfile",{
+//   data: req.user
+//  })
+// })
 
 
 // EDIT USER PROFILE   @AUTH ROUTE
@@ -75,46 +82,49 @@ const existingLinks = req.user.links || [];
 req.user.links = [...existingLinks, ...links]
 };
 
-if (workExperience) {
-const existingWorkExp = req.user.workExperience || []; 
-req.user.workExperience = [...existingWorkExp, ...workExperience];
+if(req.body.workExperience) {
+  const existingWorkExp = req.user.workExperience || [];
+  req.user.workExperience = [...existingWorkExp, req.body.workExperience];
 }
 
-if(otherExperience) {
-const existingOtherExp = req.user.otherExperience || [];
-req.user.otherExperience = [...existingOtherExp, ...otherExperience]
+if(req.body.educationAndTraining) {
+  const existingEduAndTrain = req.user.educationAndTraining || [];
+  req.user.educationAndTraining = [...existingEduAndTrain, req.body.educationAndTraining]
 };
 
-if(educationAndTraining) {
-const existingEduAndTrain = req.user.educationAndTraining || [];
-req.user.educationAndTraining = [...existingEduAndTrain, ...educationAndTraining]
+if(req.body.professionalOrganization) {
+  const existingProfOrg = req.user.professionalOrganization || []; 
+  req.user.professionalOrganization = [...existingProfOrg, req.body.professionalOrganization]
 };
 
-if(professionalOrganization) {
-const existingProfOrg = req.user.professionalOrganization || [];
-req.user.professionalOrganization = [...existingProfOrg, ...professionalOrganization]
-};
+if(req.body.otherExperience) {
+  const existingOtherExp = req.user.otherExperience || [];
+  req.user.otherExperience = [...existingOtherExp, req.body.otherExperience];
+}
+  
 
 if(skills) {
-const existingSkills = req.user.skills || [];
-const newSkills = skills.split(", ").map(skill => skill.trim( ));
-req.user.skills = [...existingSkills, ...newSkills]
+  const existingSkills = req.user.skills || [];
+  const newSkills = skills.split(", ").map(skill => skill.trim( ));
+  req.user.skills = [...existingSkills, ...newSkills]
 };
 
-if(projects) {
+if(req.body.projects) {
 const existingProjects = req.user.projects || [];
-req.user.projects = [...existingProjects, ...projects]
+req.user.projects = [...existingProjects, req.body.projects]
 };
 
-if(referees) {
-const existingReferees = req.user.referees || [];
-req.user.referees = [...existingReferees, ...referees]
+if(req.body.referees) {
+  const existingReferees = req.user.referees || [];
+  req.user.referees = [...existingReferees, req.body.referees]
 };
+
+console.log(`@result`, req.body);
 
 const updatedUser = await req.user.save();
 if (updatedUser) {
-const script = "<script>alert('Update successful!'); window.location.href = '/users/profile' </script>";
-return res.send(script);
+  const script = "<script>alert('Update successful!'); window.location.href = '/users/profile' </script>";
+  return res.send(script);
 }
 // res.redirect("/users/profile")
 // return res.json({data: updatedUser, message: "Update successful", success: true });
