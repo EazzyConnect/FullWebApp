@@ -1,20 +1,19 @@
-const {Portfolio} = require("../model/db");
-const {asyncErrHandler} = require("../errorHandler/asyncErrHandler")
+const { Portfolio } = require("../model/db");
+const { asyncErrHandler } = require("../errorHandler/asyncErrHandler");
 const bcrypt = require("bcrypt");
 
-
-// GET ALL APPROVED USERS (Fields initially projected: "-name -username -intro -password")
-module.exports.getAllUsers = asyncErrHandler(async (req,res)=>{
- const allUsers = await Portfolio.find({approved: true}, "-password");
-// This is to put the index of the return users on the frontend, starting from 1
- const userIndex = allUsers.map((user, index) => (
-  {...user.toObject(),
-  newIndex: index + 1}));
+// GET ALL APPROVED USERS
+module.exports.getAllUsers = asyncErrHandler(async (req, res) => {
+  const allUsers = await Portfolio.find({ approved: true }, "-password");
+  // This is to put the index of the return users on the frontend, starting from 1
+  const userIndex = allUsers.map((user, index) => ({
+    ...user.toObject(),
+    newIndex: index + 1,
+  }));
   res.render("users", {
-   info: userIndex
-  })
-})
-
+    data: userIndex,
+  });
+});
 
 // GET ALL APPROVED USERS (Fields initially projected: "-name -username -intro -password")
 // module.exports.getAllUsers = asyncErrHandler(async (req,res)=>{
@@ -25,125 +24,138 @@ module.exports.getAllUsers = asyncErrHandler(async (req,res)=>{
 // res.json({info: allUsers, success: true})
 // })
 
-
 // GET ALL USERS
 // module.exports.getAllUsers = asyncErrHandler(async (req,res)=>{
 //  const allUser = await Portfolio.find({}, "-name -username -intro -password -lastChangedPassword" );
 //  res.json({data: allUser, success: true})
 // })
 
-
 // GET A USER
-module.exports.getAUser = asyncErrHandler(async (req,res)=>{
- const username = req.query.username
- const user = await Portfolio.findOne({username}, "-password");
-if(user){
- res.render("userSearch",{
-  data: user
- })
-}else{
-const script = "<script>alert('No user found'); window.location.href = '/users' </script>";
-return res.send(script);
-}
-//  res.json({data: user, success: true})
-})
-
+module.exports.getAUser = asyncErrHandler(async (req, res) => {
+  const username = req.query.username;
+  const user = await Portfolio.findOne({ username }, "-password");
+  if (user) {
+    res.render("userSearch", {
+      data: user,
+    });
+  } else {
+    const script =
+      "<script>alert('No user found'); window.location.href = '/users' </script>";
+    return res.send(script);
+  }
+  //  res.json({data: user, success: true})
+});
 
 // USER'S PROFILE  @AUTH ROUTE
-module.exports.userProfile = asyncErrHandler(async (req,res)=>{
- res.render("profile",{
-  data: req.user
- })
-//  console.log(`@profile`, req.user.links[1].title);
-//  console.log(`@profile`, req.user.workExperience);
-// return res.json({data: req.user, message : "This is your profile", success : true})
-})
-
-// module.exports.userProfile = asyncErrHandler(async (req,res)=>{
-//  res.render("editProfile",{
-//   data: req.user
-//  })
-// })
-
+module.exports.userProfile = asyncErrHandler(async (req, res) => {
+  res.render("profile", {
+    data: req.user,
+  });
+});
 
 // EDIT USER PROFILE   @AUTH ROUTE
-module.exports.editUser = asyncErrHandler(async (req,res)=>{
-const { firstName, lastName, otherName, address ,phone, website, links, aboutMe, workExperience, otherExperience, educationAndTraining, professionalOrganization, skills, projects, referees } = req.body;
-if(firstName) req.user.firstName = firstName;
-if(lastName) req.user.lastName = lastName;
-if(otherName) req.user.otherName = otherName;
-if(address) req.user.address = address;
-if(phone) req.user.phone = phone;
-if(aboutMe) req.user.aboutMe = aboutMe;
-if(website) req.user.website = website;
+module.exports.editUser = asyncErrHandler(async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    otherName,
+    address,
+    phone,
+    website,
+    links,
+    aboutMe,
+    workExperience,
+    otherExperience,
+    educationAndTraining,
+    professionalOrganization,
+    skills,
+    projects,
+    referees,
+  } = req.body;
+  if (firstName) req.user.firstName = firstName;
+  if (lastName) req.user.lastName = lastName;
+  if (otherName) req.user.otherName = otherName;
+  if (address) req.user.address = address;
+  if (phone) req.user.phone = phone;
+  if (aboutMe) req.user.aboutMe = aboutMe;
+  if (website) req.user.website = website;
 
-if(links) {
-const existingLinks = req.user.links || [];
-req.user.links = [...existingLinks, ...links]
-};
+  if (links) {
+    const existingLinks = req.user.links || [];
+    req.user.links = [...existingLinks, ...links];
+  }
 
-if(req.body.workExperience) {
-  const existingWorkExp = req.user.workExperience || [];
-  req.user.workExperience = [...existingWorkExp, req.body.workExperience];
-}
+  if (req.body.workExperience) {
+    const existingWorkExp = req.user.workExperience || [];
+    req.user.workExperience = [...existingWorkExp, req.body.workExperience];
+  }
 
-if(req.body.educationAndTraining) {
-  const existingEduAndTrain = req.user.educationAndTraining || [];
-  req.user.educationAndTraining = [...existingEduAndTrain, req.body.educationAndTraining]
-};
+  if (req.body.educationAndTraining) {
+    const existingEduAndTrain = req.user.educationAndTraining || [];
+    req.user.educationAndTraining = [
+      ...existingEduAndTrain,
+      req.body.educationAndTraining,
+    ];
+  }
 
-if(req.body.professionalOrganization) {
-  const existingProfOrg = req.user.professionalOrganization || []; 
-  req.user.professionalOrganization = [...existingProfOrg, req.body.professionalOrganization]
-};
+  if (req.body.professionalOrganization) {
+    const existingProfOrg = req.user.professionalOrganization || [];
+    req.user.professionalOrganization = [
+      ...existingProfOrg,
+      req.body.professionalOrganization,
+    ];
+  }
 
-if(req.body.otherExperience) {
-  const existingOtherExp = req.user.otherExperience || [];
-  req.user.otherExperience = [...existingOtherExp, req.body.otherExperience];
-}
-  
+  if (req.body.otherExperience) {
+    const existingOtherExp = req.user.otherExperience || [];
+    req.user.otherExperience = [...existingOtherExp, req.body.otherExperience];
+  }
 
-if(skills) {
-  const existingSkills = req.user.skills || [];
-  const newSkills = skills.split(", ").map(skill => skill.trim( ));
-  req.user.skills = [...existingSkills, ...newSkills]
-};
+  if (skills) {
+    const existingSkills = req.user.skills || [];
+    const newSkills = skills.split(", ").map((skill) => skill.trim());
+    req.user.skills = [...existingSkills, ...newSkills];
+  }
 
-if(req.body.projects) {
-const existingProjects = req.user.projects || [];
-req.user.projects = [...existingProjects, req.body.projects]
-};
+  if (req.body.projects) {
+    const existingProjects = req.user.projects || [];
+    req.user.projects = [...existingProjects, req.body.projects];
+  }
 
-if(req.body.referees) {
-  const existingReferees = req.user.referees || [];
-  req.user.referees = [...existingReferees, req.body.referees]
-};
+  if (req.body.referees) {
+    const existingReferees = req.user.referees || [];
+    req.user.referees = [...existingReferees, req.body.referees];
+  }
 
-console.log(`@result`, req.body);
+  console.log(`@result`, req.body);
 
-const updatedUser = await req.user.save();
-if (updatedUser) {
-  const script = "<script>alert('Update successful!'); window.location.href = '/users/profile' </script>";
-  return res.send(script);
-}
-// res.redirect("/users/profile")
-// return res.json({data: updatedUser, message: "Update successful", success: true });
-})
-
+  const updatedUser = await req.user.save();
+  if (updatedUser) {
+    const script =
+      "<script>alert('Update successful!'); window.location.href = '/users/profile/edit' </script>";
+    return res.send(script);
+  }
+  // res.redirect("/users/profile")
+  // return res.json({data: updatedUser, message: "Update successful", success: true });
+});
 
 // CHANGE PASSWORD   @AUTH ROUTE
-module.exports.changePassword = asyncErrHandler(async (req,res)=>{
-if(req.body.password.length < 6) {
-const script = "<script>alert('Password must be greater than 5 characters'); window.location.href = '/users/settings' </script>";
-return res.send(script);
-}
-// return res.status(401).json({message: "Password must be greater than 6", success: false})
-const hashedPassword = await bcrypt.hash (req.body.password, 4);
-const update = await Portfolio.updateOne ({_id: req.user._id}, {password: hashedPassword, lastChangedPassword: Date.now()})
-if (update) {
-const script = "<script>alert('Password Changed Successfully. Please, Login to Continue'); window.location.href = '/auth/login' </script>";
-return res.send(script);
-}
-// return res.status(200).json({message: "Password successfully updated", success: true})
-})
-
+module.exports.changePassword = asyncErrHandler(async (req, res) => {
+  if (req.body.password.length < 6) {
+    const script =
+      "<script>alert('Password must be greater than 5 characters'); window.location.href = '/users/settings' </script>";
+    return res.send(script);
+  }
+  // return res.status(401).json({message: "Password must be greater than 6", success: false})
+  const hashedPassword = await bcrypt.hash(req.body.password, 4);
+  const update = await Portfolio.updateOne(
+    { _id: req.user._id },
+    { password: hashedPassword, lastChangedPassword: Date.now() }
+  );
+  if (update) {
+    const script =
+      "<script>alert('Password Changed Successfully. Please, Login to Continue'); window.location.href = '/auth/login' </script>";
+    return res.send(script);
+  }
+  // return res.status(200).json({message: "Password successfully updated", success: true})
+});
