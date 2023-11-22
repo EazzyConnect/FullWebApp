@@ -67,14 +67,16 @@
 
         <form id="addWorkExperienceForm" class="edit" action="/users/profile/edit" method="post">
 
+          {{!-- <input type="hidden" name="formType" value="workExperience"> --}}
+
           <label>Date:</label>
           <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" required />
 
           <label>Position:</label>
-          <input type="text" name="position" placeholder="Position held" required />
+          <input type="text" name="position" placeholder="Position held" />
 
           <label>Employer:</label>
-          <input type="text" name="employer" placeholder="Employer" required />
+          <input type="text" name="employer" placeholder="Employer" />
 
           <label>Location:</label>
           <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
@@ -254,132 +256,174 @@
   </div>
 
   <script>
-    { { !Work Experience } }
+
     async function addWorkExperience(event) {
-      event.preventDefault(); const
-        form = document.getElementById('addWorkExperienceForm'); const formData =
-          new FormData(form); const workExperience = {
-            date: formData.get('date'),
-            position: formData.get('position'), employer: formData.get('employer'),
-            location: formData.get('location'), dutiesAndAchievements:
-              formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
-          }; try {
-            const response = await fetch('/users/profile/edit', {
-              method:
-                'POST', headers: { 'Content-Type': 'application/json', }, body:
-                JSON.stringify({ workExperience }),
-            });
-          } catch (error) {
-            console.error('Error:', error.message);
-          } return form.submit();
-    }
+      event.preventDefault();
 
-    { { !Education and Training } }
-    async function addEducation(event) {
-      event.preventDefault(); const form =
-        document.getElementById('addEducationAndTrainingForm'); const formData =
-          new FormData(form); const educationAndTraining = {
-            date:
-              formData.get('date'), institutionAttended:
-              formData.get('institutionAttended'), degree: formData.get('degree'),
-            location: formData.get('location'), projectAndAchievement:
-              formData.get('projectAndAchievement').split(',').map(item => item.trim())
-          }; try {
-            const response = await fetch('/users/profile/edit', {
-              method:
-                'POST', headers: { 'Content-Type': 'application/json', }, body:
-                JSON.stringify({ educationAndTraining }),
-            });
-          } catch (error) {
-            console.error('Error:', error.message);
-          } return form.submit();
-    }
+      const form = document.getElementById('addWorkExperienceForm');
+      const formData = new FormData(form);
 
-    { { !Professional Organization } }
-    async function addProfOrg(event) {
-      event.preventDefault(); const form =
-        document.getElementById('addProfOrgForm'); const formData = new
-          FormData(form); const professionalOrganization = {
-            date:
-              formData.get('date'), organization: formData.get('organization'),
-            certification: formData.get('certification'), location:
-              formData.get('location'), website: formData.get('website'),
-          }; try {
-            const
-              response = await fetch('/users/profile/edit', {
-                method: 'POST', headers: {
-                  'Content-Type': 'application/json',
-                }, body: JSON.stringify({
-                  professionalOrganization
-                }),
-              });
-          } catch (error) {
-            console.error('Error:',
-              error.message);
-          } return form.submit();
-    }
+      const workExperience = {
+        date: formData.get('date'),
+        position: formData.get('position'),
+        employer: formData.get('employer'),
+        location: formData.get('location'),
+        dutiesAndAchievements: formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
+      };
 
-    { { !Other Experience } }
-    async function addOtherExperience(event) {
-      event.preventDefault(); const
-        form = document.getElementById('addOtherExperienceForm'); const formData =
-          new FormData(form); const otherExperience = {
-            date: formData.get('date'),
-            position: formData.get('position'), employer: formData.get('employer'),
-            location: formData.get('location'), dutiesAndAchievements:
-              formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
-          }; try {
-            const response = await fetch('/users/profile/edit', {
-              method:
-                'POST', headers: { 'Content-Type': 'application/json', }, body:
-                JSON.stringify({ otherExperience }),
-            });
-          } catch (error) {
-            console.error('Error:', error.message);
-          } return form.submit();
-    }
-
-    { { !Projects } }
-    async function addProject(event) {
-      event.preventDefault(); const form =
-        document.getElementById('addProjectForm'); const formData = new
-          FormData(form); const projects = {
-            date: formData.get('date'), title:
-              formData.get('title'), details: formData.get('details'), link:
-              formData.get('link')
-          }; try {
-            const response = await
-              fetch('/users/profile/edit', {
-                method: 'POST', headers: {
-                  'Content-Type':
-                    'application/json',
-                }, body: JSON.stringify({ projects }),
-              });
-          } catch
-      (error) { console.error('Error:', error.message); } return form.submit();
-    }
-
-    { { !Referees } }
-    async function addReferee(event) {
-      event.preventDefault(); const form =
-        document.getElementById('refereesForm'); const formData = new
-          FormData(form); const referees = {
-            fullName: formData.get('fullName'),
-            phone: formData.get('phone'), occupation: formData.get('occupation'),
-          };
       try {
         const response = await fetch('/users/profile/edit', {
-          method:
-            'POST', headers: { 'Content-Type': 'application/json', }, body:
-            JSON.stringify({ referees }),
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ workExperience }),
         });
       } catch (error) {
         console.error('Error:', error.message);
-      } return form.submit();
+      }
+
+      return form.submit();
     }
+
+
+    async function addEducation(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('addEducationAndTrainingForm');
+      const formData = new FormData(form);
+
+      const educationAndTraining = {
+        date: formData.get('date'),
+        institutionAttended: formData.get('institutionAttended'),
+        degree: formData.get('degree'),
+        location: formData.get('location'),
+        projectAndAchievement: formData.get('projectAndAchievement').split(',').map(item => item.trim())
+      }; try {
+        const response = await fetch('/users/profile/edit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }, body: JSON.stringify({ educationAndTraining }),
+        });
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+
+      return form.submit();
+    }
+
+
+    async function addProfOrg(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('addProfOrgForm');
+      const formData = new FormData(form);
+
+      const professionalOrganization = {
+        date: formData.get('date'),
+        organization: formData.get('organization'),
+        certification: formData.get('certification'),
+        location: formData.get('location'),
+        website: formData.get('website'),
+      }; try {
+        const response = await fetch('/users/profile/edit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }, body: JSON.stringify({ professionalOrganization }),
+        });
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+
+      return form.submit();
+    }
+
+
+    async function addOtherExperience(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('addOtherExperienceForm');
+      const formData = new FormData(form);
+
+      const otherExperience = {
+        date: formData.get('date'),
+        position: formData.get('position'),
+        employer: formData.get('employer'),
+        location: formData.get('location'),
+        dutiesAndAchievements: formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
+      }; try {
+        const response = await fetch('/users/profile/edit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }, body: JSON.stringify({ otherExperience }),
+        });
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+
+      return form.submit();
+    }
+
+
+    async function addProject(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('addProjectForm');
+      const formData = new FormData(form);
+
+      const projects = {
+        date: formData.get('date'),
+        title: formData.get('title'),
+        details: formData.get('details'),
+        link: formData.get('link')
+      }; try {
+        const response = await fetch('/users/profile/edit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }, body: JSON.stringify({ projects }),
+        });
+      } catch
+      (error) {
+        console.error('Error:', error.message);
+      }
+
+      return form.submit();
+    }
+
+
+    async function addReferee(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('refereesForm');
+      const formData = new FormData(form);
+
+      const referees = {
+        fullName: formData.get('fullName'),
+        phone: formData.get('phone'),
+        occupation: formData.get('occupation'),
+      };
+      try {
+        const response = await fetch('/users/profile/edit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }, body: JSON.stringify({ referees }),
+        });
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+
+      return form.submit();
+    }
+
   </script>
 
-  <br /><br />
+  <br />
+  <br />
 
 </body>
 

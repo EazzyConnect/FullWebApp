@@ -2,247 +2,296 @@
 <html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Portfolio</title>
- <link rel="icon" href="../images/Title-Logo.png">
- <link rel="stylesheet" href="/profile.css">
- <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="icon" href="../images/Title-Logo.png">
+  <link rel="stylesheet" href="/profile.css">
+  <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
- <header>
-  <a href="profile" class="myHome">My Profile</a>
+  <header>
+    <a href="profile" class="myHome">My Profile</a>
 
-  <nav>
-    <a class="editP" href="profile/edit">Create and Edit Resume</a>
-    <a class="usersP" href="/users">Search Users</a>
-  </nav>
+    <nav>
+      <a class="editP" href="profile/edit">Create and Edit Resume</a>
+      <a class="usersP" href="/users">Search Users</a>
+    </nav>
 
- </header>
+  </header>
 
- <div class="welcome">
+  <div class="welcome">
 
-  <h3 class="leftTime" id="time"></h3>
-  <h3 class="rightTime" id="currentTime"></h3>
-
- </div>
-  
- <div class="role">
-
-  <p> Role: {{data.role}}</p>
-
- </div>
- 
- <div class="intro">
-
-  <p> Full Name: {{data.firstName}} {{data.lastName}} {{data.otherName}}</p>
-  <p> Username: {{data.username}}</p>
-  <p> Approved: {{data.approved}}</p>
-  <p> Created On: {{data.createdOn}}</p>
-
- </div>
-
- <br><br><br>
-
- <div class="resumeView">
-
-  <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
-
-  <div class="contactInfo">
-
-    <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
-
-      <div class="contactInfoInner1">
-        <h5><i class="fa-solid fa-phone"></i> Phone: +{{data.phone}}</h5>
-        <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
-      </div>
-
-      <div class="contactInfoInner2">
-        <h5><i class="fa-solid fa-globe"></i> Website: {{data.website}}</h5>
-        <h5><i class="fa-brands fa-facebook"></i> Facebook: {{data.links.[1].title}}</h5>
-      </div>
+    <h3 class="leftTime" id="time"></h3>
+    <h3 class="rightTime" id="currentTime"></h3>
 
   </div>
 
-  <div class="aboutMe">
+  <div class="role">
 
-    <h5>ABOUT ME</h5>
-    <p>{{data.aboutMe}}</p>
+    <p> Role: {{data.role}}</p>
 
   </div>
 
-  <div class="experience">
-    
-    <h5>WORK EXPERIENCE</h5>
-    {{#each data.workExperience as |experience index|}}
-    <h6>[ {{experience.date}} ]</h6>
+  <div class="container">
 
-      <div class="experienceInner">
-        <p class="position">{{experience.position}}</p>
-        <p class="employer">{{experience.employer}}</p>
-        <p class="location">{{experience.location}}</p>
-        {{#each experience.dutiesAndAchievements as |duty|}}
+    <div class="intro">
 
-        <ul>
-          <li> {{duty}}
-          </li>
-        </ul>
+      <div class="pix">
+
+        <form action="/users/profile/upload" method="post" enctype="multipart/form-data">
+
+          <img src="" alt="image" id="previewImage" style="max-width: 100%; max-height: 200px">
+          <input type="file" name="image" id="imageInput" accept=".jpeg, .jpg, .png" onchange="previewImage(event)">
+
+          <button type="submit">Upload</button>
+
+        </form>
+
+        <h5>{{data.firstName}} {{data.lastName}}</h5>
+
+      </div>
+
+      <p class="introAbout"> About me:
+        <br>
+        {{data.aboutMe}}
+      </p>
+
+    </div>
+
+    <br><br><br>
+
+    <div class="resumeView">
+
+      <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
+
+      <div class="contactInfo">
+
+        <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
+
+        <div class="contactInfoInner1">
+          <h5><i class="fa-solid fa-phone"></i> Phone: +{{data.phone}}</h5>
+          <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
+        </div>
+
+        <div class="contactInfoInner2">
+          <h5><i class="fa-solid fa-globe"></i> Website: {{data.website}}</h5>
+          <h5><i class="fa-brands fa-facebook"></i> Facebook: {{data.links.[1].title}}</h5>
+        </div>
+
+      </div>
+
+      <div class="aboutMe">
+
+        <h5>ABOUT ME</h5>
+        <p>{{data.aboutMe}}</p>
+
+      </div>
+
+      <div class="experience">
+
+        <h5>WORK EXPERIENCE</h5>
+        {{#each data.workExperience as |experience index|}}
+        <h6>[ {{experience.date}} ]</h6>
+
+        <div class="experienceInner">
+          <p class="position">{{experience.position}}</p>
+          <p class="employer">{{experience.employer}}</p>
+          <p class="location">{{experience.location}}</p>
+
+          {{#each experience.dutiesAndAchievements as |duty|}}
+
+          <ul>
+            <li> {{duty}}
+            </li>
+          </ul>
+
+          {{/each}}
+
+        </div>
+
+        {{!-- <form action="/users/profile/delete" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="hidden" name="fieldType" value="workExperience">
+          <input type="hidden" name="index" value="{{index}}">
+          <button type="submit">Delete</button>
+        </form> --}}
 
         {{/each}}
+
       </div>
 
-    {{/each}}
+      <div class="education">
 
-  </div>
+        <h5>EDUCATION AND TRAINING</h5>
 
-  <div class="education">
+        {{#each data.educationAndTraining as |education index|}}
+        <h6>[ {{education.date}} ]</h6>
 
-    <h5>EDUCATION AND TRAINING</h5>
+        <div class="educationInner">
+          <p class="degree">{{education.degree}}</p>
+          <p class="institution">{{education.institutionAttended}}</p>
+          <p class="location">{{education.location}}</p>
+          <p class="website">{{education.website}}</p>
 
-    {{#each data.educationAndTraining as |education index|}}
-    <h6>[ {{education.date}} ]</h6>
+          {{#each education.projectAndAchievement as |project|}}
 
-      <div class="educationInner">
-        <p class="degree">{{education.degree}}</p>
-        <p class="institution">{{education.institutionAttended}}</p>
-        <p class="location">{{education.location}}</p>
-        <p class="website">{{education.website}}</p>
-        {{#each education.projectAndAchievement as |project|}}
-        
-        <ul>
-          <li> {{project}}
-          </li>
-        </ul>
-        
+          <ul>
+            <li> {{project}}
+            </li>
+          </ul>
+
+          {{/each}}
+        </div>
+
         {{/each}}
+
       </div>
 
-    {{/each}}
+      <div class="profOrg">
+
+        <h5>PROFESSIONAL ORGANIZATION</h5>
+        {{#each data.professionalOrganization as |profOrg index|}}
+        <h6>[ {{profOrg.date}} ]</h6>
+
+        <div class="profOrgInner">
+          <p class="certification">{{profOrg.certification}}</p>
+          <p class="organization">{{profOrg.organization}}</p>
+          <p class="location">{{profOrg.location}}</p>
+          <p class="website">{{profOrg.website}}</p>
+        </div>
+
+        {{/each}}
+
+      </div>
+
+      <div class="otherExperience">
+
+        <h5>OTHER EXPERIENCE</h5>
+        {{#each data.otherExperience as |otherExperience index|}}
+        <h6>[ {{otherExperience.date}} ]</h6>
+
+        <div class="otherExperienceInner">
+          <p class="position">{{otherExperience.position}}</p>
+          <p class="employer">{{otherExperience.employer}}</p>
+          <p class="location">{{otherExperience.location}}</p>
+
+          {{#each otherExperience.dutiesAndAchievements as |duty|}}
+
+          <ul>
+            <li> {{duty}}
+            </li>
+          </ul>
+
+          {{/each}}
+
+        </div>
+
+        {{/each}}
+
+      </div>
+
+      <div class="skills">
+
+        <h5>SKILLS</h5>
+        {{#each data.skills as |skills index|}}
+
+        <div class="skillsInner">
+          <p>||{{skills}}||</p>
+        </div>
+
+        {{/each}}
+
+      </div>
+
+      <div class="project">
+
+        <h5>PROJECTS</h5>
+        {{#each data.projects as |project index|}}
+        <h6>[ {{project.date}} ]</h6>
+
+        <div class="projectInner">
+          <p class="title">{{project.title}}</p>
+          <p class="details">{{project.details}}</p>
+          <p class="link">{{project.link}}</p>
+        </div>
+
+        {{/each}}
+
+      </div>
+
+      <div class="referee">
+
+        <h5>REFEREES</h5>
+        {{#each data.referees as |referee index|}}
+
+        <div class="refereeInner">
+          <p class="name">{{referee.fullName}}</p>
+          <p class="phone">+{{referee.phone}}</p>
+          <p class="occupation">{{referee.occupation}}</p>
+        </div>
+
+        {{/each}}
+
+      </div>
+    </div>
 
   </div>
 
-  <div class="profOrg">
-    
-    <h5>PROFESSIONAL ORGANIZATION</h5>
-    {{#each data.professionalOrganization as |profOrg index|}}
-    <h6>[ {{profOrg.date}} ]</h6>
-    
-    <div class="profOrgInner">
-      <p class="certification">{{profOrg.certification}}</p>
-      <p class="organization">{{profOrg.organization}}</p>
-      <p class="location">{{profOrg.location}}</p>
-      <p class="website">{{profOrg.website}}</p>
-    </div>
+  <button class="logoutButton">LOG-OUT</button>
 
-    {{/each}}
-    
-  </div>
+  <script>
+    const logoutButton = document.querySelector(".logoutButton");
+    logoutButton.addEventListener("click", async () => {
+      const response = await fetch("/auth/logout", {
+        method: "POST"
+      });
+      if (response.ok) {
+        window.location.href = "/home"
+      }
+    })
 
-  <div class="otherExperience">
+    const greetings = document.getElementById("time");
+    const date = new Date()
+    const hour = date.getHours()
+    function getGreeting() {
+      if (hour < 12) {
+        return "Good Morning {{data.firstName}},"
+      } else if (hour >= 12 && hour < 18) {
+        return "Good Afternoon {{data.firstName}},"
+      } else {
+        return "Good Evening {{data.firstName}},"
+      }
+    }
+    greetings.textContent = getGreeting();
 
-    <h5>OTHER EXPERIENCE</h5>
-    {{#each data.otherExperience as |otherExperience index|}}
-    <h6>[ {{otherExperience.date}} ]</h6>
-    
-    <div class="otherExperienceInner">
-      <p class="position">{{otherExperience.position}}</p>
-      <p class="employer">{{otherExperience.employer}}</p>
-      <p class="location">{{otherExperience.location}}</p>
-      {{#each otherExperience.dutiesAndAchievements as |duty|}}
-
-      <ul>
-        <li> {{duty}}
-        </li>
-      </ul>
-
-      {{/each}}
-    </div>
-
-    {{/each}}
-    
-    </div>
-
-  <div class="skills">
-
-    <h5>SKILLS</h5>
-    {{#each data.skills as |skills index|}}
-
-    <div class="skillsInner">
-      <p>||{{skills}}||</p>
-    </div>
-
-    {{/each}}
-
-  </div>
-
-  <div class="project">
-
-    <h5>PROJECTS</h5>
-    {{#each data.projects as |project index|}}
-    <h6>[ {{project.date}} ]</h6>
-
-    <div class="projectInner">
-      <p class="title">{{project.title}}</p>
-      <p class="details">{{project.details}}</p>
-      <p class="link">{{project.link}}</p>
-    </div>
-
-    {{/each}}
-
-  </div>
-
-  <div class="referee">
-
-    <h5>REFEREES</h5>
-    {{#each data.referees as |referee index|}}
-
-    <div class="refereeInner">
-      <p class="name">{{referee.fullName}}</p>
-      <p class="phone">+{{referee.phone}}</p>
-      <p class="occupation">{{referee.occupation}}</p>
-    </div>
-
-    {{/each}}
-    
-  </div>
-</div>
+    const time = document.getElementById("currentTime");
+    setInterval(() => {
+      const newTime = new Date();
+      time.innerHTML = newTime.toLocaleString()
+    }, 1000)
 
 
- <button class="logoutButton">LOG-OUT</button>
+    function previewImage(event) {
+      const preview = document.getElementById('previewImage');
+      const fileInput = document.getElementById('imageInput');
 
-<script>
- const logoutButton = document.querySelector(".logoutButton");
- logoutButton.addEventListener("click", async () => {
-  const response = await fetch("/auth/logout",{
-   method: "POST"
-  });
-  if(response.ok){
-   window.location.href = "/home"
-  }
- })
+      const file = fileInput.files[0];
 
-const greetings = document.getElementById("time");
- const date = new Date()
- const hour = date.getHours()
- function getGreeting() {
-  if (hour < 12) {
-   return "Good Morning {{data.firstName}},"
-  } else if (hour >= 12 && hour < 18) {
-   return "Good Afternoon {{data.firstName}},"
-  } else {
-   return "Good Evening {{data.firstName}},"
-  }
- }
- greetings.textContent = getGreeting();
+      if (file) {
+        const reader = new FileReader();
 
- const time = document.getElementById("currentTime");
-  setInterval(() => {
-   const newTime = new Date();
-   time.innerHTML = newTime.toLocaleString()
-  }, 1000)
-</script>
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+
+  </script>
 </body>
 
 </html>

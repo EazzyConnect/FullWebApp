@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const app = express();
 const router = express.Router();
 const { Portfolio } = require("../model/db");
@@ -8,12 +9,17 @@ const {
   userProfile,
   changePassword,
   editUser,
+  deleteTask,
+  fileUpload,
 } = require("../controllers/portFoControl");
 const { authorized } = require("../middleware/midAuth");
 const bcrypt = require("bcrypt");
 
 const hbs = require("hbs");
 const path = require("path");
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 const templatesPath = path.join(__dirname, "../templates");
 
@@ -47,5 +53,11 @@ router.post("/profile/edit", authorized, editUser);
 // GET ONE USER
 router.get("/search", getAUser);
 // router.get("/:username", getAUser);
+
+// DELETE TASK
+router.post("/profile/delete", authorized, deleteTask);
+
+// UPLOAD FILE
+router.post("/profile/upload", authorized, upload.single("image"), fileUpload);
 
 module.exports = router;

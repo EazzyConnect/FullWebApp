@@ -64,6 +64,7 @@ module.exports.editUser = asyncErrHandler(async (req, res) => {
     website,
     links,
     aboutMe,
+    formType,
     workExperience,
     otherExperience,
     educationAndTraining,
@@ -158,4 +159,35 @@ module.exports.changePassword = asyncErrHandler(async (req, res) => {
     return res.send(script);
   }
   // return res.status(200).json({message: "Password successfully updated", success: true})
+});
+
+// DELETE TASK
+
+module.exports.deleteTask = asyncErrHandler(async (req, res) => {
+  try {
+    const { fieldType, index } = req.body;
+    const deleteField = `.${fieldType}`;
+    await Portfolio.findByIdAndUpdate(req.user._id, {
+      $unset: { [deleteField]: { [`$${index}`]: 1 } },
+    });
+    res.redirect("/users/profile");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+// module.exports.deleteTask = asyncErrHandler(async (req, res) => {
+//   const deleteATask = await Portfolio.deleteOne({ _id: req.params.id });
+//   res.json({ data: deleteATask, success: true });
+// });
+
+// UPLOAD FILE (IMAGE)
+module.exports.fileUpload = asyncErrHandler(async (req, res) => {
+  try {
+    const image = new Portfolio({ image: req.file.buffer, ...req.body });
+    await image.save();
+    res.status(201).send("Image uploaded successfully.");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });

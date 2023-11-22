@@ -82,6 +82,11 @@ header nav a.editP, a.usersP {
   background-color: #472F3B;
 }
 
+div.container{
+  display: flex;
+  justify-content: space-between;
+}
+
 button.logoutButton {
   color: rgb(227, 221, 234);
   border: 1px solid #123;
@@ -97,6 +102,23 @@ div.intro {
   font-size: large;
   font-weight: 800;
   margin-top: 80px;
+}
+
+/* div.profileImage{
+  border: 1px solid black;
+} */
+
+div.pix{
+  border: 1px solid black;
+  border-radius: 50%;
+  text-align: center;
+  width: 35%;
+}
+
+.introAbout{
+  color: #142b80;
+  width: 70%;
+  text-align: justify;
 }
 
 div.resumeView {
