@@ -1,76 +1,126 @@
 * {
  box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 
-body {
- color: #222;
- background-color: rgb(244, 242, 219);
+section {
+ background-image: linear-gradient(rgba(153, 109, 235, 0.4), rgba(58, 16, 227, 0.363)), url("backgroundResume.jpg");
+ width: 100vw;
+ height: 100vh;
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
 }
 
+.titleImage{
+ width: 50px;
+ margin-right: 10px;
+}
 
-header {
+.maker{
+ color: black;
+ font-weight: bolder;
+ font-style: oblique;
+}
+
+ul{
+ list-style: none;
+ display: flex;
+ font-weight: bolder;
+}
+
+nav{
  display: flex;
  justify-content: space-between;
- margin-top: 15px;
- margin-bottom: 50px;
  align-items: center;
+ background-color: blueviolet;
 }
 
-header a {
- text-decoration: none;
- color: inherit;
-}
-
-header a.home {
- font-size: 1.5rem;
- color: rgb(227, 221, 234);
- border: 1px solid #123;
- border-radius: 5px;
- padding: 5px;
- font-weight: bold;
- background-color: rgb(142, 39, 115);
-}
-header nav {
+.home{
+ margin: 20px;
  display: flex;
- gap: 15px
+ align-items: center;
+ font-size: x-large;
+ padding: 10px;
 }
 
-div.greet {
- background-color: rgb(165, 57, 136);
- border: 1px solid rgb(244, 227, 227);
- font-family: Georgia, 'Times New Roman', Times, serif;
- font-style: oblique;
- color: rgb(249, 247, 247);
+a{
+ text-decoration: none;
+ color: white;
 }
 
-div.time {
- text-align: left;
- color: rgb(250, 248, 248);
- margin-top: -45px;
- margin-left: 5px;
+.menuLink:hover{
+ background-color: aliceblue;
+ color: black;
+ padding: 10px;
+ border: 1px solid;
+ border-radius: 25px;
 }
 
-header nav a.loginP,
-a.signupP, a.usersP, a.adminP {
- color: rgb(227, 221, 234);
- border: 1px solid #123;
+.menu{
+ margin: 20px;
+}
+
+li{
+ margin-right: 15px;
+}
+
+.time{
+ float: inline-end;
+ margin-right: 35px;
+ font-size: small;
+ color: rgb(70, 3, 70);
+ margin-top: -25px;
+}
+
+.content{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-top: 150px;
+}
+
+.text{
+ text-align: center;
+ font-weight: 900;
+ background-color: aliceblue;
+ padding: 10px;
  border-radius: 5px;
- padding: 5px;
- font-weight: bold;
- background-color: rgb(142, 28, 109);
 }
 
-div.image img {
- width: 60%;
- height: 350px;
+.Inner1{
+ color: crimson;
 }
 
+.Inner2{
+ color: crimson;
+ font-style: oblique;
+}
 
-div.main div.texts {
- font-size: larger;
- text-align: justify;
- margin: -350px 10px 0px 65%;
- line-height: 1.6rem;
- height: 100vh;
+.content2{
+ margin-top: 50px;
+ background-color: rgb(197, 150, 241);
+ padding: 15px;
+ border-radius: 5px;
+ font-style: oblique;
+}
+
+.content3{
+ margin-top: 30px;
+ border: 2px solid black;
+ border-radius: 25px;
+ padding: 15px;
+ background-color: blueviolet;
+ font-weight: bolder;
+}
+
+.createButton:hover{
+ color: purple;
+ background-color: aliceblue;
+ padding: 7.5px;
+ border-radius: 25px;
+ border: 2px solid black;
 }

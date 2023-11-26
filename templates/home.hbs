@@ -7,33 +7,60 @@
   <title>Portfolio</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/home.css">
+  <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <header>
-    <a href="home" class="home">Home</a>
+
+  <section>
+
     <nav>
-      <a class="loginP" href="/auth/login">Login</a>
-      <a class="signupP" href="/auth/signup">Sign Up</a>
-      <a class="usersP" href="/users">Search Users</a>
-      <a class="adminP" href="/auth/admin/login">Admin</a>
+
+      <div class="home">
+        <img class="titleImage" src="Title-Logo.png" alt="titleImage">
+        <a href="home" class="homeLink"> resume<span class="maker">maker</span></a>
+      </div>
+
+      <div class="menu">
+        <ul>
+          <li><a class="menuLink" href="/auth/login">Login</a></li>
+          <li><a class="menuLink" href="/auth/signup">Sign Up</a></li>
+          {{!-- <li><a class="menuLink" href="/users">Search Users</a></li>
+          <li><a class="menuLink" href="/auth/admin/login">Admin</a></li> --}}
+        </ul>
+      </div>
+
     </nav>
-  </header>
 
-  <div class="greet">
-    <h1>Welcome Guest</h1>
-    <br>
-  </div>
-  <div class="time">
-    <h3 id="currentTime"></h3>
-  </div>
+    <div class="time">
+      <h3 id="currentTime"></h3>
+    </div>
 
-  <div class="image">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvjmbkZFOy92Wfi6AgwlM3MKbuGHF03UdB_w&usqp=CAU"
-      alt="imgl">
-  </div>
+    <div class="content">
 
-  <div class="main">
+      <div class="content1">
+        <h1 class="text">Build your professional <span class="Inner1">Resume</span> <br> and download for <span
+            class="Inner2">Free</span>
+        </h1>
+
+      </div>
+
+      <div class="content2">
+        <h4 class="text2">Create your resume using our template for professional standard</h4>
+      </div>
+
+      <div class="content3">
+        <a class="createButton" href="/auth/login">Create Resume</a>
+      </div>
+    </div>
+
+
+
+
+  </section>
+
+
+  {{!-- <div class="main">
     <div class="texts">
       <p>The resume template has been done for you. All you have to do is register if you haven't and create your
         resume.
@@ -43,15 +70,17 @@
       <p>If you don't innovate fast, disrupt your industry, disrupt yourself; you will be left behind.</p>
       <p>The biggest risk is not taking any risk. In a world that's changing really quickly, the only strategy that is
         guaranteed to fail is not taking risks. SHOOT YOUR SHOT NOW!!!</p>
-    </div>
-  </div>
+    </div> --}}
+
+    {{!--
+  </div> --}}
 
   <script>
     const time = document.getElementById("currentTime");
 
     setInterval(() => {
       const newTime = new Date();
-      time.innerHTML = newTime.toLocaleString()
+      time.innerHTML = newTime.toUTCString()
     }, 1000)
   </script>
 </body>

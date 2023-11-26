@@ -81,7 +81,7 @@ const Portfolio = new mongoose.model("portfolio", portfolioSchema);
 const connection = async () => {
   const MongoDbUrl = process.env.MongoDbUrl;
   await mongoose
-    .connect(MongoDbUrl, {
+    .connect("mongodb://127.0.0.1:27017/portfolio", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
