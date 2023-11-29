@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
-  <link rel="icon" href="../images/Title-Logo.png">
+  <link rel="icon" href="Title-Logo.png">
   <link rel="stylesheet" href="/profile.css">
   <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
 </head>
@@ -72,7 +72,7 @@
         <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
 
         <div class="contactInfoInner1">
-          <h5><i class="fa-solid fa-phone"></i> Phone: +{{data.phone}}</h5>
+          <h5><i class="fa-solid fa-phone"></i> Phone: +234{{data.phoneNumber}}</h5>
           <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
         </div>
 
@@ -110,14 +110,9 @@
 
           {{/each}}
 
-        </div>
+          <button class="deleteBtn" onclick="deleteExperience('{{../type}}', {{index}})">Delete</button>
 
-        {{!-- <form action="/users/profile/delete" method="post">
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="hidden" name="fieldType" value="workExperience">
-          <input type="hidden" name="index" value="{{index}}">
-          <button type="submit">Delete</button>
-        </form> --}}
+        </div>
 
         {{/each}}
 
@@ -144,6 +139,9 @@
           </ul>
 
           {{/each}}
+
+          <button class="deleteBtn" onclick="deleteEducation('{{../type}}', {{index}})">Delete</button>
+
         </div>
 
         {{/each}}
@@ -161,6 +159,9 @@
           <p class="organization">{{profOrg.organization}}</p>
           <p class="location">{{profOrg.location}}</p>
           <p class="website">{{profOrg.website}}</p>
+
+          <button class="deleteBtn" onclick="deleteProfOrg('{{../type}}', {{index}})">Delete</button>
+
         </div>
 
         {{/each}}
@@ -187,6 +188,9 @@
 
           {{/each}}
 
+          <button class="deleteBtn" onclick="deleteOtherExp('{{../type}}', {{index}})">Delete</button>
+
+
         </div>
 
         {{/each}}
@@ -200,6 +204,9 @@
 
         <div class="skillsInner">
           <p>||{{skills}}||</p>
+
+          <button class="deleteBtn" onclick="deleteSkill('{{../type}}', {{index}})">Delete</button>
+
         </div>
 
         {{/each}}
@@ -216,6 +223,9 @@
           <p class="title">{{project.title}}</p>
           <p class="details">{{project.details}}</p>
           <p class="link">{{project.link}}</p>
+
+          <button class="deleteBtn" onclick="deleteProject('{{../type}}', {{index}})">Delete</button>
+
         </div>
 
         {{/each}}
@@ -229,8 +239,11 @@
 
         <div class="refereeInner">
           <p class="name">{{referee.fullName}}</p>
-          <p class="phone">+{{referee.phone}}</p>
+          <p class="phone">+234{{referee.phone}}</p>
           <p class="occupation">{{referee.occupation}}</p>
+
+          <button class="deleteBtn" onclick="deleteReferee('{{../type}}', {{index}})">Delete</button>
+
         </div>
 
         {{/each}}
@@ -242,7 +255,219 @@
 
   <button class="logoutButton">LOG-OUT</button>
 
+
   <script>
+
+
+    async function deleteExperience(type, index) {
+      const confirmation = confirm("Are you sure you want to delete this item?");
+      try {
+        if (confirmation) {
+          const response = await fetch("/users/profile/delete", {
+            method: 'POST',
+            headers: {
+              'content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: "workExperience",
+              index: index
+            }),
+          })
+          const data = await response.json();
+          if (data.success) {
+            document.querySelector('.experienceContainer:nth-child(${index + 1})').remove()
+          } else {
+            console.log("error")
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error caught")
+      }
+      location.reload()
+    }
+
+
+    async function deleteEducation(type, index) {
+      const confirmation = confirm("Are you sure you want to delete this item?");
+      try {
+        if (confirmation) {
+          const response = await fetch("/users/profile/delete", {
+            method: 'POST',
+            headers: {
+              'content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: "educationAndTraining",
+              index: index
+            }),
+          })
+          const data = await response.json();
+          if (data.success) {
+            document.querySelector('.educationContainer:nth-child(${index + 1})').remove()
+          } else {
+            console.log("error")
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error caught")
+      }
+      location.reload()
+    }
+
+
+
+    async function deleteProfOrg(type, index) {
+      const confirmation = confirm("Are you sure you want to delete this item?");
+      try {
+        if (confirmation) {
+          const response = await fetch("/users/profile/delete", {
+            method: 'POST',
+            headers: {
+              'content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: "professionalOrganization",
+              index: index
+            }),
+          })
+          const data = await response.json();
+          if (data.success) {
+            document.querySelector('.profOrgContainer:nth-child(${index + 1})').remove()
+          } else {
+            console.log("error")
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error caught")
+      }
+      location.reload()
+    }
+
+
+
+    async function deleteOtherExp(type, index) {
+      const confirmation = confirm("Are you sure you want to delete this item?");
+      try {
+        if (confirmation) {
+          const response = await fetch("/users/profile/delete", {
+            method: 'POST',
+            headers: {
+              'content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: "otherExperience",
+              index: index
+            }),
+          })
+          const data = await response.json();
+          if (data.success) {
+            document.querySelector('.otherExpContainer:nth-child(${index + 1})').remove()
+          } else {
+            console.log("error")
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error caught")
+      }
+      location.reload()
+    }
+
+
+
+    async function deleteProject(type, index) {
+      const confirmation = confirm("Are you sure you want to delete this item?");
+      try {
+        if (confirmation) {
+          const response = await fetch("/users/profile/delete", {
+            method: 'POST',
+            headers: {
+              'content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: "projects",
+              index: index
+            }),
+          })
+          const data = await response.json();
+          if (data.success) {
+            document.querySelector('.projectContainer:nth-child(${index + 1})').remove()
+          } else {
+            console.log("error")
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error caught")
+      }
+      location.reload()
+    }
+
+
+
+    async function deleteSkill(type, index) {
+      const confirmation = confirm("Are you sure you want to delete this item?");
+      try {
+        if (confirmation) {
+          const response = await fetch("/users/profile/delete", {
+            method: 'POST',
+            headers: {
+              'content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: "skills",
+              index: index
+            }),
+          })
+          const data = await response.json();
+          if (data.success) {
+            document.querySelector('.skillContainer:nth-child(${index + 1})').remove()
+          } else {
+            console.log("error")
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error caught")
+      }
+      location.reload()
+    }
+
+
+
+    async function deleteReferee(type, index) {
+      const confirmation = confirm("Are you sure you want to delete this item?");
+      try {
+        if (confirmation) {
+          const response = await fetch("/users/profile/delete", {
+            method: 'POST',
+            headers: {
+              'content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: "referees",
+              index: index
+            }),
+          })
+          const data = await response.json();
+          if (data.success) {
+            document.querySelector('.projectContainer:nth-child(${index + 1})').remove()
+          } else {
+            console.log("error")
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error caught")
+      }
+      location.reload()
+    }
+
+
+
     const logoutButton = document.querySelector(".logoutButton");
     logoutButton.addEventListener("click", async () => {
       const response = await fetch("/auth/logout", {
@@ -252,6 +477,7 @@
         window.location.href = "/home"
       }
     })
+
 
     const greetings = document.getElementById("time");
     const date = new Date()
@@ -267,11 +493,14 @@
     }
     greetings.textContent = getGreeting();
 
+
     const time = document.getElementById("currentTime");
     setInterval(() => {
       const newTime = new Date();
       time.innerHTML = newTime.toLocaleString()
     }, 1000)
+
+
 
 
     function previewImage(event) {

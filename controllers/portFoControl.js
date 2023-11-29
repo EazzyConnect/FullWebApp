@@ -3,6 +3,7 @@ const { asyncErrHandler } = require("../errorHandler/asyncErrHandler");
 const bcrypt = require("bcrypt");
 
 // GET ALL APPROVED USERS
+
 module.exports.getAllUsers = asyncErrHandler(async (req, res) => {
   const allUsers = await Portfolio.find({ approved: true }, "-password");
   // This is to put the index of the return users on the frontend, starting from 1
@@ -16,6 +17,7 @@ module.exports.getAllUsers = asyncErrHandler(async (req, res) => {
 });
 
 // GET ALL APPROVED USERS (Fields initially projected: "-name -username -intro -password")
+
 // module.exports.getAllUsers = asyncErrHandler(async (req,res)=>{
 //  const allUsers = await Portfolio.find({approved: true}, "-intro -password");
 //  res.render("users", {
@@ -25,6 +27,7 @@ module.exports.getAllUsers = asyncErrHandler(async (req, res) => {
 // })
 
 // GET ALL USERS
+
 // module.exports.getAllUsers = asyncErrHandler(async (req,res)=>{
 //  const allUser = await Portfolio.find({}, "-name -username -intro -password -lastChangedPassword" );
 //  res.json({data: allUser, success: true})
@@ -60,7 +63,7 @@ module.exports.editUser = asyncErrHandler(async (req, res) => {
     lastName,
     otherName,
     address,
-    phone,
+    phoneNumber,
     website,
     links,
     aboutMe,
@@ -77,7 +80,7 @@ module.exports.editUser = asyncErrHandler(async (req, res) => {
   if (lastName) req.user.lastName = lastName;
   if (otherName) req.user.otherName = otherName;
   if (address) req.user.address = address;
-  if (phone) req.user.phone = phone;
+  if (phoneNumber) req.user.phoneNumber = phoneNumber;
   if (aboutMe) req.user.aboutMe = aboutMe;
   if (website) req.user.website = website;
 
@@ -128,8 +131,6 @@ module.exports.editUser = asyncErrHandler(async (req, res) => {
     req.user.referees = [...existingReferees, req.body.referees];
   }
 
-  console.log(`@result`, req.body);
-
   const updatedUser = await req.user.save();
   if (updatedUser) {
     const script =
@@ -162,24 +163,37 @@ module.exports.changePassword = asyncErrHandler(async (req, res) => {
 });
 
 // DELETE TASK
-
 module.exports.deleteTask = asyncErrHandler(async (req, res) => {
+  const { type, index } = req.body;
   try {
-    const { fieldType, index } = req.body;
-    const deleteField = `.${fieldType}`;
-    await Portfolio.findByIdAndUpdate(req.user._id, {
-      $unset: { [deleteField]: { [`$${index}`]: 1 } },
-    });
-    res.redirect("/users/profile");
+    if (
+      ![
+        "links",
+        "workExperience",
+        "otherExperience",
+        "educationAndTraining",
+        "professionalOrganization",
+        "skills",
+        "projects",
+        "referees",
+      ].includes(type)
+    ) {
+      return res.status(400).json({ error: "Invalid type" });
+    }
+    const user = await Portfolio.findById(req.user._id);
+
+    if (index < 0 || index >= user[type].length) {
+      return res.status(400).json({ error: "Invalid index" });
+    }
+    user[type].splice(index, 1);
+    await user.save();
+
+    res.json({ success: true, message: "Delete successful" });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).json({ error: "Internal server error" });
   }
 });
-// module.exports.deleteTask = asyncErrHandler(async (req, res) => {
-//   const deleteATask = await Portfolio.deleteOne({ _id: req.params.id });
-//   res.json({ data: deleteATask, success: true });
-// });
 
 // UPLOAD FILE (IMAGE)
 module.exports.fileUpload = asyncErrHandler(async (req, res) => {

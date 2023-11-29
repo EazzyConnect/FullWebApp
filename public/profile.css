@@ -147,6 +147,23 @@ div.resumeView {
  margin-right: 50px;
 }
 
+.deleteBtn{
+  margin: 5px;
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #142b80;
+  color: aliceblue;
+  font-weight: bolder;
+}
+
+.deleteBtn:hover{
+  cursor: pointer;
+  background-color: aliceblue;
+  color: #142b80;
+  font-weight: bolder;
+}
+
 /* ABOUT ME */
 div.aboutMe {
  display: flex;
@@ -341,13 +358,12 @@ div.skills h5 {
   text-align: right;
 }
 
-div.skills .skillsInner {
-  text-align: justify;
-  padding: 5px;
-  margin-left: 150px;
-  margin-top: -65px;
+div.skills .skillsInner{
   display: inline-block;
-  inline-size: 1px;
+  margin-left: 150px;
+  margin-right: -120px;
+  text-align: center;
+  margin-top: -35px;
 }
 
 /* PROJECT */
