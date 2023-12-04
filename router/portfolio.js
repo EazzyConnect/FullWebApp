@@ -11,6 +11,7 @@ const {
   editUser,
   deleteTask,
   fileUpload,
+  updateItem,
 } = require("../controllers/portFoControl");
 const { authorized } = require("../middleware/midAuth");
 const bcrypt = require("bcrypt");
@@ -56,6 +57,9 @@ router.get("/search", getAUser);
 
 // DELETE TASK
 router.post("/profile/delete", authorized, deleteTask);
+
+// UPDATE AN ITEM
+router.get("/profile/update", authorized, updateItem);
 
 // UPLOAD FILE
 router.post("/profile/upload", authorized, upload.single("image"), fileUpload);

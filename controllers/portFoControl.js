@@ -181,6 +181,9 @@ module.exports.deleteTask = asyncErrHandler(async (req, res) => {
       return res.status(400).json({ error: "Invalid type" });
     }
     const user = await Portfolio.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
 
     if (index < 0 || index >= user[type].length) {
       return res.status(400).json({ error: "Invalid index" });
@@ -189,6 +192,53 @@ module.exports.deleteTask = asyncErrHandler(async (req, res) => {
     await user.save();
 
     res.json({ success: true, message: "Delete successful" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// UPDATE AN ITEM
+
+module.exports.updateItem = asyncErrHandler(async (req, res) => {
+  try {
+    const { type, index, newData } = req.body;
+
+    if (!type || !index || !newData) {
+      return res
+        .status(400)
+        .json({ error: "Type, index, and newData are required" });
+    }
+
+    const allowedTypes = [
+      "links",
+      "workExperience",
+      "otherExperience",
+      "educationAndTraining",
+      "professionalOrganization",
+      "skills",
+      "projects",
+      "referees",
+    ];
+    if (!allowedTypes.includes(type)) {
+      return res.status(400).json({ error: "Invalid type" });
+    }
+
+    const user = await Portfolio.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    if (index < 0 || index >= user[type].length) {
+      return res.status(400).json({ error: "Invalid index" });
+    }
+
+    const updatedItem = await Portfolio.findOneAndUpdate(
+      { _id: req.user._id },
+      { $set: { [`${type}.${index}`]: newData } },
+      { new: true }
+    );
+    res.json(updatedItem);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
