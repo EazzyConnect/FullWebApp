@@ -59,7 +59,7 @@ router.get("/search", getAUser);
 router.post("/profile/delete", authorized, deleteTask);
 
 // UPDATE AN ITEM
-router.get("/profile/update", authorized, updateItem);
+router.post("/profile/update", authorized, updateItem);
 
 // UPLOAD FILE
 router.post("/profile/upload", authorized, upload.single("image"), fileUpload);

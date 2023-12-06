@@ -204,11 +204,11 @@ module.exports.updateItem = asyncErrHandler(async (req, res) => {
   try {
     const { type, index, newData } = req.body;
 
-    if (!type || !index || !newData) {
-      return res
-        .status(400)
-        .json({ error: "Type, index, and newData are required" });
-    }
+    // if (!type || !index || !newData) {
+    //   return res
+    //     .status(400)
+    //     .json({ error: "Type, index, and newData are required" });
+    // }
 
     const allowedTypes = [
       "links",

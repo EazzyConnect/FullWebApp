@@ -110,9 +110,6 @@
 
           {{/each}}
 
-          {{!-- <button class="editButton" id="editBtn" onclick="editExperience('{{../type}}', {{index}})">Edit</button>
-          --}}
-
           <button class="deleteBtn" onclick="deleteExperience('{{../type}}', {{index}})">Delete</button>
 
         </div>
@@ -247,6 +244,22 @@
 
           <button class="deleteBtn" onclick="deleteReferee('{{../type}}', {{index}})">Delete</button>
 
+          <button class="editBtn" onclick="showEditForm('{{../type}}', {{index}})">Edit</button>
+
+          <form id="editForm{{index}}" class="editForm hidden">
+
+            <label for="fullName{{index}}">Full Name:</label>
+            <input type="text" id="fullName{{index}}" name="fullName" value="{{referee.fullName}}">
+
+            <label for="phone{{index}}">Phone:</label>
+            <input type="text" id="phone{{index}}" name="phone" value="{{referee.phone}}">
+
+            <label for="occupation{{index}}">Occupation:</label>
+            <input type="text" id="occupation{{index}}" name="occupation" value="{{referee.occupation}}">
+
+            <button type="button" onclick="saveChanges('{{../type}}', {{index}})">Save Changes</button>
+          </form>
+
         </div>
 
         {{/each}}
@@ -260,6 +273,52 @@
 
 
   <script>
+
+    function showEditForm(type, index) {
+      const allForms = document.querySelectorAll('.editForm');
+      allForms.forEach(form => form.classList.add('hidden'));
+
+      const selectedForm = document.getElementById(`editForm${index}`);
+      selectedForm.classList.remove('hidden');
+      console.log("Done");
+    }
+
+
+    async function saveChanges(type, index) {
+      const fullName = document.getElementById(`fullName${index}`).value;
+      const phone = document.getElementById(`phone${index}`).value;
+      const occupation = document.getElementById(`occupation${index}`).value;
+
+      const newData = {
+        fullName,
+        phone,
+        occupation,
+      };
+      console.log(`new:`, newData)
+      try {
+        const response = await fetch('/users/profile/update', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ type: "referees", index: index, newData }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const updatedItem = await response.json();
+        console.log(`@last:`, updatedItem);
+
+      } catch (error) {
+        console.log('Error:', error);
+      }
+      location.reload()
+    }
+
+
+
 
 
     async function deleteExperience(type, index) {
