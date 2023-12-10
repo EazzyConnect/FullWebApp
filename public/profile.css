@@ -431,6 +431,38 @@ div.referee .refereeInner .phone {
   font-weight: bold;
 }
 
-.hidden{
+.hiddenForm{
   display: none;
+}
+
+.editForm{
+  max-width: 200px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  background-color: rgb(228, 221, 221);
+}
+
+input{
+  margin-bottom: 5px;
+}
+
+textarea{
+  height: 120px;
+  width: 176px;
+}
+
+.editBtn{
+  margin: 2px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #142b80;
+  color: aliceblue;
+}
+
+.editBtn:hover{
+    cursor: pointer;
+    background-color: aliceblue;
+    color: #142b80;
 }

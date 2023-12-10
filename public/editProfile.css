@@ -29,7 +29,7 @@ body {
  gap: 40px;
 }
 
-form.edit {
+.edit {
  max-width: 400px;
  /* margin: 0 auto; */
 }
