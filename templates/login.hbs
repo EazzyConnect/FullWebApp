@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Portfolio</title>
- <link rel="icon" href="../images/Title-Logo.png">
+ <title>ResumeMaker</title>
+ <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
  <link rel="stylesheet" href="/login.css">
+ <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
- 
-<h1>Login Page</h1>
-<form method="post">
 
- <input type="text" name="username" placeholder="Username">
- <input type="password" name="password" placeholder="Password">
- <button type="submit">Login</button>
+ <section>
 
-</form>
+  <div class="home">
+   <img class="titleImage" src="/images/Title-Logo.png" alt="titleImage">
+   <a href="home"> resume<span class="maker">maker</span></a>
+  </div>
 
-<a class="homeL" href="/home">Back Home</a>
-<a class="signupL" href="signup">Sign Up</a>
+  <div id="mainContainer">
+
+   <div class="log1">
+    <h1>Login</h1>
+    <h5>Welcome back!</h5>
+   </div>
+
+   <form method="post" class="login">
+
+    <label class="label" for="username">Username: </label>
+    <input type="text" id="username" name="username" placeholder="Username">
+
+    <label class="label" for="password">Password: </label>
+    <input type="password" id="password" name="password" placeholder="Password">
+
+    <button type="submit">Login</button>
+
+   </form>
+
+  </div>
+
+  <div class="bottom">
+   <a class="homeL" href="/home">Back Home</a>
+   <a class="signupL" href="signup">Sign Up</a>
+  </div>
+
+ </section>
+
 </body>
+
 </html>

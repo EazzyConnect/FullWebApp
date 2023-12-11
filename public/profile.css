@@ -462,7 +462,7 @@ textarea{
 }
 
 .editBtn:hover{
-    cursor: pointer;
-    background-color: aliceblue;
-    color: #142b80;
+  cursor: pointer;
+  background-color: aliceblue;
+  color: #142b80;
 }

@@ -1,51 +1,119 @@
-body {
- background-color: rgb(244, 242, 219);
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-form.login {
- max-width: 40px;
- /* margin: 0 auto; */
+section {
+ background-image: linear-gradient(rgba(153, 109, 235, 0.4), rgba(58, 16, 227, 0.363));
+ width: 100vw;
+ height: 100vh;
+}
+
+.home {
+ display: flex;
+ justify-content: center;
+ font-size: x-large;
+ padding: 30px;
+ margin-bottom: 50px;
+ background-color: blueviolet;
+}
+
+#mainContainer{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ background-color: rgb(197, 150, 241);
+ width: 40%;
+ padding: 30px;
+ margin: auto;
+ border-radius: 10px;
+ box-shadow: 0 0 20px rgba(2,3,4,0.5);
+}
+
+.titleImage {
+ width: 50px;
+ margin-right: 10px;
+}
+
+.maker {
+ color: black;
+ font-weight: bolder;
+ font-style: oblique;
+}
+
+a {
+ text-decoration: none;
+ color: white;
+}
+
+.log1{
+ text-align: center;
+ font-size: x-large;
+ margin-bottom: 40px;
+}
+
+.login {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
 
 input {
- display: block;
- margin-bottom: 5px;
- width: 25%;
+ margin-bottom: 15px;
  padding: 5px 10px;
  border: 1px solid blueviolet;
  border-radius: 5px;
- background-color: rgb(213, 213, 212);
+ background-color: rgb(213, 212, 212);
+ width: 200px;
+}
+
+.label{
+ align-self: flex-start;
+ font-size: larger;
+ font-weight: bold;
 }
 
 button {
- width: 10%;
+ width: 50%;
  font-weight: bold;
+ font-size: larger;
  padding: 5px 1px;
  border: 1px solid rgb(19, 1, 35);
  border-radius: 5px;
- background-color: rgb(142, 39, 115);
+ background-color: blueviolet;
  margin-bottom: 50px;
- color: rgb(227, 221, 234);
+ color: whitesmoke;
 }
 
-body a.signupL,
-a.homeL {
- color: rgb(227, 221, 234);
+button:hover{
+  background-color: white;
+  color: rgb(36, 3, 66);
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(3,4,5,0.6);
+}
+
+.bottom{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+
+}
+.signupL,
+.homeL {
+ color: whitesmoke;
  border: 1px solid #123;
  border-radius: 5px;
  padding: 5px;
  font-weight: bold;
- background-color: rgb(142, 28, 109);
- text-decoration: none;
+ background-color: blueviolet;
+ margin: 0px 5px;
 }
-.popup {
- position: fixed;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- padding: 10px;
- background-color: #fff;
- border: 1px solid #ccc;
- box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- z-index: 1000;
+
+.signupL:hover, .homeL:hover {
+ background-color: white;
+ color: rgb(36, 3, 66);
+ cursor: pointer;
+ box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
 }
