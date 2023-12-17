@@ -51,6 +51,13 @@ router.get("/profile/edit", authorized, (req, res) => {
 
 router.post("/profile/edit", authorized, editUser);
 
+// DOWNLOAD PAGE
+router.get("/profile/download", authorized, (req, res) => {
+  res.render("download", {
+    data: req.user,
+  });
+});
+
 // GET ONE USER
 router.get("/search", getAUser);
 // router.get("/:username", getAUser);

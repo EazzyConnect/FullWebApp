@@ -8,7 +8,7 @@
 section {
  background-image: linear-gradient(rgba(153, 109, 235, 0.4), rgba(58, 16, 227, 0.363));
  width: 100vw;
- height: 110vh;
+ height: 100vh;
 }
 
 .home {
@@ -51,7 +51,7 @@ a {
 .log1{
  text-align: center;
  font-size: x-large;
- margin-bottom: 40px;
+ margin-bottom: 20px;
 }
 
 .login {
@@ -83,7 +83,7 @@ button {
  border: 1px solid rgb(19, 1, 35);
  border-radius: 5px;
  background-color: blueviolet;
- margin-bottom: 50px;
+ margin-bottom: 30px;
  color: whitesmoke;
 }
 
@@ -98,8 +98,8 @@ button:hover{
   display: flex;
   justify-content: center;
   margin: 20px;
-
 }
+
 .signupL,
 .homeL {
  color: whitesmoke;

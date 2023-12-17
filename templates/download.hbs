@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=	, initial-scale=1.0">
+ <title>ResumeMaker</title>
+ <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
+ <link rel="stylesheet" href="/profile.css">
+ <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
+ <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+</head>
+
+<body>
+
+ <section>
+
+  <button id="downloadButton">Download PDF</button>
+
+  <div class="resumeView">
+
+   <div id="head">
+
+    <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
+
+    <div class="contactInfo">
+
+     <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
+
+     <div class="contactInfoInner1">
+      <h5><i class="fa-solid fa-phone"></i> Phone: +234{{data.phoneNumber}}</h5>
+      <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
+     </div>
+
+     <div class="contactInfoInner2">
+      <h5><i class="fa-solid fa-globe"></i> Website: {{data.website}}</h5>
+      <h5><i class="fa-brands fa-facebook"></i> Facebook: {{data.links.[1].title}}</h5>
+     </div>
+
+    </div>
+
+   </div>
+
+   <div class="aboutMe">
+
+    <h5 id="abtMe">ABOUT ME</h5>
+    <p id="abtMeText">{{data.aboutMe}}</p>
+
+   </div>
+
+   <hr>
+
+   <div class="experience">
+
+    <h5 class="expTitle">WORK EXPERIENCE</h5>
+
+    {{#each data.workExperience as |experience index|}}
+
+    <div>
+     <div class="expBox">
+
+      <h6 class="date">[ {{experience.date}} ]</h6>
+
+      <div class="experienceInner">
+       <p class="position">{{experience.position}}</p>
+       <p class="employer">{{experience.employer}}</p>
+       <p class="location">{{experience.location}}</p>
+
+       {{#each experience.dutiesAndAchievements as |duty|}}
+
+       <ul>
+        <li> {{duty}}
+        </li>
+       </ul>
+
+       {{/each}}
+
+      </div>
+
+     </div>
+
+    </div>
+
+    {{/each}}
+
+   </div>
+
+   <hr>
+
+   <div class="education">
+
+    <h5 class="eduTitle">EDUCATION AND TRAINING</h5>
+
+    {{#each data.educationAndTraining as |education index|}}
+
+    <div>
+
+     <div class="expBox">
+
+      <h6 class="date">[ {{education.date}} ]</h6>
+
+      <div class="educationInner">
+       <p class="degree">{{education.degree}}</p>
+       <p class="institution">{{education.institutionAttended}}</p>
+       <p class="location">{{education.location}}</p>
+
+       {{#each education.projectAndAchievement as |project|}}
+
+       <ul>
+        <li> {{project}}
+        </li>
+       </ul>
+
+       {{/each}}
+
+      </div>
+
+     </div>
+
+    </div>
+
+    {{/each}}
+
+   </div>
+
+   <hr>
+
+   <div class="profOrg">
+
+    <h5 class="progOrgTitle">PROFESSIONAL ORGANIZATION</h5>
+
+    {{#each data.professionalOrganization as |profOrg index|}}
+
+    <div>
+     <div class="expBox">
+
+      <h6 class="date">[ {{profOrg.date}} ]</h6>
+
+      <div class="profOrgInner">
+
+       <p class="certification">{{profOrg.certification}}</p>
+       <p class="organization">{{profOrg.organization}}</p>
+       <p class="location">{{profOrg.location}}</p>
+       <p class="website">{{profOrg.website}}</p>
+
+      </div>
+
+     </div>
+
+    </div>
+
+    {{/each}}
+
+   </div>
+
+   <hr>
+
+   <div class="otherExperience">
+
+    <h5 class="othExpTitle">OTHER EXPERIENCE</h5>
+
+    {{#each data.otherExperience as |otherExperience index|}}
+
+    <div>
+     <div class="expBox">
+
+      <h6 class="date">[ {{otherExperience.date}} ]</h6>
+
+      <div class="otherExperienceInner">
+       <p class="position">{{otherExperience.position}}</p>
+       <p class="employer">{{otherExperience.employer}}</p>
+       <p class="location">{{otherExperience.location}}</p>
+
+       {{#each otherExperience.dutiesAndAchievements as |duty|}}
+
+       <ul>
+        <li> {{duty}}
+        </li>
+       </ul>
+
+       {{/each}}
+
+      </div>
+
+     </div>
+
+    </div>
+
+    {{/each}}
+
+   </div>
+
+   <hr>
+
+   <div class="skills">
+
+    <h5 class="skillTitle">SKILLS</h5>
+
+    <div class="skillContent">
+
+     {{#each data.skills as |skills index|}}
+
+     <div class="skillsInner">
+      <p class="skillText">||{{skills}}||</p>
+     </div>
+
+     {{/each}}
+
+    </div>
+
+   </div>
+
+   <hr>
+
+   <div class="project">
+
+    <h5 class="projectTitle">PROJECTS</h5>
+
+    {{#each data.projects as |project index|}}
+
+    <div>
+
+     <div class="expBox">
+
+      <h6 class="date">[ {{project.date}} ]</h6>
+
+      <div class="projectInner">
+       <p class="title">{{project.title}}</p>
+       <p class="details">{{project.details}}</p>
+       <p class="link">{{project.link}}</p>
+
+      </div>
+
+     </div>
+
+    </div>
+
+    {{/each}}
+
+   </div>
+
+   <hr>
+
+   <div class="referee">
+
+    <h5 class="refTitle">REFEREES</h5>
+
+    <div class="refContent">
+
+     {{#each data.referees as |referee index|}}
+
+     <div class="refereeInner">
+      <p class="name">{{referee.fullName}}</p>
+      <p class="phone">+234{{referee.phone}}</p>
+      <p class="occupation">{{referee.occupation}}</p>
+
+     </div>
+
+     {{/each}}
+
+    </div>
+
+   </div>
+
+  </div>
+
+  <script>
+   document.getElementById('downloadButton').addEventListener('click', () => {
+    const element = document.querySelector('.resumeView');
+
+    const options = {
+     margin: 5,
+     filename: 'resume.pdf',
+     image: { type: 'jpeg', quality: 1 },
+     html2canvas: { scale: 2 },
+     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Use html2pdf library to generate the PDF
+    html2pdf(element, options);
+   });
+  </script>
+
+
+ </section>
+</body>
+
+</html>

@@ -1,150 +1,532 @@
 * {
- box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-
-body {
- color: #222;
- background-color: rgb(244, 242, 219);
+section {
+  background-image: linear-gradient(rgba(153, 109, 235, 0.2), rgba(58, 16, 227, 0.363));
+  padding: 15px;
 }
-
 
 header {
  display: flex;
  justify-content: space-between;
- margin-top: 15px;
  margin-bottom: 50px;
  align-items: center;
 }
 
-header a {
- text-decoration: none;
- color: inherit;
+.titleImage {
+  width: 50px;
+  margin-right: 10px;
 }
 
-header a.myHome {
- font-size: 1.5rem;
+.leftTop{
+  display: flex;
+  justify-content: center;
+}
+
+a{
+ text-decoration: none;
+}
+
+.myHome {
+ font-size: 20px;
  color: rgb(227, 221, 234);
  border: 1px solid #123;
  border-radius: 5px;
  padding: 5px;
  font-weight: bold;
- background-color: #410066;
+ background-color: blueviolet;
 }
 
 header nav {
- display: flex;
- gap: 15px
+  display: flex;
+  gap: 15px
 }
 
-div.welcome {
- background-color: #4D2177;
+.editP {
+  color: rgb(227, 221, 234);
+  border: 1px solid #123;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  background-color: blueviolet;
+}
+
+.logoutButton {
+  color: rgb(227, 221, 234);
+  border: 1px solid #123;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  background-color: blueviolet;
+  cursor: pointer;
+}
+
+.myHome:hover, .editP:hover, .logoutButton:hover{
+  background-color: white;
+  color: rgb(36, 3, 66);
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
+}
+
+.welcome {
+ background-color: blueviolet;
  color: aliceblue;
  font-family: Georgia, 'Times New Roman', Times, serif;
- padding: 0.1%;
+ padding: 15px;
  border-radius: 5px;
- margin-bottom: 5px;
+ margin-bottom: 10px;
  display: flex;
  justify-content: space-between;
- /* clear: both; */
 }
 
-/* div.welcome h3.leftTime {
- float: left;
+.role {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+  /* position: absolute; */
 }
 
-div.welcome h3.rightTime {
- float: right;
-} */
-
-
-div.role {
-  background-color: #624872;
-  border: 1px solid rgb(244, 227, 227);
+.roleText{
+  background-color: rgb(45, 3, 85);
+  border: 2px solid rgb(244, 227, 227);
   border-radius: 50%;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: oblique;
   color: rgb(249, 247, 247);
   text-align: center;
-  margin-right: 80%;
   margin-top: -15px;
-  padding: 1%;
-  position: absolute;
+  padding: 15px;
 }
 
-
-header nav a.editP, a.usersP {
-  color: rgb(227, 221, 234);
-  border: 1px solid #123;
-  border-radius: 5px;
-  padding: 5px;
+.downloadBtn{
+  background-color: #142b80;
+  color: whitesmoke;
+  padding: 10px;
   font-weight: bold;
-  background-color: #472F3B;
+  border: 1px solid #142b80;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.downloadBtn:hover{
+  background-color: whitesmoke;
+  color: #142b80;
+  box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
 }
 
 div.container{
   display: flex;
   justify-content: space-between;
+  padding: 20px;
 }
 
-button.logoutButton {
-  color: rgb(227, 221, 234);
-  border: 1px solid #123;
-  border-radius: 5px;
-  padding: 5px;
-  font-weight: bold;
-  background-color: #25191f;
-  cursor: pointer;
-}
-
-div.intro {
+.intro {
   font-style: oblique;
   font-size: large;
   font-weight: 800;
-  margin-top: 80px;
-}
-
-/* div.profileImage{
-  border: 1px solid black;
-} */
-
-div.pix{
-  border: 1px solid black;
-  border-radius: 50%;
-  text-align: center;
-  width: 35%;
+  margin-top: 60px;
+  /* background-color: rgb(197, 150, 241); */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
+  width: 30%;
+  height: max-content;
+  padding: 15px;
 }
 
 .introAbout{
-  color: #142b80;
-  width: 70%;
+  width: 100%;
   text-align: justify;
 }
 
 div.resumeView {
-  width: 794px;
+  /* width: 794px; For download*/
   /* height: 1123px; */
+  /* margin: 0 auto; */
+  width: 794px;
   background-color: rgb(241, 242, 242);
   border: 1px solid #142b80;
-  margin: 0 auto;
-  padding: 50px;
+  padding: 25px;
+}
+
+#head{
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
+  padding: 10px;
+  /* background-color: #142b80;
+  color: white; */
+}
+
+.fullName{
+  margin-bottom: 20px;
+}
+
+/* .contactInfo{
+  background-color: red;
+} */
+
+h5 {
+ margin-right: 50px;
+ margin-bottom: 10px;
 }
 
 .contactInfoInner1{
   display: flex;
-  flex-direction: row;
-  margin-top: -30px;
-  margin-bottom: -30px;
 }
 .contactInfoInner2{
   display: flex;
-  flex-direction: row;
-  margin-top: -30px;
-  margin-bottom: -30px;
 }
 
-.contactInfo h5 {
- margin-right: 50px;
+hr{
+  width: 77%;
+  border: 1px solid #8b9fe8;
+  margin: auto;
+  margin-right: 0;
+  margin-top: 5px;
+}
+
+
+/* ABOUT ME */
+div.aboutMe {
+ display: flex;
+ margin-top: 20px;
+}
+
+#abtMe{
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+#abtMeText{
+  margin-top: 5px;
+  text-align: justify;
+  width: 77%;
+}
+
+/* WORK EXPERIENCE */
+.date{
+  font-size: smaller;
+  width: 20%;
+  margin-right: 3%;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: right;
+}
+
+.location{
+  margin-bottom: 5px;
+}
+
+ul{
+  color: #0e33b8;
+  margin-left: 20px;
+}
+
+.taskBtn{
+  margin-top: 10px;
+}
+
+div.experience {
+  margin-top: 20px;
+}
+
+.expTitle{
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.expBox{
+  display: flex;
+}
+
+/* .vertical line{
+  border-left: 1px solid black;
+  height: 20px;
+} */
+
+.experienceInner{
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.position{
+  font-weight: bold;
+  color: #142b80;
+  margin-bottom: 10px;
+}
+
+.employer{
+  font-weight: bold;
+  font-style: oblique;
+  margin-bottom: 5px;
+}
+
+
+/* EDUCATION */
+div.education {
+  margin-top: 20px;
+}
+
+.eduTitle{
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.educationInner{
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.degree{
+  font-weight: bold;
+  color: #142b80;
+  margin-bottom: 10px;
+}
+
+.institution{
+  font-weight: bold;
+  font-style: oblique;
+  margin-bottom: 5px;
+}
+
+
+/* PROFESSIONAL ORG */
+div.profOrg {
+  margin-top: 20px;
+}
+
+.progOrgTitle{
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.profOrgInner{
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.certification{
+  font-weight: bold;
+  color: #142b80;
+  margin-bottom: 10px;
+}
+
+.organization{
+  font-weight: bold;
+  font-style: oblique;
+  margin-bottom: 5px;
+}
+
+.website{
+  font-style: italic;
+  color: #142b80;
+  font-size: smaller;
+}
+
+/* OTHER EXPERIENCE */
+div.otherExperience {
+  margin-top: 20px;
+}
+
+.othExpTitle{
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.otherExperienceInner{
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.position{
+  font-weight: bold;
+  color: #142b80;
+  margin-bottom: 10px;
+}
+
+.employer{
+  font-weight: bold;
+  font-style: oblique;
+  margin-bottom: 5px;
+}
+
+
+/* SKILLS */
+div.skills {
+  margin-top: 20px;
+  display: flex;
+}
+
+.skillTitle{
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.skillContent{
+  width: 77%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.skillsInner{
+  width: 33%;
+  margin-bottom: 5px;
+}
+
+.skillText{
+  margin-right: 10px;
+  font-size: small;
+  font-weight: bold;
+  /* use word-wrap or overflow-wrap */
+  overflow-wrap: break-word;
+}
+
+
+
+/* PROJECT */
+div.project {
+  margin-top: 20px;
+}
+
+.projectTitle {
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.projectInner {
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.title {
+  font-weight: bold;
+  color: #142b80;
+  margin-bottom: 10px;
+}
+
+.details {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.link {
+  font-style: italic;
+  color: #142b80;
+  font-size: smaller;
+}
+.projectDetail{
+  width: 400px;
+  height: 100px;
+  background-color: red;
+  overflow-wrap: break-word;
+  resize: vertical;
+}
+
+
+/* REFEREES */
+div.referee {
+  margin-top: 20px;
+  display: flex;
+}
+
+.refTitle {
+  color: #142b80;
+  text-align: right;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.refContent {
+  width: 77%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.refereeInner{
+  width: 33%;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-weight: bold;
+  color: #142b80;
+  margin-bottom: 10px;
+}
+
+.phone {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+/* Others */
+.hiddenForm{
+  display: none;
+}
+
+.editForm{
+  max-width: 77%;
+  margin: auto;
+  margin-right: 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(228, 221, 221);
+  font-weight: bold;
+}
+
+input{
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+textarea{
+  height: 150px;
+  width: 350px;
+  margin-top: 10px;
+}
+
+.editBtn{
+  margin: 2px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #142b80;
+  color: aliceblue;
+  font-weight: bolder;
+}
+
+.editBtn:hover{
+  cursor: pointer;
+  background-color: aliceblue;
+  color: #142b80;
+  font-weight: bolder;
 }
 
 .deleteBtn{
@@ -162,307 +544,4 @@ div.resumeView {
   background-color: aliceblue;
   color: #142b80;
   font-weight: bolder;
-}
-
-/* ABOUT ME */
-div.aboutMe {
- display: flex;
- margin-top: 20px;
-}
-
-div.aboutMe h5{
-  width: 215px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.aboutMe p{
-  margin-top: 30px;
-  text-align: justify;
-  border: 0.1px solid rgb(207, 206, 206);
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-  padding: 5px;
-}
-
-/* WORK EXPERIENCE */
-div.experience {
-  margin-top: 20px;
-}
-
-div.experience h5{
-  width: 143px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.experience h6{
-  font-size: small;
-  margin-top: -10px;
-  width: 143px;
-  text-align: right;
-}
-
-div.experience .experienceInner{
-  text-align: justify;
-  padding: 5px;
-  margin-left: 150px;
-  margin-top: -65px;
-}
-
-div.experience .experienceInner .position{
-  font-weight: bold;
-  color: #142b80;
-}
-
-div.experience .experienceInner .employer{
-  font-weight: bold;
-  font-style: oblique;
-}
-
-div.experience .experienceInner ul{
-  color: #0e33b8;
-  margin-left: -22px;
-}
-
-/* EDUCATION */
-div.education {
-  margin-top: 20px;
-}
-
-div.education h5{
-  width: 143px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.education h6{
-  font-size: small;
-  margin-top: -10px;
-  width: 143px;
-  text-align: right;
-}
-
-div.education .educationInner{
-  text-align: justify;
-  padding: 5px;
-  margin-left: 150px;
-  margin-top: -65px;
-}
-
-div.education .educationInner .degree{
-  font-weight: bold;
-  color: #142b80;
-}
-
-div.education .educationInner .institution{
-  font-weight: bold;
-  font-style: oblique;
-}
-
-div.education .educationInner ul {
-  color: #0e33b8;
-  margin-left: -22px;
-}
-
-/* PROFESSIONAL ORG */
-div.profOrg {
-  margin-top: 20px;
-}
-
-div.profOrg h5{
-  width: 143px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.profOrg h6{
-  font-size: small;
-  margin-top: -10px;
-  width: 143px;
-  text-align: right;
-}
-
-div.profOrg .profOrgInner{
-  text-align: justify;
-  padding: 5px;
-  margin-left: 150px;
-  margin-top: -65px;
-}
-
-div.profOrg .profOrgInner .certification{
-  font-weight: bold;
-  color: #142b80;
-}
-
-div.profOrg .profOrgInner .organization{
-  font-weight: bold;
-  font-style: oblique;
-}
-
-/* OTHER EXPERIENCE */
-div.otherExperience {
-  margin-top: 20px;
-}
-
-div.otherExperience h5{
-  width: 143px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.otherExperience h6{
-  font-size: small;
-  margin-top: -10px;
-  width: 143px;
-  text-align: right;
-}
-
-div.otherExperience .otherExperienceInner{
-  text-align: justify;
-  padding: 5px;
-  margin-left: 150px;
-  margin-top: -65px;
-}
-
-div.otherExperience .otherExperienceInner .position{
-  font-weight: bold;
-  color: #142b80;
-}
-
-div.otherExperience .otherExperienceInner .employer{
-  font-weight: bold;
-  font-style: oblique;
-}
-
-div.otherExperience .otherExperienceInner ul {
-  color: #0e33b8;
-  margin-left: -22px;
-}
-
-/* SKILLS */
-div.skills {
-  margin-top: 20px;
-}
-
-div.skills h5 {
-  width: 143px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.skills .skillsInner{
-  display: inline-block;
-  margin-left: 150px;
-  margin-right: -120px;
-  text-align: center;
-  margin-top: -35px;
-}
-
-/* PROJECT */
-div.project {
-  margin-top: 20px;
-}
-
-div.project h5 {
-  width: 143px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.project h6 {
-  font-size: small;
-  margin-top: -10px;
-  width: 143px;
-  text-align: right;
-}
-
-div.project .projectInner {
-  text-align: justify;
-  padding: 5px;
-  margin-left: 150px;
-  margin-top: -65px;
-}
-
-div.project .projectInner .title {
-  font-weight: bold;
-  color: #142b80;
-}
-
-div.project .projectInner .details {
-  font-weight: bold;
-}
-
-/* REFEREES */
-div.referee {
-  margin-top: 20px;
-  display: flex;
-}
-
-div.referee h5 {
-  width: 143px;
-  color: #142b80;
-  margin-right: 5px;
-  text-align: right;
-}
-
-div.referee .refereeInner {
-  text-align: justify;
-  padding: 5px;
-  margin-left: 0;
-  margin-right: 50px;
-  margin-top: 25px;
-}
-
-div.referee .refereeInner .name {
-  font-weight: bold;
-  color: #142b80;
-}
-
-div.referee .refereeInner .phone {
-  font-weight: bold;
-}
-
-.hiddenForm{
-  display: none;
-}
-
-.editForm{
-  max-width: 200px;
-  margin-bottom: 20px;
-  padding: 10px;
-  text-align: left;
-  font-weight: bold;
-  background-color: rgb(228, 221, 221);
-}
-
-input{
-  margin-bottom: 5px;
-}
-
-textarea{
-  height: 120px;
-  width: 176px;
-}
-
-.editBtn{
-  margin: 2px;
-  padding: 5px;
-  border-radius: 10px;
-  background-color: #142b80;
-  color: aliceblue;
-}
-
-.editBtn:hover{
-  cursor: pointer;
-  background-color: aliceblue;
-  color: #142b80;
 }

@@ -4,397 +4,561 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link rel="icon" href="Title-Logo.png">
+  <title>ResumeMaker</title>
+  <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
   <link rel="stylesheet" href="/profile.css">
   <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <header>
-    <a href="profile" class="myHome">My Profile</a>
+  <section>
 
-    <nav>
-      <a class="editP" href="profile/edit">Create and Edit Resume</a>
-      <a class="usersP" href="/users">Search Users</a>
-    </nav>
+    <header>
 
-  </header>
-
-  <div class="welcome">
-
-    <h3 class="leftTime" id="time"></h3>
-    <h3 class="rightTime" id="currentTime"></h3>
-
-  </div>
-
-  <div class="role">
-
-    <p> Role: {{data.role}}</p>
-
-  </div>
-
-  <div class="container">
-
-    <div class="intro">
-
-      <div class="pix">
-
-        {{!-- <form action="/users/profile/upload" method="post" enctype="multipart/form-data">
-
-          <img src="" alt="image" id="previewImage" style="max-width: 100%; max-height: 200px">
-          <input type="file" name="image" id="imageInput" accept=".jpeg, .jpg, .png" onchange="previewImage(event)">
-
-          <button type="submit">Upload</button>
-
-        </form> --}}
-
-        <h5>{{data.firstName}} {{data.lastName}}</h5>
-
+      <div class="leftTop">
+        <img class="titleImage" src="/images/Title-Logo.png" alt="titleImage">
+        <a href="profile" class="myHome">My Profile</a>
       </div>
 
-      <p class="introAbout"> About me:
-        <br>
-        {{data.aboutMe}}
-      </p>
+      <nav>
+        <a class="editP" href="profile/edit">Create and Edit Resume</a>
+        {{!-- <a class="usersP" href="/users">Search Users</a> --}}
+        <button class="logoutButton">LOG-OUT</button>
+      </nav>
+
+    </header>
+
+    <div class="welcome">
+
+      <h3 class="leftTime" id="time"></h3>
+      <h3 class="rightTime" id="currentTime"></h3>
 
     </div>
 
-    <br><br><br>
+    <div class="role">
 
-    <div class="resumeView">
+      <p class="roleText"> Role: {{data.role}}</p>
 
-      <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
+      <a class="downloadBtn" href="profile/download">Download Resume</a>
 
-      <div class="contactInfo">
-
-        <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
-
-        <div class="contactInfoInner1">
-          <h5><i class="fa-solid fa-phone"></i> Phone: +234{{data.phoneNumber}}</h5>
-          <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
-        </div>
-
-        <div class="contactInfoInner2">
-          <h5><i class="fa-solid fa-globe"></i> Website: {{data.website}}</h5>
-          <h5><i class="fa-brands fa-facebook"></i> Facebook: {{data.links.[1].title}}</h5>
-        </div>
-
-      </div>
-
-      <div class="aboutMe">
-
-        <h5>ABOUT ME</h5>
-        <p>{{data.aboutMe}}</p>
-
-      </div>
-
-      <div class="experience">
-
-        <h5>WORK EXPERIENCE</h5>
-        {{#each data.workExperience as |experience index|}}
-        <h6>[ {{experience.date}} ]</h6>
-
-        <div class="experienceInner">
-          <p class="position">{{experience.position}}</p>
-          <p class="employer">{{experience.employer}}</p>
-          <p class="location">{{experience.location}}</p>
-
-          {{#each experience.dutiesAndAchievements as |duty|}}
-
-          <ul>
-            <li> {{duty}}
-            </li>
-          </ul>
-
-          {{/each}}
-
-          <button class="deleteBtn" onclick="deleteExperience('{{../type}}', {{index}})">Delete</button>
-
-          <button class="editBtn" onclick="showExpEditForm('{{../type}}', {{index}})">Edit</button>
-
-          <form id="editExpForm{{index}}" class="editForm hiddenForm">
-
-            <label for="date{{index}}">Date:</label>
-            <input type="text" id="date{{index}}" name="date" value="{{experience.date}}">
-
-            <label for="position{{index}}">Position:</label>
-            <input type="text" id="position{{index}}" name="position" value="{{experience.position}}">
-
-            <label for="employer{{index}}">Employer:</label>
-            <input type="text" id="employer{{index}}" name="employer" value="{{experience.employer}}">
-
-            <label for="location{{index}}">Location:</label>
-            <input type="text" id="location{{index}}" name="location" value="{{experience.location}}">
-
-            <label for="dutiesAndAchievements{{index}}">Duties and Achievements:</label>
-            <textarea id="dutiesAndAchievements{{index}}"
-              name="dutiesAndAchievements">{{experience.dutiesAndAchievements}}</textarea>
-
-            <button class="editBtn" type="button" onclick="saveExpChanges('{{../type}}', {{index}})">Save Changes</button>
-
-            <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
-          </form>
-
-        </div>
-
-        {{/each}}
-
-      </div>
-
-      <div class="education">
-
-        <h5>EDUCATION AND TRAINING</h5>
-
-        {{#each data.educationAndTraining as |education index|}}
-        <h6>[ {{education.date}} ]</h6>
-
-        <div class="educationInner">
-          <p class="degree">{{education.degree}}</p>
-          <p class="institution">{{education.institutionAttended}}</p>
-          <p class="location">{{education.location}}</p>
-          <p class="website">{{education.website}}</p>
-
-          {{#each education.projectAndAchievement as |project|}}
-
-          <ul>
-            <li> {{project}}
-            </li>
-          </ul>
-
-          {{/each}}
-
-          <button class="deleteBtn" onclick="deleteEducation('{{../type}}', {{index}})">Delete</button>
-
-          <button class="editBtn" onclick="showEduForm('{{../type}}', {{index}})">Edit</button>
-
-          <form id="editEduForm{{index}}" class="editForm hiddenForm">
-
-            <label for="dateEdu{{index}}">Date:</label>
-            <input type="text" id="dateEdu{{index}}" name="date" value="{{education.date}}">
-
-            <label for="instAttended{{index}}">Institition Attended:</label>
-            <input type="text" id="instAttended{{index}}" name="institutionAttended"
-              value="{{education.institutionAttended}}">
-
-            <label for="degree{{index}}">Degree:</label>
-            <input type="text" id="degree{{index}}" name="degree" value="{{education.degree}}">
-
-            <label for="locationEdu{{index}}">Location:</label>
-            <input type="text" id="locationEdu{{index}}" name="location" value="{{education.location}}">
-
-            <label for="projectAndAchievement{{index}}">Duties and Achievements:</label>
-            <textarea id="projectAndAchievement{{index}}"
-              name="projectAndAchievement">{{education.projectAndAchievement}}</textarea>
-
-            <button class="editBtn" type="button" onclick="saveEdu('{{../type}}', {{index}})">Save Changes</button>
-
-            <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
-          </form>
-
-        </div>
-
-        {{/each}}
-
-      </div>
-
-      <div class="profOrg">
-
-        <h5>PROFESSIONAL ORGANIZATION</h5>
-        {{#each data.professionalOrganization as |profOrg index|}}
-        <h6>[ {{profOrg.date}} ]</h6>
-
-        <div class="profOrgInner">
-          <p class="certification">{{profOrg.certification}}</p>
-          <p class="organization">{{profOrg.organization}}</p>
-          <p class="location">{{profOrg.location}}</p>
-          <p class="website">{{profOrg.website}}</p>
-
-          <button class="deleteBtn" onclick="deleteProfOrg('{{../type}}', {{index}})">Delete</button>
-
-          <button class="editBtn" onclick="showProfForm('{{../type}}', {{index}})">Edit</button>
-
-          <form id="editProfForm{{index}}" class="editForm hiddenForm">
-
-            <label for="dateProf{{index}}">Date:</label>
-            <input type="text" id="dateProf{{index}}" name="date" value="{{profOrg.date}}">
-
-            <label for="organization{{index}}">Organization:</label>
-            <input type="text" id="organization{{index}}" name="organization" value="{{profOrg.organization}}">
-
-            <label for="certification{{index}}">Certification:</label>
-            <input type="text" id="certification{{index}}" name="certification" value="{{profOrg.certification}}">
-
-            <label for="locationProf{{index}}">Location:</label>
-            <input type="text" id="locationProf{{index}}" name="location" value="{{profOrg.location}}">
-
-            <label for="website{{index}}">Website:</label>
-            <input type="text" id="website{{index}}" name="website" value="{{profOrg.website}}">
-
-            <button class="editBtn" type="button" onclick="saveProf('{{../type}}', {{index}})">Save Changes</button>
-
-            <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
-          </form>
-
-        </div>
-
-        {{/each}}
-
-      </div>
-
-      <div class="otherExperience">
-
-        <h5>OTHER EXPERIENCE</h5>
-        {{#each data.otherExperience as |otherExperience index|}}
-        <h6>[ {{otherExperience.date}} ]</h6>
-
-        <div class="otherExperienceInner">
-          <p class="position">{{otherExperience.position}}</p>
-          <p class="employer">{{otherExperience.employer}}</p>
-          <p class="location">{{otherExperience.location}}</p>
-
-          {{#each otherExperience.dutiesAndAchievements as |duty|}}
-
-          <ul>
-            <li> {{duty}}
-            </li>
-          </ul>
-
-          {{/each}}
-
-          <button class="deleteBtn" onclick="deleteOtherExp('{{../type}}', {{index}})">Delete</button>
-
-          <button class="editBtn" onclick="showOthExpForm('{{../type}}', {{index}})">Edit</button>
-
-          <form id="editOthExpForm{{index}}" class="editForm hiddenForm">
-
-            <label for="dateOther{{index}}">Date:</label>
-            <input type="text" id="dateOther{{index}}" name="date" value="{{otherExperience.date}}">
-
-            <label for="positionOther{{index}}">Position:</label>
-            <input type="text" id="positionOther{{index}}" name="position" value="{{otherExperience.position}}">
-
-            <label for="employerOther{{index}}">Employer:</label>
-            <input type="text" id="employerOther{{index}}" name="employer" value="{{otherExperience.employer}}">
-
-            <label for="locationOther{{index}}">Location:</label>
-            <input type="text" id="locationOther{{index}}" name="location" value="{{otherExperience.location}}">
-
-            <label for="dutiesAndAchievementsOther{{index}}">Duties and Achievements:</label>
-            <textarea id="dutiesAndAchievementsOther{{index}}"
-              name="dutiesAndAchievements">{{otherExperience.dutiesAndAchievements}}</textarea>
-
-            <button class="editBtn" type="button" onclick="saveOthExp('{{../type}}', {{index}})">Save Changes</button>
-
-            <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
-          </form>
-        </div>
-
-        {{/each}}
-
-      </div>
-
-      <div class="skills">
-
-        <h5>SKILLS</h5>
-        {{#each data.skills as |skills index|}}
-
-        <div class="skillsInner">
-          <p>||{{skills}}||</p>
-
-          <button class="deleteBtn" onclick="deleteSkill('{{../type}}', {{index}})">Delete</button>
-
-        </div>
-
-        {{/each}}
-
-      </div>
-
-      <div class="project">
-
-        <h5>PROJECTS</h5>
-        {{#each data.projects as |project index|}}
-        <h6>[ {{project.date}} ]</h6>
-
-        <div class="projectInner">
-          <p class="title">{{project.title}}</p>
-          <p class="details">{{project.details}}</p>
-          <p class="link">{{project.link}}</p>
-
-          <button class="deleteBtn" onclick="deleteProject('{{../type}}', {{index}})">Delete</button>
-
-          <button class="editBtn" onclick="showProjectForm('{{../type}}', {{index}})">Edit</button>
-
-          <form id="editProjectForm{{index}}" class="editForm hiddenForm">
-
-            <label for="dateProject{{index}}">Date:</label>
-            <input type="text" id="dateProject{{index}}" name="date" value="{{project.date}}">
-
-            <label for="title{{index}}">Title:</label>
-            <input type="text" id="title{{index}}" name="title" value="{{project.title}}">
-
-            <label for="details{{index}}">Details:</label>
-            <input type="text" id="details{{index}}" name="details" value="{{project.details}}">
-
-            <label for="link{{index}}">Link:</label>
-            <input type="text" id="link{{index}}" name="link" value="{{project.link}}">
-
-            <button class="editBtn" type="button" onclick="saveProject('{{../type}}', {{index}})">Save Changes</button>
-
-            <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
-
-          </form>
-
-
-        </div>
-
-        {{/each}}
-
-      </div>
-
-      <div class="referee">
-
-        <h5>REFEREES</h5>
-        {{#each data.referees as |referee index|}}
-
-        <div class="refereeInner">
-          <p class="name">{{referee.fullName}}</p>
-          <p class="phone">+234{{referee.phone}}</p>
-          <p class="occupation">{{referee.occupation}}</p>
-
-          <button class="deleteBtn" onclick="deleteReferee('{{../type}}', {{index}})">Delete</button>
-
-          <button class="editBtn" onclick="showRefForm('{{../type}}', {{index}})">Edit</button>
-
-          <form id="editRefForm{{index}}" class="editForm hiddenForm">
-
-            <label for="fullName{{index}}">Full Name:</label>
-            <input type="text" id="fullName{{index}}" name="fullName" value="{{referee.fullName}}">
-
-            <label for="phone{{index}}">Phone:</label>
-            <input type="text" id="phone{{index}}" name="phone" value="{{referee.phone}}">
-
-            <label for="occupation{{index}}">Occupation:</label>
-            <input type="text" id="occupation{{index}}" name="occupation" value="{{referee.occupation}}">
-
-            <button class="editBtn" type="button" onclick="saveReferee('{{../type}}', {{index}})">Save Changes</button>
-
-            <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
-
-          </form>
-
-        </div>
-
-        {{/each}}
-
-      </div>
     </div>
 
-  </div>
 
-  <button class="logoutButton">LOG-OUT</button>
+    <div class="container">
 
+      <div class="intro">
+
+        {{!-- <div class="pix">
+
+          <form action="/users/profile/upload" method="post" enctype="multipart/form-data">
+
+            <img src="" alt="image" id="previewImage" style="max-width: 100%; max-height: 200px">
+            <input type="file" name="image" id="imageInput" accept=".jpeg, .jpg, .png" onchange="previewImage(event)">
+
+            <button type="submit">Upload</button>
+
+          </form>
+
+          <h5>{{data.firstName}} {{data.lastName}}</h5>
+
+        </div> --}}
+
+        <p class="introAbout"> About me:
+          <br> <br>
+          {{data.aboutMe}}
+        </p>
+
+      </div>
+
+      <br><br><br>
+
+      <div class="resumeView">
+        <div id="head">
+
+          <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
+
+          <div class="contactInfo">
+
+            <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
+
+            <div class="contactInfoInner1">
+              <h5><i class="fa-solid fa-phone"></i> Phone: +234{{data.phoneNumber}}</h5>
+              <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
+            </div>
+
+            <div class="contactInfoInner2">
+              <h5><i class="fa-solid fa-globe"></i> Website: {{data.website}}</h5>
+              <h5><i class="fa-brands fa-facebook"></i> Facebook: {{data.links.[1].title}}</h5>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="aboutMe">
+
+          <h5 id="abtMe">ABOUT ME</h5>
+          <p id="abtMeText">{{data.aboutMe}}</p>
+
+        </div>
+
+        <hr>
+
+        <div class="experience">
+
+          <h5 class="expTitle">WORK EXPERIENCE</h5>
+
+          {{#each data.workExperience as |experience index|}}
+
+          <div>
+            <div class="expBox">
+
+              <h6 class="date">[ {{experience.date}} ]</h6>
+
+              <div class="experienceInner">
+                <p class="position">{{experience.position}}</p>
+                <p class="employer">{{experience.employer}}</p>
+                <p class="location">{{experience.location}}</p>
+
+                {{#each experience.dutiesAndAchievements as |duty|}}
+
+                <ul>
+                  <li> {{duty}}
+                  </li>
+                </ul>
+
+                {{/each}}
+
+                <div class="taskBtn">
+                  <button class="deleteBtn" onclick="deleteExperience('{{../type}}', {{index}})">Delete</button>
+
+                  <button class="editBtn" onclick="showExpEditForm('{{../type}}', {{index}})">Edit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <form id="editExpForm{{index}}" class="editForm hiddenForm">
+
+              <label for="date{{index}}">Date:</label>
+              <input type="text" id="date{{index}}" name="date" value="{{experience.date}}">
+
+              <br>
+
+              <label for="position{{index}}">Position:</label>
+              <input type="text" id="position{{index}}" name="position" value="{{experience.position}}">
+
+              <br>
+
+              <label for="employer{{index}}">Employer:</label>
+              <input type="text" id="employer{{index}}" name="employer" value="{{experience.employer}}">
+
+              <br>
+
+              <label for="location{{index}}">Location:</label>
+              <input type="text" id="location{{index}}" name="location" value="{{experience.location}}">
+
+              <br>
+
+              <label for="dutiesAndAchievements{{index}}">Duties and Achievements:</label>
+
+              <br>
+
+              <textarea id="dutiesAndAchievements{{index}}"
+                name="dutiesAndAchievements">{{experience.dutiesAndAchievements}}</textarea>
+
+              <br>
+
+              <button class="editBtn" type="button" onclick="saveExpChanges('{{../type}}', {{index}})">Save
+                Changes</button>
+
+              <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
+            </form>
+
+          </div>
+
+          {{/each}}
+
+        </div>
+
+        <hr>
+
+        <div class="education">
+
+          <h5 class="eduTitle">EDUCATION AND TRAINING</h5>
+
+          {{#each data.educationAndTraining as |education index|}}
+
+          <div>
+
+            <div class="expBox">
+
+              <h6 class="date">[ {{education.date}} ]</h6>
+
+              <div class="educationInner">
+                <p class="degree">{{education.degree}}</p>
+                <p class="institution">{{education.institutionAttended}}</p>
+                <p class="location">{{education.location}}</p>
+
+                {{#each education.projectAndAchievement as |project|}}
+
+                <ul>
+                  <li> {{project}}
+                  </li>
+                </ul>
+
+                {{/each}}
+
+                <div class="taskBtn">
+                  <button class="deleteBtn" onclick="deleteEducation('{{../type}}', {{index}})">Delete</button>
+
+                  <button class="editBtn" onclick="showEduForm('{{../type}}', {{index}})">Edit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <form id="editEduForm{{index}}" class="editForm hiddenForm">
+
+              <label for="dateEdu{{index}}">Date:</label>
+              <input type="text" id="dateEdu{{index}}" name="date" value="{{education.date}}">
+
+              <br>
+
+              <label for="instAttended{{index}}">Institition Attended:</label>
+              <input type="text" id="instAttended{{index}}" name="institutionAttended"
+                value="{{education.institutionAttended}}">
+
+              <br>
+
+              <label for="degree{{index}}">Degree:</label>
+              <input type="text" id="degree{{index}}" name="degree" value="{{education.degree}}">
+
+              <br>
+
+              <label for="locationEdu{{index}}">Location:</label>
+              <input type="text" id="locationEdu{{index}}" name="location" value="{{education.location}}">
+
+              <br>
+
+              <label for="projectAndAchievement{{index}}">Duties and Achievements:</label>
+
+              <br>
+
+              <textarea id="projectAndAchievement{{index}}"
+                name="projectAndAchievement">{{education.projectAndAchievement}}</textarea>
+
+              <br>
+
+              <button class="editBtn" type="button" onclick="saveEdu('{{../type}}', {{index}})">Save Changes</button>
+
+              <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
+            </form>
+
+          </div>
+
+          {{/each}}
+
+        </div>
+
+        <hr>
+
+        <div class="profOrg">
+
+          <h5 class="progOrgTitle">PROFESSIONAL ORGANIZATION</h5>
+
+          {{#each data.professionalOrganization as |profOrg index|}}
+
+          <div>
+            <div class="expBox">
+
+              <h6 class="date">[ {{profOrg.date}} ]</h6>
+
+              <div class="profOrgInner">
+
+                <p class="certification">{{profOrg.certification}}</p>
+                <p class="organization">{{profOrg.organization}}</p>
+                <p class="location">{{profOrg.location}}</p>
+                <p class="website">{{profOrg.website}}</p>
+
+                <div class="taskBtn">
+
+                  <button class="deleteBtn" onclick="deleteProfOrg('{{../type}}', {{index}})">Delete</button>
+
+                  <button class="editBtn" onclick="showProfForm('{{../type}}', {{index}})">Edit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <form id="editProfForm{{index}}" class="editForm hiddenForm">
+
+              <label for="dateProf{{index}}">Date:</label>
+              <input type="text" id="dateProf{{index}}" name="date" value="{{profOrg.date}}">
+
+              <br>
+
+              <label for="organization{{index}}">Organization:</label>
+              <input type="text" id="organization{{index}}" name="organization" value="{{profOrg.organization}}">
+
+              <br>
+
+              <label for="certification{{index}}">Certification:</label>
+              <input type="text" id="certification{{index}}" name="certification" value="{{profOrg.certification}}">
+
+              <br>
+
+              <label for="locationProf{{index}}">Location:</label>
+              <input type="text" id="locationProf{{index}}" name="location" value="{{profOrg.location}}">
+
+              <br>
+
+              <label for="website{{index}}">Website:</label>
+              <input type="text" id="website{{index}}" name="website" value="{{profOrg.website}}">
+
+              <br>
+
+              <button class="editBtn" type="button" onclick="saveProf('{{../type}}', {{index}})">Save Changes</button>
+
+              <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
+            </form>
+
+          </div>
+
+          {{/each}}
+
+        </div>
+
+        <hr>
+
+        <div class="otherExperience">
+
+          <h5 class="othExpTitle">OTHER EXPERIENCE</h5>
+
+          {{#each data.otherExperience as |otherExperience index|}}
+
+          <div>
+            <div class="expBox">
+
+              <h6 class="date">[ {{otherExperience.date}} ]</h6>
+
+              <div class="otherExperienceInner">
+                <p class="position">{{otherExperience.position}}</p>
+                <p class="employer">{{otherExperience.employer}}</p>
+                <p class="location">{{otherExperience.location}}</p>
+
+                {{#each otherExperience.dutiesAndAchievements as |duty|}}
+
+                <ul>
+                  <li> {{duty}}
+                  </li>
+                </ul>
+
+                {{/each}}
+
+                <div class="taskBtn">
+                  <button class="deleteBtn" onclick="deleteOtherExp('{{../type}}', {{index}})">Delete</button>
+
+                  <button class="editBtn" onclick="showOthExpForm('{{../type}}', {{index}})">Edit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <form id="editOthExpForm{{index}}" class="editForm hiddenForm">
+
+              <label for="dateOther{{index}}">Date:</label>
+              <input type="text" id="dateOther{{index}}" name="date" value="{{otherExperience.date}}">
+
+              <br>
+
+              <label for="positionOther{{index}}">Position:</label>
+              <input type="text" id="positionOther{{index}}" name="position" value="{{otherExperience.position}}">
+
+              <br>
+
+              <label for="employerOther{{index}}">Employer:</label>
+              <input type="text" id="employerOther{{index}}" name="employer" value="{{otherExperience.employer}}">
+
+              <br>
+
+              <label for="locationOther{{index}}">Location:</label>
+              <input type="text" id="locationOther{{index}}" name="location" value="{{otherExperience.location}}">
+
+              <br>
+
+              <label for="dutiesAndAchievementsOther{{index}}">Duties and Achievements:</label>
+
+              <br>
+
+              <textarea id="dutiesAndAchievementsOther{{index}}"
+                name="dutiesAndAchievements">{{otherExperience.dutiesAndAchievements}}</textarea>
+
+              <br>
+
+              <button class="editBtn" type="button" onclick="saveOthExp('{{../type}}', {{index}})">Save Changes</button>
+
+              <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
+            </form>
+
+          </div>
+
+          {{/each}}
+
+        </div>
+
+        <hr>
+
+        <div class="skills">
+
+          <h5 class="skillTitle">SKILLS</h5>
+
+          <div class="skillContent">
+
+            {{#each data.skills as |skills index|}}
+
+            <div class="skillsInner">
+              <p class="skillText">||{{skills}}||</p>
+
+              <button class="deleteBtn" onclick="deleteSkill('{{../type}}', {{index}})">Delete</button>
+
+            </div>
+
+            {{/each}}
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="project">
+
+          <h5 class="projectTitle">PROJECTS</h5>
+
+          {{#each data.projects as |project index|}}
+
+          <div>
+
+            <div class="expBox">
+
+              <h6 class="date">[ {{project.date}} ]</h6>
+
+              <div class="projectInner">
+                <p class="title">{{project.title}}</p>
+                <p class="details">{{project.details}}</p>
+                <p class="link">{{project.link}}</p>
+
+                <div class="taskBtn">
+                  <button class="deleteBtn" onclick="deleteProject('{{../type}}', {{index}})">Delete</button>
+
+                  <button class="editBtn" onclick="showProjectForm('{{../type}}', {{index}})">Edit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <form id="editProjectForm{{index}}" class="editForm hiddenForm">
+
+              <label for="dateProject{{index}}">Date:</label>
+              <input type="text" id="dateProject{{index}}" name="date" value="{{project.date}}">
+
+              <br>
+
+              <label for="title{{index}}">Title:</label>
+              <input type="text" id="title{{index}}" name="title" value="{{project.title}}">
+
+              <br>
+
+              <label for="details{{index}}">Details:</label>
+              <br>
+              <textarea id="details{{index}}" class="projectDetail" name="details">{{project.details}}</textarea>
+
+              {{!-- <input type="text" id="details{{index}}" class="projectDetail" name="details"
+                value="{{project.details}}"> --}}
+
+              <br>
+
+              <label for="link{{index}}">Link:</label>
+              <input type="text" id="link{{index}}" name="link" value="{{project.link}}">
+
+              <br>
+
+              <button class="editBtn" type="button" onclick="saveProject('{{../type}}', {{index}})">Save
+                Changes</button>
+
+              <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
+
+            </form>
+
+          </div>
+
+          {{/each}}
+
+        </div>
+
+        <hr>
+
+        <div class="referee">
+
+          <h5 class="refTitle">REFEREES</h5>
+
+          <div class="refContent">
+
+            {{#each data.referees as |referee index|}}
+
+            <div class="refereeInner">
+              <p class="name">{{referee.fullName}}</p>
+              <p class="phone">+234{{referee.phone}}</p>
+              <p class="occupation">{{referee.occupation}}</p>
+
+              <button class="deleteBtn" onclick="deleteReferee('{{../type}}', {{index}})">Delete</button>
+
+              <button class="editBtn" onclick="showRefForm('{{../type}}', {{index}})">Edit</button>
+
+            </div>
+            <form id="editRefForm{{index}}" class="editForm hiddenForm">
+
+              <label for="fullName{{index}}">Full Name:</label>
+              <input type="text" id="fullName{{index}}" name="fullName" value="{{referee.fullName}}">
+
+              <br>
+
+              <label for="phone{{index}}">Phone:</label>
+              <input type="text" id="phone{{index}}" name="phone" value="{{referee.phone}}">
+
+              <br>
+
+              <label for="occupation{{index}}">Occupation:</label>
+              <input type="text" id="occupation{{index}}" name="occupation" value="{{referee.occupation}}">
+
+              <br>
+
+              <button class="editBtn" type="button" onclick="saveReferee('{{../type}}', {{index}})">Save
+                Changes</button>
+
+              <button class="editBtn" type="button" onclick="cancel()">Cancel</button>
+
+            </form>
+
+
+            {{/each}}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
 
   <script>
 
