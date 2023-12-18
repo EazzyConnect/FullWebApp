@@ -143,13 +143,12 @@ div.container{
 }
 
 div.resumeView {
-  /* width: 794px; For download*/
-  /* height: 1123px; */
-  /* margin: 0 auto; */
-  width: 794px;
+  margin: 0 auto;
   background-color: rgb(241, 242, 242);
+  padding: 35px;
+  width: 794px;
   border: 1px solid #142b80;
-  padding: 25px;
+  /* height: 1123px; */
 }
 
 #head{
@@ -180,7 +179,8 @@ h5 {
   display: flex;
 }
 
-hr{
+hr {
+  box-sizing: content-box;
   width: 77%;
   border: 1px solid #8b9fe8;
   margin: auto;

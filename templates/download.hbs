@@ -6,9 +6,13 @@
  <meta name="viewport" content="width=	, initial-scale=1.0">
  <title>ResumeMaker</title>
  <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
- <link rel="stylesheet" href="/profile.css">
+ <link rel="stylesheet" href="/download.css">
  <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
- <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+ {{!--
+ <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script> --}}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
 
 </head>
 
@@ -16,7 +20,12 @@
 
  <section>
 
-  <button id="downloadButton">Download PDF</button>
+  <div class="heading">
+   <a href="/users/profile" class="myHome">Back Home</a>
+   <button class="downloadBtn" id="downloadButton">Download PDF</button>
+  </div>
+
+  <br> <br>
 
   <div class="resumeView">
 
@@ -51,7 +60,7 @@
 
    <hr>
 
-   <div class="experience">
+   <div class="experience dynamicContent">
 
     <h5 class="expTitle">WORK EXPERIENCE</h5>
 
@@ -88,7 +97,7 @@
 
    <hr>
 
-   <div class="education">
+   <div class="education dynamicContent">
 
     <h5 class="eduTitle">EDUCATION AND TRAINING</h5>
 
@@ -126,7 +135,7 @@
 
    <hr>
 
-   <div class="profOrg">
+   <div class="profOrg dynamicContent">
 
     <h5 class="progOrgTitle">PROFESSIONAL ORGANIZATION</h5>
 
@@ -156,7 +165,7 @@
 
    <hr>
 
-   <div class="otherExperience">
+   <div class="otherExperience dynamicContent">
 
     <h5 class="othExpTitle">OTHER EXPERIENCE</h5>
 
@@ -193,7 +202,7 @@
 
    <hr>
 
-   <div class="skills">
+   <div class="skills dynamicContent">
 
     <h5 class="skillTitle">SKILLS</h5>
 
@@ -213,7 +222,7 @@
 
    <hr>
 
-   <div class="project">
+   <div class="project dynamicContent">
 
     <h5 class="projectTitle">PROJECTS</h5>
 
@@ -242,7 +251,7 @@
 
    <hr>
 
-   <div class="referee">
+   <div class="referee dynamicContent">
 
     <h5 class="refTitle">REFEREES</h5>
 
@@ -265,25 +274,65 @@
 
   </div>
 
+  {{!--
   <script>
    document.getElementById('downloadButton').addEventListener('click', () => {
     const element = document.querySelector('.resumeView');
 
     const options = {
-     margin: 5,
+     margin: 10,
+     html2canvas: { scale: 6 },
      filename: 'resume.pdf',
-     image: { type: 'jpeg', quality: 1 },
-     html2canvas: { scale: 2 },
+     image: { type: 'jpeg', quality: 0.98 },
      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    // Use html2pdf library to generate the PDF
     html2pdf(element, options);
+    console.log("Download successful")
    });
+  </script> --}}
+
+  <script>
+   document.getElementById('downloadButton').addEventListener('click', () => {
+    const element = document.querySelector('.resumeView');
+
+    const options = {
+     margin: 10,
+     html2canvas: { scale: 6 },
+     filename: 'resume.pdf',
+     image: { type: 'jpeg', quality: 0.98 },
+     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf(element, options).then(pdf => {
+     const pages = pdf.internal.pages;
+     const threshold = 30; // Adjust this value based on your content
+
+     // Iterate through content elements and add a new page if necessary
+     const contentElements = document.querySelectorAll('.dynamicContent');
+     contentElements.forEach(contentElement => {
+      let contentHeight = pdf.getTextDimensions(contentElement.innerText).h;
+      let currentPage = pages[pages.length - 1];
+
+      // Check if the remaining space is enough for the content
+      if (currentPage.pageHeight - currentPage.pageMargins.top - currentPage.pageMargins.bottom - currentPage.y < contentHeight + threshold) {
+       pdf.addPage();
+       currentPage = pages[pages.length - 1];
+      }
+
+      // Add content to the current page
+      pdf.fromHTML(contentElement, currentPage.pageMargins.left, currentPage.y + currentPage.pageMargins.top);
+     });
+
+     pdf.save('resume.pdf');
+     console.log("Download successful");
+    });
+   });
+
   </script>
 
-
  </section>
+
 </body>
 
 </html>

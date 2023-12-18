@@ -1,0 +1,376 @@
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+section {
+ background-image: linear-gradient(rgba(153, 109, 235, 0.2), rgba(58, 16, 227, 0.363));
+ padding: 15px;
+}
+
+.heading{
+ display: flex;
+}
+
+.downloadBtn, .myHome {
+ background-color: #142b80;
+ color: whitesmoke;
+ padding: 10px;
+ font-weight: bold;
+ font-size: medium;
+ border: 1px solid #142b80;
+ border-radius: 5px;
+ cursor: pointer;
+ text-decoration: none;
+ margin-right: 10px;
+}
+
+.downloadBtn:hover, .myHome:hover {
+ background-color: whitesmoke;
+ color: #142b80;
+ box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
+}
+
+div.resumeView {
+ margin: 0 auto;
+ background-color: rgb(241, 242, 242);
+ padding: 35px;
+}
+
+#head {
+ border-radius: 10px;
+ box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
+ padding: 10px;
+ /* background-color: #142b80;
+  color: white; */
+}
+
+.fullName {
+ margin-bottom: 20px;
+}
+
+h5 {
+ margin-right: 50px;
+ margin-bottom: 10px;
+}
+
+.contactInfoInner1 {
+ display: flex;
+}
+
+.contactInfoInner2 {
+ display: flex;
+}
+
+hr {
+ box-sizing: content-box;
+ width: 77%;
+ border: 1px solid #8b9fe8;
+ margin: auto;
+ margin-right: 0;
+ margin-top: 5px;
+}
+
+
+/* ABOUT ME */
+div.aboutMe {
+ display: flex;
+ margin-top: 20px;
+}
+
+#abtMe {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+#abtMeText {
+ margin-top: 5px;
+ text-align: justify;
+ width: 77%;
+}
+
+/* WORK EXPERIENCE */
+.date {
+ font-size: smaller;
+ width: 20%;
+ margin-right: 3%;
+ font-family: 'Times New Roman', Times, serif;
+ text-align: right;
+}
+
+.location {
+ margin-bottom: 5px;
+}
+
+ul {
+ color: #0e33b8;
+ margin-left: 20px;
+ margin-bottom: 10px;
+}
+
+div.experience {
+ margin-top: 20px;
+}
+
+.expTitle {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+.expBox {
+ display: flex;
+}
+
+/* .vertical line{
+  border-left: 1px solid black;
+  height: 20px;
+} */
+
+.experienceInner {
+ width: 77%;
+ display: flex;
+ flex-direction: column;
+ text-align: justify;
+ margin-bottom: 10px;
+}
+
+.position {
+ font-weight: bold;
+ color: #142b80;
+ margin-bottom: 10px;
+}
+
+.employer {
+ font-weight: bold;
+ font-style: oblique;
+ margin-bottom: 5px;
+}
+
+
+/* EDUCATION */
+div.education {
+ margin-top: 20px;
+}
+
+.eduTitle {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+.educationInner {
+ width: 77%;
+ display: flex;
+ flex-direction: column;
+ text-align: justify;
+ margin-bottom: 10px;
+}
+
+.degree {
+ font-weight: bold;
+ color: #142b80;
+ margin-bottom: 10px;
+}
+
+.institution {
+ font-weight: bold;
+ font-style: oblique;
+ margin-bottom: 5px;
+}
+
+
+/* PROFESSIONAL ORG */
+div.profOrg {
+ margin-top: 20px;
+}
+
+.progOrgTitle {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+.profOrgInner {
+ width: 77%;
+ display: flex;
+ flex-direction: column;
+ text-align: justify;
+ margin-bottom: 10px;
+}
+
+.certification {
+ font-weight: bold;
+ color: #142b80;
+ margin-bottom: 10px;
+}
+
+.organization {
+ font-weight: bold;
+ font-style: oblique;
+ margin-bottom: 5px;
+}
+
+.website {
+ font-style: italic;
+ color: #142b80;
+ font-size: smaller;
+}
+
+/* OTHER EXPERIENCE */
+div.otherExperience {
+ margin-top: 20px;
+}
+
+.othExpTitle {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+.otherExperienceInner {
+ width: 77%;
+ display: flex;
+ flex-direction: column;
+ text-align: justify;
+ margin-bottom: 10px;
+}
+
+.position {
+ font-weight: bold;
+ color: #142b80;
+ margin-bottom: 10px;
+}
+
+.employer {
+ font-weight: bold;
+ font-style: oblique;
+ margin-bottom: 5px;
+}
+
+
+/* SKILLS */
+div.skills {
+ margin-top: 20px;
+ display: flex;
+}
+
+.skillTitle {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+.skillContent {
+ width: 77%;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ margin-bottom: 10px;
+}
+
+.skillsInner {
+ width: 33%;
+ margin-bottom: 5px;
+}
+
+.skillText {
+ margin-right: 10px;
+ font-size: small;
+ font-weight: bold;
+ /* use word-wrap or overflow-wrap */
+ overflow-wrap: break-word;
+}
+
+
+
+/* PROJECT */
+div.project {
+ margin-top: 20px;
+}
+
+.projectTitle {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+.projectInner {
+ width: 77%;
+ display: flex;
+ flex-direction: column;
+ text-align: justify;
+ margin-bottom: 10px;
+}
+
+.title {
+ font-weight: bold;
+ color: #142b80;
+ margin-bottom: 10px;
+}
+
+.details {
+ font-weight: bold;
+ margin-bottom: 5px;
+}
+
+.link {
+ font-style: italic;
+ color: #142b80;
+ font-size: smaller;
+}
+
+.projectDetail {
+ width: 400px;
+ height: 100px;
+ background-color: red;
+ overflow-wrap: break-word;
+ resize: vertical;
+}
+
+
+/* REFEREES */
+div.referee {
+ margin-top: 20px;
+ display: flex;
+}
+
+.refTitle {
+ color: #142b80;
+ text-align: right;
+ width: 20%;
+ margin-right: 3%;
+}
+
+.refContent {
+ width: 77%;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+}
+
+.refereeInner {
+ width: 33%;
+ margin-bottom: 10px;
+}
+
+.name {
+ font-weight: bold;
+ color: #142b80;
+ margin-bottom: 10px;
+}
+
+.phone {
+ font-weight: bold;
+ margin-bottom: 5px;
+}
