@@ -6,7 +6,12 @@ require("dotenv").config();
 const roleEnum = ["admin", "user"];
 
 const portfolioSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    ref: "userOTPVerified",
+  },
   password: { type: String, required: true, minLength: 6 },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -14,7 +19,7 @@ const portfolioSchema = new mongoose.Schema({
   address: { type: String },
   email: { type: String, required: true, unique: true },
   phoneNumber: [{ type: String, required: true, unique: true }],
-  website: { type: String, unique: true },
+  website: { type: String },
   image: { type: Buffer },
   links: [{ title: { name: String, type: String, unique: true } }],
   aboutMe: { type: String, maxLength: 2000 },

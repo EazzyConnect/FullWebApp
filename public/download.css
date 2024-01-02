@@ -37,6 +37,9 @@ div.resumeView {
  margin: 0 auto;
  background-color: rgb(241, 242, 242);
  padding: 35px;
+ /* width: 210mm; */
+ /* height: 297mm; */
+ /* overflow: auto; */
 }
 
 #head {

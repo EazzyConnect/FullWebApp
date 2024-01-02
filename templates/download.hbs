@@ -2,336 +2,473 @@
 <html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=	, initial-scale=1.0">
- <title>ResumeMaker</title>
- <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
- <link rel="stylesheet" href="/download.css">
- <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
- {{!--
- <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script> --}}
- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResumeMaker</title>
+  <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
+  <link rel="stylesheet" href="/download.css">
+  <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+
+
+
+
+  {{!--
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+  --}}
+
+
+  {{!-- FOR FIRST & SECOND SCRIPT DOWNLOAD --}}
+  {{!--
+  <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script> --}}
 
 
 </head>
 
 <body>
 
- <section>
+  <section>
 
-  <div class="heading">
-   <a href="/users/profile" class="myHome">Back Home</a>
-   <button class="downloadBtn" id="downloadButton">Download PDF</button>
-  </div>
-
-  <br> <br>
-
-  <div class="resumeView">
-
-   <div id="head">
-
-    <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
-
-    <div class="contactInfo">
-
-     <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
-
-     <div class="contactInfoInner1">
-      <h5><i class="fa-solid fa-phone"></i> Phone: +234{{data.phoneNumber}}</h5>
-      <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
-     </div>
-
-     <div class="contactInfoInner2">
-      <h5><i class="fa-solid fa-globe"></i> Website: {{data.website}}</h5>
-      <h5><i class="fa-brands fa-facebook"></i> Facebook: {{data.links.[1].title}}</h5>
-     </div>
-
+    <div class="heading">
+      <a href="/users/profile" class="myHome">Back Home</a>
+      <button class="downloadBtn" id="downloadButton">Download PDF</button>
     </div>
 
-   </div>
+    <br> <br>
 
-   <div class="aboutMe">
+    <div class="resumeView">
 
-    <h5 id="abtMe">ABOUT ME</h5>
-    <p id="abtMeText">{{data.aboutMe}}</p>
+      <div id="head">
 
-   </div>
+        <h2 class="fullName"> {{data.firstName}} {{data.lastName}} {{data.otherName}}</h2>
 
-   <hr>
+        <div class="contactInfo">
 
-   <div class="experience dynamicContent">
+          <h5><i class="fa-solid fa-location-dot"></i> Home: {{data.address}}</h5>
 
-    <h5 class="expTitle">WORK EXPERIENCE</h5>
+          <div class="contactInfoInner1">
+            <h5><i class="fa-solid fa-phone"></i> Phone: +234{{data.phoneNumber}}</h5>
+            <h5><i class="fa-solid fa-envelope"></i> Email: {{data.email}}</h5>
+          </div>
 
-    {{#each data.workExperience as |experience index|}}
+          <div class="contactInfoInner2">
+            <h5><i class="fa-solid fa-globe"></i> Website: {{data.website}}</h5>
+            <h5><i class="fa-brands fa-facebook"></i> Facebook: {{data.links.[1].title}}</h5>
+          </div>
 
-    <div>
-     <div class="expBox">
-
-      <h6 class="date">[ {{experience.date}} ]</h6>
-
-      <div class="experienceInner">
-       <p class="position">{{experience.position}}</p>
-       <p class="employer">{{experience.employer}}</p>
-       <p class="location">{{experience.location}}</p>
-
-       {{#each experience.dutiesAndAchievements as |duty|}}
-
-       <ul>
-        <li> {{duty}}
-        </li>
-       </ul>
-
-       {{/each}}
+        </div>
 
       </div>
 
-     </div>
+      <div class="aboutMe">
 
-    </div>
-
-    {{/each}}
-
-   </div>
-
-   <hr>
-
-   <div class="education dynamicContent">
-
-    <h5 class="eduTitle">EDUCATION AND TRAINING</h5>
-
-    {{#each data.educationAndTraining as |education index|}}
-
-    <div>
-
-     <div class="expBox">
-
-      <h6 class="date">[ {{education.date}} ]</h6>
-
-      <div class="educationInner">
-       <p class="degree">{{education.degree}}</p>
-       <p class="institution">{{education.institutionAttended}}</p>
-       <p class="location">{{education.location}}</p>
-
-       {{#each education.projectAndAchievement as |project|}}
-
-       <ul>
-        <li> {{project}}
-        </li>
-       </ul>
-
-       {{/each}}
+        <h5 id="abtMe">ABOUT ME</h5>
+        <p id="abtMeText">{{data.aboutMe}}</p>
 
       </div>
 
-     </div>
+      <hr>
 
-    </div>
+      <div class="experience dynamicContent">
 
-    {{/each}}
+        <h5 class="expTitle">WORK EXPERIENCE</h5>
 
-   </div>
+        {{#each data.workExperience as |experience index|}}
 
-   <hr>
+        <div>
+          <div class="expBox">
 
-   <div class="profOrg dynamicContent">
+            <h6 class="date">[ {{experience.date}} ]</h6>
 
-    <h5 class="progOrgTitle">PROFESSIONAL ORGANIZATION</h5>
+            <div class="experienceInner">
+              <p class="position">{{experience.position}}</p>
+              <p class="employer">{{experience.employer}}</p>
+              <p class="location">{{experience.location}}</p>
 
-    {{#each data.professionalOrganization as |profOrg index|}}
+              {{#each experience.dutiesAndAchievements as |duty|}}
 
-    <div>
-     <div class="expBox">
+              <ul>
+                <li> {{duty}}
+                </li>
+              </ul>
 
-      <h6 class="date">[ {{profOrg.date}} ]</h6>
+              {{/each}}
 
-      <div class="profOrgInner">
+            </div>
 
-       <p class="certification">{{profOrg.certification}}</p>
-       <p class="organization">{{profOrg.organization}}</p>
-       <p class="location">{{profOrg.location}}</p>
-       <p class="website">{{profOrg.website}}</p>
+          </div>
 
-      </div>
+        </div>
 
-     </div>
-
-    </div>
-
-    {{/each}}
-
-   </div>
-
-   <hr>
-
-   <div class="otherExperience dynamicContent">
-
-    <h5 class="othExpTitle">OTHER EXPERIENCE</h5>
-
-    {{#each data.otherExperience as |otherExperience index|}}
-
-    <div>
-     <div class="expBox">
-
-      <h6 class="date">[ {{otherExperience.date}} ]</h6>
-
-      <div class="otherExperienceInner">
-       <p class="position">{{otherExperience.position}}</p>
-       <p class="employer">{{otherExperience.employer}}</p>
-       <p class="location">{{otherExperience.location}}</p>
-
-       {{#each otherExperience.dutiesAndAchievements as |duty|}}
-
-       <ul>
-        <li> {{duty}}
-        </li>
-       </ul>
-
-       {{/each}}
+        {{/each}}
 
       </div>
 
-     </div>
+      <hr>
 
-    </div>
+      <div class="education dynamicContent">
 
-    {{/each}}
+        <h5 class="eduTitle">EDUCATION AND TRAINING</h5>
 
-   </div>
+        {{#each data.educationAndTraining as |education index|}}
 
-   <hr>
+        <div>
 
-   <div class="skills dynamicContent">
+          <div class="expBox">
 
-    <h5 class="skillTitle">SKILLS</h5>
+            <h6 class="date">[ {{education.date}} ]</h6>
 
-    <div class="skillContent">
+            <div class="educationInner">
+              <p class="degree">{{education.degree}}</p>
+              <p class="institution">{{education.institutionAttended}}</p>
+              <p class="location">{{education.location}}</p>
 
-     {{#each data.skills as |skills index|}}
+              {{#each education.projectAndAchievement as |project|}}
 
-     <div class="skillsInner">
-      <p class="skillText">||{{skills}}||</p>
-     </div>
+              <ul>
+                <li> {{project}}
+                </li>
+              </ul>
 
-     {{/each}}
+              {{/each}}
 
-    </div>
+            </div>
 
-   </div>
+          </div>
 
-   <hr>
+        </div>
 
-   <div class="project dynamicContent">
-
-    <h5 class="projectTitle">PROJECTS</h5>
-
-    {{#each data.projects as |project index|}}
-
-    <div>
-
-     <div class="expBox">
-
-      <h6 class="date">[ {{project.date}} ]</h6>
-
-      <div class="projectInner">
-       <p class="title">{{project.title}}</p>
-       <p class="details">{{project.details}}</p>
-       <p class="link">{{project.link}}</p>
+        {{/each}}
 
       </div>
 
-     </div>
+      <hr>
+
+      <div class="profOrg dynamicContent">
+
+        <h5 class="progOrgTitle">PROFESSIONAL ORGANIZATION</h5>
+
+        {{#each data.professionalOrganization as |profOrg index|}}
+
+        <div>
+          <div class="expBox">
+
+            <h6 class="date">[ {{profOrg.date}} ]</h6>
+
+            <div class="profOrgInner">
+
+              <p class="certification">{{profOrg.certification}}</p>
+              <p class="organization">{{profOrg.organization}}</p>
+              <p class="location">{{profOrg.location}}</p>
+              <p class="website">{{profOrg.website}}</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {{/each}}
+
+      </div>
+
+      <hr>
+
+      <div class="otherExperience dynamicContent">
+
+        <h5 class="othExpTitle">OTHER EXPERIENCE</h5>
+
+        {{#each data.otherExperience as |otherExperience index|}}
+
+        <div>
+          <div class="expBox">
+
+            <h6 class="date">[ {{otherExperience.date}} ]</h6>
+
+            <div class="otherExperienceInner">
+              <p class="position">{{otherExperience.position}}</p>
+              <p class="employer">{{otherExperience.employer}}</p>
+              <p class="location">{{otherExperience.location}}</p>
+
+              {{#each otherExperience.dutiesAndAchievements as |duty|}}
+
+              <ul>
+                <li> {{duty}}
+                </li>
+              </ul>
+
+              {{/each}}
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {{/each}}
+
+      </div>
+
+      <hr>
+
+      <div class="skills dynamicContent">
+
+        <h5 class="skillTitle">SKILLS</h5>
+
+        <div class="skillContent">
+
+          {{#each data.skills as |skills index|}}
+
+          <div class="skillsInner">
+            <p class="skillText">||{{skills}}||</p>
+          </div>
+
+          {{/each}}
+
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="project dynamicContent">
+
+        <h5 class="projectTitle">PROJECTS</h5>
+
+        {{#each data.projects as |project index|}}
+
+        <div>
+
+          <div class="expBox">
+
+            <h6 class="date">[ {{project.date}} ]</h6>
+
+            <div class="projectInner">
+              <p class="title">{{project.title}}</p>
+              <p class="details">{{project.details}}</p>
+              <p class="link">{{project.link}}</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {{/each}}
+
+      </div>
+
+      <hr>
+
+      <div class="referee dynamicContent">
+
+        <h5 class="refTitle">REFEREES</h5>
+
+        <div class="refContent">
+
+          {{#each data.referees as |referee index|}}
+
+          <div class="refereeInner">
+            <p class="name">{{referee.fullName}}</p>
+            <p class="phone">+234{{referee.phone}}</p>
+            <p class="occupation">{{referee.occupation}}</p>
+
+          </div>
+
+          {{/each}}
+
+        </div>
+
+      </div>
 
     </div>
 
-    {{/each}}
+    {{!-- FOR FIRST DOWNLOAD (trimmed)--}}
+    {{!--
+    <script>
+      document.getElementById('downloadButton').addEventListener('click', () => {
+        const element = document.querySelector('.resumeView');
 
-   </div>
+        const options = {
+          margin: 10,
+          html2canvas: { scale: 6 },
+          filename: 'resume.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
 
-   <hr>
+        html2pdf(element, options);
+        console.log("Download successful")
+      });
+    </script> --}}
 
-   <div class="referee dynamicContent">
 
-    <h5 class="refTitle">REFEREES</h5>
+    {{!-- FOR SECOND DOWNLOAD (divided into pages by div) --}}
+    {{!--
+    <script>
+      document.getElementById('downloadButton').addEventListener('click', () => {
+        const resumeView = document.querySelector('.resumeView');
+        const sections = resumeView.children;
+        const pdfSections = [];
 
-    <div class="refContent">
+        // Function to create a new page
+        const createNewPage = () => {
+          const newPage = document.createElement('div');
+          newPage.classList.add('resumePage');
+          pdfSections.push(newPage);
+          return newPage;
+        };
 
-     {{#each data.referees as |referee index|}}
+        // Function to calculate the height of an element including its children
+        const calculateElementHeight = (element) => {
+          const clone = element.cloneNode(true);
+          clone.style.visibility = 'hidden';
+          resumeView.appendChild(clone);
+          const height = clone.offsetHeight;
+          resumeView.removeChild(clone);
+          return height;
+        };
 
-     <div class="refereeInner">
-      <p class="name">{{referee.fullName}}</p>
-      <p class="phone">+234{{referee.phone}}</p>
-      <p class="occupation">{{referee.occupation}}</p>
+        // Function to divide content into pages
+        const divideIntoPages = () => {
+          let currentPage = createNewPage();
+          let currentPageHeight = 0;
 
-     </div>
+          for (const section of sections) {
+            const sectionHeight = calculateElementHeight(section);
 
-     {{/each}}
+            // Check if the current section fits on the current page
+            if (currentPageHeight + sectionHeight <= 1000) { // You can adjust this height based on your requirements
+              currentPage.appendChild(section.cloneNode(true));
+              currentPageHeight += sectionHeight;
+            } else {
+              // If not, create a new page and add the section to it
+              currentPage = createNewPage();
+              currentPage.appendChild(section.cloneNode(true));
+              currentPageHeight = sectionHeight;
+            }
+          }
+        };
 
-    </div>
+        // Call the function to divide content into pages
+        divideIntoPages();
 
-   </div>
+        // Convert each page to PDF
+        pdfSections.forEach((pdfSection, index) => {
+          const options = {
+            margin: 10,
+            html2canvas: { scale: 6 },
+            filename: `resume_page_${index + 1}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          };
 
-  </div>
+          html2pdf(pdfSection, options);
+        });
 
-  {{!--
-  <script>
-   document.getElementById('downloadButton').addEventListener('click', () => {
-    const element = document.querySelector('.resumeView');
+        console.log("Download successfully");
+      });
 
-    const options = {
-     margin: 10,
-     html2canvas: { scale: 6 },
-     filename: 'resume.pdf',
-     image: { type: 'jpeg', quality: 0.98 },
-     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    </script> --}}
 
-    html2pdf(element, options);
-    console.log("Download successful")
-   });
-  </script> --}}
+    {{!-- jsPDF download. Compressed to one page --}}
+    {{!--
+    <script>
+      document.getElementById('downloadButton').addEventListener('click', () => {
+        const resumeView = document.querySelector('.resumeView');
 
-  <script>
-   document.getElementById('downloadButton').addEventListener('click', () => {
-    const element = document.querySelector('.resumeView');
+        // Use html2canvas to capture the content of .resumeView
+        html2canvas(resumeView, { scale: 3 }).then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          console.log("Cloned")
+          const pdf = new jsPDF('p', 'mm', 'a4');
 
-    const options = {
-     margin: 10,
-     html2canvas: { scale: 6 },
-     filename: 'resume.pdf',
-     image: { type: 'jpeg', quality: 0.98 },
-     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+          // Add the captured image to the PDF
+          pdf.addImage(imgData, 'PNG', 0, 0, 210, 297); // Adjust width and height as needed
 
-    html2pdf(element, options).then(pdf => {
-     const pages = pdf.internal.pages;
-     const threshold = 30; // Adjust this value based on your content
+          // Save and download the PDF
+          pdf.save('resume.pdf');
 
-     // Iterate through content elements and add a new page if necessary
-     const contentElements = document.querySelectorAll('.dynamicContent');
-     contentElements.forEach(contentElement => {
-      let contentHeight = pdf.getTextDimensions(contentElement.innerText).h;
-      let currentPage = pages[pages.length - 1];
+          console.log("Download successfully");
+        });
+      });
 
-      // Check if the remaining space is enough for the content
-      if (currentPage.pageHeight - currentPage.pageMargins.top - currentPage.pageMargins.bottom - currentPage.y < contentHeight + threshold) {
-       pdf.addPage();
-       currentPage = pages[pages.length - 1];
-      }
+    </script> --}}
 
-      // Add content to the current page
-      pdf.fromHTML(contentElement, currentPage.pageMargins.left, currentPage.y + currentPage.pageMargins.top);
-     });
+    {{!--
+    <script>
+      document.getElementById('downloadButton').addEventListener('click', () => {
+        const print = document.querySelector('.resumeView');
+        const pdf = new jsPDF();
+        pdf.text(print.innerText, 10, 10);
+        pdf.save('print.pdf');
+        console.log("done!")
+      })
+    </script> --}}
 
-     pdf.save('resume.pdf');
-     console.log("Download successful");
-    });
-   });
+    <script>
+      document.getElementById('downloadButton').addEventListener('click', () => {
+        console.log("Loading...")
+        const resumeView = document.querySelector('.resumeView');
+        const sections = resumeView.children;
 
-  </script>
+        // Function to calculate the height of an element including its children
+        const calculateElementHeight = (element) => {
+          const clone = element.cloneNode(true);
+          clone.style.visibility = 'hidden';
+          resumeView.appendChild(clone);
+          const height = clone.offsetHeight;
+          resumeView.removeChild(clone);
+          return height;
+        };
 
- </section>
+        // Function to divide content into pages
+        const divideIntoPages = () => {
+          const pdf = new jsPDF('p', 'mm', 'a4');
+          let currentPageHeight = 0;
+
+          for (const section of sections) {
+            const sectionHeight = calculateElementHeight(section);
+
+            // Check if the current section fits on the current page
+            if (currentPageHeight + sectionHeight <= 297) { // Adjust height as needed
+              // Add the section to the current page
+              pdf.fromHTML(section.outerHTML, 10, currentPageHeight, {
+                width: 190 // Adjust width as needed
+              });
+              currentPageHeight += sectionHeight;
+            } else {
+              // Start a new page
+              pdf.addPage();
+              currentPageHeight = 0;
+
+              // Add the section to the new page
+              pdf.fromHTML(section.outerHTML, 10, currentPageHeight, {
+                width: 190 // Adjust width as needed
+              });
+              currentPageHeight += sectionHeight;
+            }
+          }
+
+          // Save and download the PDF
+          pdf.save('resume.pdf');
+          console.log("Download successfully");
+        };
+
+        // Call the function to divide content into pages
+        divideIntoPages();
+      });
+    </script>
+
+
+  </section>
 
 </body>
 

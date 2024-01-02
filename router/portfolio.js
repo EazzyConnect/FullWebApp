@@ -24,6 +24,8 @@ const upload = multer({ storage: storage });
 
 const templatesPath = path.join(__dirname, "../templates");
 
+const jsPDF = require("jspdf");
+
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

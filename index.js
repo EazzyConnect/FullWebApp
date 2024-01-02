@@ -18,6 +18,9 @@ const path = require("path");
 const { asyncErrHandler } = require("./errorHandler/asyncErrHandler");
 const templatesPath = path.join(__dirname, "./templates");
 
+const nodemailer = require("nodemailer");
+const userOTPVerification = require("./model/userOTPVerf");
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
