@@ -3,428 +3,433 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
-  <link rel="icon" href="../images/Title-Logo.png" />
+  <title>ResumeMaker</title>
+  <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
   <link rel="stylesheet" href="/editProfile.css" />
   <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <div class="navBar">
-    <a class="homeS" href="/users/profile">View Profile</a>
-    <a class="homeS" href="/users/settings">Change Password</a>
-  </div>
+  <section>
 
-  <h2>User's Edit-Page</h2>
+    <div class="navBar">
+      <a class="homeS" href="/users/profile">View Profile</a>
+      <a class="homeS" href="/users/settings">Change Password</a>
+    </div>
 
-  <br />
+    <h2>User's Edit-Page</h2>
 
-  <div class="main">
+    <br />
 
-    <div class="bioData">
+    <div class="main">
 
-      <h3>Bio-Data:</h3>
+      <div class="bioData">
+
+        <h3>Bio-Data:</h3>
+        <form class="edit" action="/users/profile/edit" method="post">
+
+          <label for="firstName">First Name:</label>
+          <input type="text" name="firstName" placeholder="First Name" id="firstName" />
+
+          <label for="lastName">Last Name:</label>
+          <input type="text" name="lastName" placeholder="Last Name" id="lastName" />
+
+          <label for="otherName">Other Name:</label>
+          <input type="text" name="otherName" placeholder="Other Name" id="otherName" />
+
+          <label for="address">Address:</label>
+          <input type="text" name="address" placeholder="Address (e.g Lagos, Nigeria)" id="address" />
+
+          <label for="phone">Phone:</label>
+          <input type="tel" name="phoneNumber" placeholder="Phone +234-xxx-xxxx-xxx (Skip the first number)"
+            id="phone" />
+
+          <label for="website">Website:</label>
+          <input type="text" name="website" placeholder="Website" id="website" />
+
+          <label for="about">About Me:</label>
+          {{!-- <input type="text" name="aboutMe" placeholder="Write a summary about yourself." id="about" /> --}}
+          <textarea name="aboutMe" id="about" cols="30" rows="10"
+            placeholder="Write a summary about yourself."></textarea>
+
+          <br><br>
+
+          <button type="submit">Save</button>
+        </form>
+
+      </div>
+
+      <br />
+
+      <div class="experience">
+
+        <div class="workExp">
+
+          <h3>Work-Experience:</h3>
+
+          <form id="addWorkExperienceForm" class="edit" action="/users/profile/edit" method="post">
+
+            <label>Date:</label>
+            <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" required />
+
+            <label>Position:</label>
+            <input type="text" name="position" placeholder="Position held" />
+
+            <label>Employer:</label>
+            <input type="text" name="employer" placeholder="Employer" />
+
+            <label>Location:</label>
+            <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
+
+            <label>Duties and Achievements:</label>
+            <textarea name="dutiesAndAchievements"
+              placeholder="Enter duties and achievements (comma-separated)"></textarea>
+
+            <br><br>
+
+            <button type="submit" onclick="addWorkExperience(event)">Save</button>
+
+          </form>
+        </div>
+
+        <br />
+
+        <div class="otherExp">
+
+          <h3>Other Experience:</h3>
+
+          <form id="addOtherExperienceForm" class="edit" action="/users/profile/edit" method="post">
+            <label>Date:</label>
+            <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" required />
+
+            <label>Position:</label>
+            <input type="text" name="position" placeholder="Position held" required />
+
+            <label>Employer:</label>
+            <input type="text" name="employer" placeholder="Employer" required />
+
+            <label>Location:</label>
+            <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
+
+            <label>Duties and Achievements:</label>
+            <textarea name="dutiesAndAchievements"
+              placeholder="Enter duties and achievements (comma-separated)"></textarea>
+
+            <br><br>
+
+            <button type="submit" onclick="addOtherExperience(event)">Save</button>
+          </form>
+
+        </div>
+      </div>
+
+      <div class="eduAndProfOrg">
+
+        <div class="education">
+
+          <h3>Education and Training:</h3>
+
+          <form id="addEducationAndTrainingForm" class="edit" action="/users/profile/edit" method="post">
+
+            <label>Date:</label>
+            <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" required />
+
+            <label>Institution Attended:</label>
+            <input type="text" name="institutionAttended" placeholder="Institution" required />
+
+            <label>Degree:</label>
+            <input type="text" name="degree" placeholder="Degree (e.g. B.Sc (Computer Engineering))" required />
+
+            <label>Location:</label>
+            <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
+
+            <label>Projects and Achievements:</label>
+            <textarea name="projectAndAchievement"
+              placeholder="Enter projects completed and achievements (comma-separated)"></textarea>
+
+            <br><br>
+
+            <button type="submit" onclick="addEducation(event)">Save</button>
+
+          </form>
+
+        </div>
+
+        <br />
+
+        <div class="ProfOrg">
+
+          <h3>Professional Organization:</h3>
+
+          <form id="addProfOrgForm" class="edit" action="/users/profile/edit" method="post">
+
+            <label>Date:</label>
+            <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" />
+
+            <label>Organization:</label>
+            <input type="text" name="organization" placeholder="Organization" />
+
+            <label>Certification:</label>
+            <input type="text" name="degree" placeholder="Certification Awarded/Received" />
+
+            <label>Location:</label>
+            <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
+
+            <label>Website:</label>
+            <input type="text" name="website" placeholder="website" />
+
+            <button type="submit" onclick="addProfOrg(event)">Save</button>
+
+          </form>
+
+        </div>
+      </div>
+
+
+      <br />
+
+      <h3>Skills:</h3>
+
       <form class="edit" action="/users/profile/edit" method="post">
 
-        <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" placeholder="First Name" id="firstName" />
-
-        <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" placeholder="Last Name" id="lastName" />
-
-        <label for="otherName">Other Name:</label>
-        <input type="text" name="otherName" placeholder="Other Name" id="otherName" />
-
-        <label for="address">Address:</label>
-        <input type="text" name="address" placeholder="Address (e.g Lagos, Nigeria)" id="address" />
-
-        <label for="phone">Phone:</label>
-        <input type="tel" name="phoneNumber" placeholder="Phone +234-xxx-xxxx-xxx (Skip the first number)" id="phone" />
-
-        <label for="website">Website:</label>
-        <input type="text" name="website" placeholder="Website" id="website" />
-
-        <label for="about">About Me:</label>
-        {{!-- <input type="text" name="aboutMe" placeholder="Write a summary about yourself." id="about" /> --}}
-        <textarea name="aboutMe" id="about" cols="30" rows="10"
-          placeholder="Write a summary about yourself."></textarea>
-
-        <br><br>
+        <input class="skillInput" type="text" name="skills"
+          placeholder="Digital or Soft Skills(e.g. React.js , Java , Excellent Communication)" />
 
         <button type="submit">Save</button>
+
       </form>
 
-    </div>
-
-    <br />
-
-    <div class="experience">
-
-      <div class="workExp">
-
-        <h3>Work-Experience:</h3>
-
-        <form id="addWorkExperienceForm" class="edit" action="/users/profile/edit" method="post">
-
-          <label>Date:</label>
-          <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" required />
-
-          <label>Position:</label>
-          <input type="text" name="position" placeholder="Position held" />
-
-          <label>Employer:</label>
-          <input type="text" name="employer" placeholder="Employer" />
-
-          <label>Location:</label>
-          <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
-
-          <label>Duties and Achievements:</label>
-          <textarea name="dutiesAndAchievements"
-            placeholder="Enter duties and achievements (comma-separated)"></textarea>
-
-          <br><br>
-
-          <button type="submit" onclick="addWorkExperience(event)">Save</button>
-
-        </form>
-      </div>
-
       <br />
 
-      <div class="otherExp">
+      <div class="projectAndRef">
 
-        <h3>Other Experience:</h3>
+        <div class="project">
 
-        <form id="addOtherExperienceForm" class="edit" action="/users/profile/edit" method="post">
-          <label>Date:</label>
-          <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" required />
+          <h3>Projects:</h3>
 
-          <label>Position:</label>
-          <input type="text" name="position" placeholder="Position held" required />
+          <form id="addProjectForm" class="edit" action="/users/profile/edit" method="post">
 
-          <label>Employer:</label>
-          <input type="text" name="employer" placeholder="Employer" required />
+            <label>Date:</label>
+            <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" />
 
-          <label>Location:</label>
-          <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
+            <label>Title:</label>
+            <input type="text" name="title" placeholder="Project Title" />
 
-          <label>Duties and Achievements:</label>
-          <textarea name="dutiesAndAchievements"
-            placeholder="Enter duties and achievements (comma-separated)"></textarea>
+            <label>Link:</label>
+            <input type="text" name="link" placeholder="Link or website to project" />
 
-          <br><br>
+            <label>Details:</label>
+            <textarea name="details" placeholder="Description of project"></textarea>
 
-          <button type="submit" onclick="addOtherExperience(event)">Save</button>
-        </form>
+            <br><br>
 
+            <button type="submit" onclick="addProject(event)">Save</button>
+
+          </form>
+
+        </div>
+
+        <br />
+
+        <div class="referee">
+
+          <h3>Referees:</h3>
+
+          <form id="refereesForm" class="edit" action="/users/profile/edit" method="post">
+
+            <label>Full Name:</label>
+            <input type="text" name="fullName" placeholder="First-Name   Last-Name" />
+
+            <label>Contact:</label>
+            <input type="tel" name="phone" placeholder="Phone +234-xxx-xxxx-xxx (Skip the first number)" />
+
+            <label>Occupation:</label>
+            <input type="text" name="occupation" placeholder="Referee's occupation" />
+
+            <button type="submit" onclick="addReferee(event)">Save</button>
+
+          </form>
+
+        </div>
       </div>
+
     </div>
 
-    <div class="eduAndProfOrg">
 
-      <div class="education">
 
-        <h3>Education and Training:</h3>
 
-        <form id="addEducationAndTrainingForm" class="edit" action="/users/profile/edit" method="post">
+    <script>
 
-          <label>Date:</label>
-          <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" required />
+      async function addWorkExperience(event) {
+        event.preventDefault();
 
-          <label>Institution Attended:</label>
-          <input type="text" name="institutionAttended" placeholder="Institution" required />
+        const form = document.getElementById('addWorkExperienceForm');
+        const formData = new FormData(form);
 
-          <label>Degree:</label>
-          <input type="text" name="degree" placeholder="Degree (e.g. B.Sc (Computer Engineering))" required />
+        const workExperience = {
+          date: formData.get('date'),
+          position: formData.get('position'),
+          employer: formData.get('employer'),
+          location: formData.get('location'),
+          dutiesAndAchievements: formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
+        };
 
-          <label>Location:</label>
-          <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
+        try {
+          const response = await fetch('/users/profile/edit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ workExperience }),
+          });
+        } catch (error) {
+          console.error('Error:', error.message);
+        }
 
-          <label>Projects and Achievements:</label>
-          <textarea name="projectAndAchievement"
-            placeholder="Enter projects completed and achievements (comma-separated)"></textarea>
+        return form.submit();
+      }
 
-          <br><br>
 
-          <button type="submit" onclick="addEducation(event)">Save</button>
+      async function addEducation(event) {
+        event.preventDefault();
 
-        </form>
+        const form = document.getElementById('addEducationAndTrainingForm');
+        const formData = new FormData(form);
 
-      </div>
+        const educationAndTraining = {
+          date: formData.get('date'),
+          institutionAttended: formData.get('institutionAttended'),
+          degree: formData.get('degree'),
+          location: formData.get('location'),
+          projectAndAchievement: formData.get('projectAndAchievement').split(',').map(item => item.trim())
+        }; try {
+          const response = await fetch('/users/profile/edit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }, body: JSON.stringify({ educationAndTraining }),
+          });
+        } catch (error) {
+          console.error('Error:', error.message);
+        }
 
-      <br />
+        return form.submit();
+      }
 
-      <div class="ProfOrg">
 
-        <h3>Professional Organization:</h3>
+      async function addProfOrg(event) {
+        event.preventDefault();
 
-        <form id="addProfOrgForm" class="edit" action="/users/profile/edit" method="post">
+        const form = document.getElementById('addProfOrgForm');
+        const formData = new FormData(form);
 
-          <label>Date:</label>
-          <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" />
+        const professionalOrganization = {
+          date: formData.get('date'),
+          organization: formData.get('organization'),
+          certification: formData.get('certification'),
+          location: formData.get('location'),
+          website: formData.get('website'),
+        }; try {
+          const response = await fetch('/users/profile/edit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }, body: JSON.stringify({ professionalOrganization }),
+          });
+        } catch (error) {
+          console.error('Error:', error.message);
+        }
 
-          <label>Organization:</label>
-          <input type="text" name="organization" placeholder="Organization" />
+        return form.submit();
+      }
 
-          <label>Certification:</label>
-          <input type="text" name="degree" placeholder="Certification Awarded/Received" />
 
-          <label>Location:</label>
-          <input type="text" name="location" placeholder="Location (e.g. Lagos, Nigeria)" />
+      async function addOtherExperience(event) {
+        event.preventDefault();
 
-          <label>Website:</label>
-          <input type="text" name="website" placeholder="website" />
+        const form = document.getElementById('addOtherExperienceForm');
+        const formData = new FormData(form);
 
-          <button type="submit" onclick="addProfOrg(event)">Save</button>
+        const otherExperience = {
+          date: formData.get('date'),
+          position: formData.get('position'),
+          employer: formData.get('employer'),
+          location: formData.get('location'),
+          dutiesAndAchievements: formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
+        }; try {
+          const response = await fetch('/users/profile/edit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }, body: JSON.stringify({ otherExperience }),
+          });
+        } catch (error) {
+          console.error('Error:', error.message);
+        }
 
-        </form>
+        return form.submit();
+      }
 
-      </div>
-    </div>
 
+      async function addProject(event) {
+        event.preventDefault();
+
+        const form = document.getElementById('addProjectForm');
+        const formData = new FormData(form);
+
+        const projects = {
+          date: formData.get('date'),
+          title: formData.get('title'),
+          details: formData.get('details'),
+          link: formData.get('link')
+        }; try {
+          const response = await fetch('/users/profile/edit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }, body: JSON.stringify({ projects }),
+          });
+        } catch
+        (error) {
+          console.error('Error:', error.message);
+        }
+
+        return form.submit();
+      }
+
+
+      async function addReferee(event) {
+        event.preventDefault();
+
+        const form = document.getElementById('refereesForm');
+        const formData = new FormData(form);
+
+        const referees = {
+          fullName: formData.get('fullName'),
+          phone: formData.get('phone'),
+          occupation: formData.get('occupation'),
+        };
+        try {
+          const response = await fetch('/users/profile/edit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }, body: JSON.stringify({ referees }),
+          });
+        } catch (error) {
+          console.error('Error:', error.message);
+        }
+
+        return form.submit();
+      }
+
+    </script>
 
     <br />
-
-    <h3>Skills:</h3>
-
-    <form class="edit" action="/users/profile/edit" method="post">
-
-      <input class="skillInput" type="text" name="skills"
-        placeholder="Digital or Soft Skills(e.g. React.js , Java , Excellent Communication)" />
-
-      <button type="submit">Save</button>
-
-    </form>
-
     <br />
 
-    <div class="projectAndRef">
-
-      <div class="project">
-
-        <h3>Projects:</h3>
-
-        <form id="addProjectForm" class="edit" action="/users/profile/edit" method="post">
-
-          <label>Date:</label>
-          <input type="text" name="date" placeholder="Date (e.g. Sept, 2009 - Sept, 2014)" />
-
-          <label>Title:</label>
-          <input type="text" name="title" placeholder="Project Title" />
-
-          <label>Link:</label>
-          <input type="text" name="link" placeholder="Link or website to project" />
-
-          <label>Details:</label>
-          <textarea name="details" placeholder="Description of project"></textarea>
-
-          <br><br>
-
-          <button type="submit" onclick="addProject(event)">Save</button>
-
-        </form>
-
-      </div>
-
-      <br />
-
-      <div class="referee">
-
-        <h3>Referees:</h3>
-
-        <form id="refereesForm" class="edit" action="/users/profile/edit" method="post">
-
-          <label>Full Name:</label>
-          <input type="text" name="fullName" placeholder="First-Name   Last-Name" />
-
-          <label>Contact:</label>
-          <input type="tel" name="phone" placeholder="Phone +234-xxx-xxxx-xxx (Skip the first number)" />
-
-          <label>Occupation:</label>
-          <input type="text" name="occupation" placeholder="Referee's occupation" />
-
-          <button type="submit" onclick="addReferee(event)">Save</button>
-
-        </form>
-
-      </div>
-    </div>
-
-  </div>
-
-
-
-
-  <script>
-
-    async function addWorkExperience(event) {
-      event.preventDefault();
-
-      const form = document.getElementById('addWorkExperienceForm');
-      const formData = new FormData(form);
-
-      const workExperience = {
-        date: formData.get('date'),
-        position: formData.get('position'),
-        employer: formData.get('employer'),
-        location: formData.get('location'),
-        dutiesAndAchievements: formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
-      };
-
-      try {
-        const response = await fetch('/users/profile/edit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ workExperience }),
-        });
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-
-      return form.submit();
-    }
-
-
-    async function addEducation(event) {
-      event.preventDefault();
-
-      const form = document.getElementById('addEducationAndTrainingForm');
-      const formData = new FormData(form);
-
-      const educationAndTraining = {
-        date: formData.get('date'),
-        institutionAttended: formData.get('institutionAttended'),
-        degree: formData.get('degree'),
-        location: formData.get('location'),
-        projectAndAchievement: formData.get('projectAndAchievement').split(',').map(item => item.trim())
-      }; try {
-        const response = await fetch('/users/profile/edit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          }, body: JSON.stringify({ educationAndTraining }),
-        });
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-
-      return form.submit();
-    }
-
-
-    async function addProfOrg(event) {
-      event.preventDefault();
-
-      const form = document.getElementById('addProfOrgForm');
-      const formData = new FormData(form);
-
-      const professionalOrganization = {
-        date: formData.get('date'),
-        organization: formData.get('organization'),
-        certification: formData.get('certification'),
-        location: formData.get('location'),
-        website: formData.get('website'),
-      }; try {
-        const response = await fetch('/users/profile/edit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          }, body: JSON.stringify({ professionalOrganization }),
-        });
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-
-      return form.submit();
-    }
-
-
-    async function addOtherExperience(event) {
-      event.preventDefault();
-
-      const form = document.getElementById('addOtherExperienceForm');
-      const formData = new FormData(form);
-
-      const otherExperience = {
-        date: formData.get('date'),
-        position: formData.get('position'),
-        employer: formData.get('employer'),
-        location: formData.get('location'),
-        dutiesAndAchievements: formData.get('dutiesAndAchievements').split(',').map(item => item.trim())
-      }; try {
-        const response = await fetch('/users/profile/edit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          }, body: JSON.stringify({ otherExperience }),
-        });
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-
-      return form.submit();
-    }
-
-
-    async function addProject(event) {
-      event.preventDefault();
-
-      const form = document.getElementById('addProjectForm');
-      const formData = new FormData(form);
-
-      const projects = {
-        date: formData.get('date'),
-        title: formData.get('title'),
-        details: formData.get('details'),
-        link: formData.get('link')
-      }; try {
-        const response = await fetch('/users/profile/edit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          }, body: JSON.stringify({ projects }),
-        });
-      } catch
-      (error) {
-        console.error('Error:', error.message);
-      }
-
-      return form.submit();
-    }
-
-
-    async function addReferee(event) {
-      event.preventDefault();
-
-      const form = document.getElementById('refereesForm');
-      const formData = new FormData(form);
-
-      const referees = {
-        fullName: formData.get('fullName'),
-        phone: formData.get('phone'),
-        occupation: formData.get('occupation'),
-      };
-      try {
-        const response = await fetch('/users/profile/edit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          }, body: JSON.stringify({ referees }),
-        });
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-
-      return form.submit();
-    }
-
-  </script>
-
-  <br />
-  <br />
+  </section>
 
 </body>
 

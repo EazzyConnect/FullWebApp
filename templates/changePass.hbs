@@ -4,22 +4,29 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Portfolio</title>
- <link rel="icon" href="../images/Title-Logo.png">
+ <title>ResumeMaker</title>
+ <link rel="icon" href="/images/resumee.jpeg" type="image/x-icon">
  <link rel="stylesheet" href="/changePass.css">
 </head>
 
 <body>
 
- <h2>Change Password</h2>
- <form class="changeP" action="/users/settings" method="post">
-  <input type="password" name="password" placeholder="New Password">
-  
-  <button type="submit">Save Changes</button>
- </form>
- <br>
- <a class="homeS" href="/users/profile">Back Home</a>
+ <section>
 
+  <h2>Change Password</h2>
+  <form class="changeP" action="/users/settings" method="post">
+
+   <label for="password">New Password:</label>
+   <input type="password" id="password" name="password" placeholder="New Password">
+
+   <button type="submit">Save Changes</button>
+  </form>
+
+  <br>
+
+  <a class="homeS" href="/users/profile">Back Home</a>
+
+ </section>
 
 </body>
 

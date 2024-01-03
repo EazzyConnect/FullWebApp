@@ -23,20 +23,15 @@
   <div id="mainContainer">
 
    <div class="log1">
-    <h4>Verify your email</h4>
-    <h6>(Check your email inbox or spam)</h6>
+    <h4>Enter your email address.</h4>
    </div>
 
-   <form method="post" class="login">
+   <form method="post" class="resendForm">
 
-    <label class="label" for="email">Email: </label>
-    <input type="text" id="email" name="email" placeholder="Email">
-
-    <label class="label" for="otp">OTP: </label>
-    <input type="password" id="otp" name="otp" placeholder="OTP">
+    <label class="labelForm" for="email">Email: </label>
+    <input class="inputForm" type="text" id="email" name="email" placeholder="Email">
 
     <button type="submit">Submit</button>
-    <a class="resend" href="/auth/login/resendOTP">Resend OTP</a>
 
    </form>
 

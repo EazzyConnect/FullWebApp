@@ -147,36 +147,43 @@ module.exports.verifyOTP = asyncErrHandler(async (req, res) => {
   try {
     const { email, otp } = req.body;
     if (!email || !otp) {
-      throw Error("Please provide user OTP details");
+      const script =
+        "<script> alert('Please provide user OTP details.'); window.location.href='/auth/login/verifyEmail' </script>";
+      return res.send(script);
     } else {
       const userOTPVerifyRecords = await userOTPVerification.findOne({
         email,
       });
       if (!userOTPVerifyRecords) {
-        // No record found
-        throw new Error(
-          "Account record doesn't exist or has beeen verified already. Please sign up or log in."
-        );
+        const script =
+          "<script> alert('No record found, please sign up or login or request new OTP code.'); window.location.href='/auth/login/verifyEmail' </script>";
+        return res.send(script);
       } else {
         //OTP record exists
         const { expiresAt, otp: hashedOTP } = userOTPVerifyRecords;
         if (expiresAt < Date.now()) {
-          await userOTPVerification.deleteMany({ userId });
-          throw new Error("OTP code has expired, please request again.");
+          await userOTPVerification.deleteMany({ email });
+          // throw new Error("OTP code has expired, please request again.");
+          const script =
+            "<script> alert('OTP code has expired, please request again.'); window.location.href='/auth/login/verifyEmail' </script>";
+          return res.send(script);
         } else {
           const validOTP = await bcrypt.compare(otp, hashedOTP);
           if (!validOTP) {
-            throw new Error(
-              "Invalid code provided. Please check your inbox and make sure you provide the corret OTP code sent."
-            );
+            const script =
+              "<script> alert('Invalid code provided. Please check your inbox and make sure you provide the correct OTP code sent.'); window.location.href='/auth/login/verifyEmail' </script>";
+            return res.send(script);
           } else {
             // Success
             await Portfolio.updateOne({ email }, { $set: { approved: true } });
             await userOTPVerification.deleteMany({ email });
-            res.json({
-              status: "VERIFIED",
-              message: "User email verified successfully.",
-            });
+            // res.json({
+            //   status: "VERIFIED",
+            //   message: "User email verified successfully.",
+            // });
+            const script =
+              "<script> alert('User email verified successfully. Login to continue'); window.location.href='/auth/login' </script>";
+            return res.send(script);
           }
         }
       }
@@ -192,12 +199,21 @@ module.exports.verifyOTP = asyncErrHandler(async (req, res) => {
 // RESENDING OTP
 module.exports.resendOTP = asyncErrHandler(async (req, res) => {
   try {
-    const { userId, email } = req.body;
-    if (!userId || !email) {
-      throw Error("Please provide user details");
+    const { email } = req.body;
+    if (!email) {
+      const script =
+        "<script> alert('Please provide your email.'); window.location.href='/auth/login/resendOTP' </script>";
+      return res.send(script);
     } else {
-      await userOTPVerification.deleteMany({ userId });
-      sendOTPEmail({ _id: userId, email }, res);
+      const checkEmail = await Portfolio.findOne({ email });
+      if (!checkEmail) {
+        const script =
+          "<script> alert('No record found.'); window.location.href='/auth/login/resendOTP' </script>";
+        return res.send(script);
+      } else {
+        await userOTPVerification.deleteMany({ email });
+        sendOTPEmail({ email }, res);
+      }
     }
   } catch (error) {
     res.json({
@@ -212,7 +228,7 @@ module.exports.login = asyncErrHandler(async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
     const script =
-      "<script> alert ('Please provide username and password to login'); window.location.href= '/auth/login' </script>";
+      "<script> alert ('Please provide username and password to login.'); window.location.href= '/auth/login' </script>";
     return res.send(script);
   }
   const user = await Portfolio.findOne({ username });
@@ -224,7 +240,7 @@ module.exports.login = asyncErrHandler(async (req, res) => {
   const check = await bcrypt.compare(password, user.password);
   if (!check) {
     const script =
-      "<script>alert('Authentication error'); window.location.href = '/auth/login' </script>";
+      "<script>alert('Invalid credentials provided.'); window.location.href = '/auth/login' </script>";
     return res.send(script);
   }
   const approvedUser = user.approved === false;

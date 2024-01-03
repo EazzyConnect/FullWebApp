@@ -39,6 +39,9 @@ router.get("/login/verifyEmail", (req, res) => {
 router.post("/login/verifyEmail", verifyOTP);
 
 // RESEND OTP
+router.get("/login/resendOTP", (req, res) => {
+  res.render("resendOtpPage");
+});
 router.post("/login/resendOTP", resendOTP);
 
 // LOGIN
