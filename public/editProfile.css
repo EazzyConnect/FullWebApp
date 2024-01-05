@@ -54,7 +54,7 @@ input {
 }
 
 .skillInput{
- width: 150%;
+ width: 100%;
 }
 
 button {
@@ -80,7 +80,7 @@ textarea{
  height: 200px;
 }
 
-body a.homeS {
+.homeS {
  color: rgb(227, 221, 234);
  border: 1px solid #123;
  border-radius: 5px;
@@ -88,4 +88,22 @@ body a.homeS {
  font-weight: bold;
  background-color: blueviolet;
  text-decoration: none;
+}
+
+
+@media screen and (max-width: 680px) {
+ .editHead{
+  font-size: large;
+ }
+
+ .homeS{
+  font-weight: normal;
+ }
+
+ .experience, .eduAndProfOrg, .projectAndRef{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+ }
+
 }

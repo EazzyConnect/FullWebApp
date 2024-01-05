@@ -125,6 +125,34 @@ li{
  box-shadow: 0 0 20px rgba(3, 4, 5, 0.8);
 }
 
-@media screen and (max-width: 600px) {
- 
+@media screen and (max-width: 480px) {
+ nav{
+  display: flex;
+ }
+
+ .home{
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  margin-bottom: 10px;
+ }
+
+ .time{
+  float: inline-start;
+  padding: 3px;
+ }
+
+ ul{
+  display: flex;
+  flex-direction: column;
+ }
+
+ li{
+  margin-bottom: 15px;
+ }
+
+ .content2{
+  text-align: center;
+ }
+
 }

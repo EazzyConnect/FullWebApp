@@ -59,8 +59,6 @@ module.exports.userProfile = asyncErrHandler(async (req, res) => {
 // EDIT USER PROFILE   @AUTH ROUTE
 module.exports.editUser = asyncErrHandler(async (req, res) => {
   const {
-    firstName,
-    lastName,
     otherName,
     address,
     phoneNumber,
@@ -76,11 +74,15 @@ module.exports.editUser = asyncErrHandler(async (req, res) => {
     projects,
     referees,
   } = req.body;
-  if (firstName) req.user.firstName = firstName;
-  if (lastName) req.user.lastName = lastName;
   if (otherName) req.user.otherName = otherName;
   if (address) req.user.address = address;
   if (phoneNumber) req.user.phoneNumber = phoneNumber;
+  const checkExistingPhone = await Portfolio.findOne({ phoneNumber });
+  if (checkExistingPhone) {
+    const script =
+      "<script> alert('Phone number already exist. Please provide another phone number'); window.location.href = '/users/profile/edit' </script>";
+    return res.send(script);
+  }
   if (aboutMe) req.user.aboutMe = aboutMe;
   if (website) req.user.website = website;
 

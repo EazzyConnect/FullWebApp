@@ -118,3 +118,15 @@ button:hover {
  cursor: pointer;
  box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
 }
+
+
+@media screen and (max-width: 680px) {
+ #container {
+  width: 70%;
+ }
+
+ input{
+  width: 220px;
+ }
+
+}

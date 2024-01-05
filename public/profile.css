@@ -118,7 +118,7 @@ header nav {
   box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
 }
 
-div.container{
+.container{
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -137,12 +137,21 @@ div.container{
   padding: 15px;
 }
 
+.abtText{
+  /* box-shadow: 0 0 20px rgba(3, 4, 5, 0.6); */
+  font-weight: bolder;
+  background-color: blueviolet;
+  color: whitesmoke;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
 .introAbout{
   width: 100%;
   text-align: justify;
 }
 
-div.resumeView {
+.resumeView {
   margin: 0 auto;
   background-color: rgb(241, 242, 242);
   padding: 35px;
@@ -544,4 +553,68 @@ textarea{
   background-color: aliceblue;
   color: #142b80;
   font-weight: bolder;
+}
+
+
+@media screen and (max-width: 680px) {
+ .myHome{
+  display: none;
+ }
+
+ .leftTime, .rightTime {
+  font-weight: bold;
+  font-size: medium;
+ }
+
+ .role{
+  padding-right: 15px;
+ }
+
+ .downloadBtn{
+  margin-right: -10px;
+ }
+
+ .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: auto;
+  margin-top: -40px;
+  padding-top: 0;
+ }
+
+ .intro{
+  /* margin-top: 5px;
+  width: 90%; */
+  display: none;
+ }
+
+ .resumeView {
+  width: 95%;
+ }
+
+ .contactInfoInner1, .contactInfoInner2{
+  display: flex;
+  flex-direction: column;
+ }
+
+}
+
+@media screen and (max-width: 1024px){
+ .intro{
+ /* margin-right: 20px; */
+ display: none;
+ }
+
+  .contactInfoInner1, .contactInfoInner2{
+  display: flex;
+  flex-direction: column;
+ }
+
+}
+
+@media screen and (min-width: 1024px) {
+  .intro {
+    margin-right: 20px;
+  }
 }
