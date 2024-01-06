@@ -10,7 +10,7 @@ const userOTPVerification = require("../model/userOTPVerf");
 
 // Nodemailer
 const transporter = nodemailer.createTransport({
-  host: "smtp-mail.outlook.com",
+  service: "outlook",
   auth: {
     user: process.env.AUTH_EMAIL,
     pass: process.env.AUTH_PASS,
