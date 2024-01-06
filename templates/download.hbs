@@ -9,27 +9,18 @@
   <link rel="stylesheet" href="/download.css">
   <script src="https://kit.fontawesome.com/4aac937350.js" crossorigin="anonymous"></script>
 
+
+  {{!-- FOR FIRST & SECOND SCRIPT DOWNLOAD --}}
+  <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+
+
   {{!-- For last script --}}
   {{!--
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
     integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script> --}}
-
-
-
-  {{!--
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
-  --}}
-
-
-  {{!-- FOR FIRST & SECOND SCRIPT DOWNLOAD --}}
-
-  <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
-
 
 </head>
 
@@ -312,7 +303,6 @@
 
 
     {{!-- FOR SECOND DOWNLOAD (divided into pages by div) --}}
-
     <script>
       document.getElementById('downloadButton').addEventListener('click', () => {
         const resumeView = document.querySelector('.resumeView');
@@ -346,7 +336,7 @@
             const sectionHeight = calculateElementHeight(section);
 
             // Check if the current section fits on the current page
-            if (currentPageHeight + sectionHeight <= 1000) { // You can adjust this height based on your requirements
+            if (currentPageHeight + sectionHeight <= 5000) { // You can adjust this height based on your requirements
               currentPage.appendChild(section.cloneNode(true));
               currentPageHeight += sectionHeight;
             } else {
@@ -364,7 +354,7 @@
         // Convert each page to PDF
         pdfSections.forEach((pdfSection, index) => {
           const options = {
-            margin: 10,
+            margin: 5,
             html2canvas: { scale: 6 },
             filename: `resume_page_${index + 1}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
@@ -378,6 +368,8 @@
       });
 
     </script>
+
+
 
     {{!-- jsPDF download. Compressed to one page --}}
     {{!--
@@ -401,72 +393,6 @@
         });
       });
 
-    </script> --}}
-
-    {{!--
-    <script>
-      document.getElementById('downloadButton').addEventListener('click', () => {
-        const print = document.querySelector('.resumeView');
-        const pdf = new jsPDF();
-        pdf.text(print.innerText, 10, 10);
-        pdf.save('print.pdf');
-        console.log("done!")
-      })
-    </script> --}}
-
-    {{!--
-    <script>
-      document.getElementById('downloadButton').addEventListener('click', () => {
-        console.log("Loading...")
-        const resumeView = document.querySelector('.resumeView');
-        const sections = resumeView.children;
-
-        // Function to calculate the height of an element including its children
-        const calculateElementHeight = (element) => {
-          const clone = element.cloneNode(true);
-          clone.style.visibility = 'hidden';
-          resumeView.appendChild(clone);
-          const height = clone.offsetHeight;
-          resumeView.removeChild(clone);
-          return height;
-        };
-
-        // Function to divide content into pages
-        const divideIntoPages = () => {
-          const pdf = new jsPDF('p', 'mm', 'a4');
-          let currentPageHeight = 0;
-
-          for (const section of sections) {
-            const sectionHeight = calculateElementHeight(section);
-
-            // Check if the current section fits on the current page
-            if (currentPageHeight + sectionHeight <= 297) { // Adjust height as needed
-              // Add the section to the current page
-              pdf.fromHTML(section.outerHTML, 10, currentPageHeight, {
-                width: 190 // Adjust width as needed
-              });
-              currentPageHeight += sectionHeight;
-            } else {
-              // Start a new page
-              pdf.addPage();
-              currentPageHeight = 0;
-
-              // Add the section to the new page
-              pdf.fromHTML(section.outerHTML, 10, currentPageHeight, {
-                width: 190 // Adjust width as needed
-              });
-              currentPageHeight += sectionHeight;
-            }
-          }
-
-          // Save and download the PDF
-          pdf.save('resume.pdf');
-          console.log("Download successfully");
-        };
-
-        // Call the function to divide content into pages
-        divideIntoPages();
-      });
     </script> --}}
 
 

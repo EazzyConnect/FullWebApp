@@ -36,7 +36,7 @@ section {
 div.resumeView {
  margin: 0 auto;
  background-color: rgb(241, 242, 242);
- padding: 35px;
+ padding: 50px;
  /* width: 210mm; */
  /* height: 297mm; */
  /* overflow: auto; */
@@ -90,10 +90,12 @@ div.aboutMe {
  margin-right: 3%;
 }
 
+/* Adjusted all width of 77% to 70% to enable download not trimmed on the right margin */
+
 #abtMeText {
  margin-top: 5px;
  text-align: justify;
- width: 77%;
+ width: 70%;
 }
 
 /* WORK EXPERIENCE */
@@ -136,7 +138,7 @@ div.experience {
 } */
 
 .experienceInner {
- width: 77%;
+ width: 70%;
  display: flex;
  flex-direction: column;
  text-align: justify;
@@ -169,7 +171,7 @@ div.education {
 }
 
 .educationInner {
- width: 77%;
+ width: 70%;
  display: flex;
  flex-direction: column;
  text-align: justify;
@@ -202,7 +204,7 @@ div.profOrg {
 }
 
 .profOrgInner {
- width: 77%;
+ width: 70%;
  display: flex;
  flex-direction: column;
  text-align: justify;
@@ -240,7 +242,7 @@ div.otherExperience {
 }
 
 .otherExperienceInner {
- width: 77%;
+ width: 70%;
  display: flex;
  flex-direction: column;
  text-align: justify;
@@ -274,7 +276,7 @@ div.skills {
 }
 
 .skillContent {
- width: 77%;
+ width: 70%;
  display: flex;
  flex-wrap: wrap;
  justify-content: space-between;
@@ -309,7 +311,7 @@ div.project {
 }
 
 .projectInner {
- width: 77%;
+ width: 70%;
  display: flex;
  flex-direction: column;
  text-align: justify;
@@ -356,7 +358,7 @@ div.referee {
 }
 
 .refContent {
- width: 77%;
+ width: 70%;
  display: flex;
  flex-wrap: wrap;
  justify-content: space-between;
