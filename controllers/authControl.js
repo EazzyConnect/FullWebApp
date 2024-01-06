@@ -89,13 +89,13 @@ module.exports.signUp = asyncErrHandler(async (req, res) => {
 // Convert to Sentence case function
 const sentenceCase = (word) => {
   const input = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  const output = input.trim().replaceAll(" ", "");
+  const output = input.trim().replaceAll(/\s+/g, "");
   return output;
 };
 
 // Trim out white spaces function
 const trimSpaces = (word) => {
-  return word.trim().replaceAll(" ", "");
+  return word.trim().replaceAll(/\s+/g, "");
 };
 
 // Send OTP function
