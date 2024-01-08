@@ -10,6 +10,7 @@ const portfolioSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    sparse: true,
     ref: "userOTPVerified",
   },
   password: { type: String, required: true, minLength: 6 },
@@ -17,11 +18,13 @@ const portfolioSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   otherName: { type: String },
   address: { type: String },
-  email: { type: String, required: true, unique: true },
-  phoneNumber: [{ type: String, required: true, unique: true }],
+  email: { type: String, required: true, unique: true, sparse: true },
+  phoneNumber: [{ type: String, required: true, unique: true, sparse: true }],
   website: { type: String },
   image: { type: Buffer },
-  links: [{ title: { name: String, type: String, unique: true } }],
+  links: [
+    { title: { name: String, type: String, unique: true, sparse: true } },
+  ],
   aboutMe: { type: String, maxLength: 2000 },
   workExperience: [
     {
