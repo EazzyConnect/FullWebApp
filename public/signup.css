@@ -119,6 +119,22 @@ button:hover {
  box-shadow: 0 0 20px rgba(3, 4, 5, 0.6);
 }
 
+.password-container {
+ position: relative;
+ display: inline-block;
+}
+
+#password {
+ padding-right: 30px;
+}
+    
+.password-toggle-icon {
+ position: absolute;
+ top: 50%;
+ right: 5px;
+ transform: translateY(-50%);
+ cursor: pointer;
+}
 
 @media screen and (max-width: 680px) {
  #container {

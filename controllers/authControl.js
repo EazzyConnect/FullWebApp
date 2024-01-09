@@ -22,15 +22,23 @@ const transporter = nodemailer.createTransport({
 
 // SIGNUP ROUTE
 module.exports.signUp = asyncErrHandler(async (req, res) => {
-  const { password, email, username, firstName, lastName, phoneNumber } =
-    req.body;
+  const {
+    password,
+    email,
+    username,
+    firstName,
+    lastName,
+    phoneNumber,
+    confirmPassword,
+  } = req.body;
   if (
     !firstName ||
     !lastName ||
     !email ||
     !username ||
     !password ||
-    !phoneNumber
+    !phoneNumber ||
+    !confirmPassword
   ) {
     const script =
       "<script>alert('Registration failed. Fill up all information and AVOID SPACES in between your text.'); window.location.href = '/signup' </script>";
@@ -65,6 +73,11 @@ module.exports.signUp = asyncErrHandler(async (req, res) => {
   if (password.length < 6) {
     const script =
       "<script>alert('Password length must be more than 5 characters'); window.location.href = '/auth/signup' </script>";
+    return res.send(script);
+  }
+  if (confirmPassword !== password) {
+    const script =
+      "<script>alert('Password does not match.'); window.location.href = '/auth/signup' </script>";
     return res.send(script);
   }
   const hashedPassword = await bcrypt.hash(password, 10);
